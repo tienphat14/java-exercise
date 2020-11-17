@@ -14,4 +14,14 @@ public class CsvLine {
     public String get(int index) {
         throw new UnsupportedOperationException("This method is not implemented yet, please implement");
     }
+
+    /**
+     * Set data in a specific position
+     *
+     * @param position Position
+     * @param data     Data
+     */
+    public void set(int position, String data) {
+        throw new UnsupportedOperationException("This method is not implemented yet, please implement");
+    }
 }

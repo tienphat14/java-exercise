@@ -1,19 +1,23 @@
 package java.coaching.csv;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.coaching.csv.CsvTestUtils.createCsvFileConfig;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Required Knowledge
  * - Java basic (conditional statement, loop, ...)
  * - Java IO
  * - Java Collection
- *
+ * <p>
  * Requirements
  * - Make sure your code stay consistent
  * - Easily to maintain and highly extensible is a plus
@@ -23,26 +27,29 @@ public class CsvParserTest {
 
     @Test
     public void whenParse_QuotedCsv_ThenCorrectlyParse() throws URISyntaxException {
-        final CsvFileConfig parserConfig = new CsvFileConfig();
+        final CsvFileConfig parserConfig = createCsvFileConfig();
         parserConfig.setDelimiter("|");
-        parserConfig.setQuoteMode(true);
-        executeTest(parserConfig, "/quoted.csv");
+        assertCsvLines(execute(parserConfig, "/quoted.csv"));
     }
 
     @Test
     public void whenParse_UnquotedCsv_ThenCorrectlyParse() throws URISyntaxException {
-        final CsvFileConfig parserConfig = new CsvFileConfig();
+        final CsvFileConfig parserConfig = createCsvFileConfig();
         parserConfig.setDelimiter("|");
         parserConfig.setQuoteMode(false);
-        executeTest(parserConfig, "/unquoted.csv");
+        assertCsvLines(execute(parserConfig, "/unquoted.csv"));
     }
 
     @Test
     public void whenParse_CommaDelimiter_ThenCorrectlyParse() throws URISyntaxException {
-        final CsvFileConfig parserConfig = new CsvFileConfig();
+        final CsvFileConfig parserConfig = createCsvFileConfig();
         parserConfig.setDelimiter(",");
-        parserConfig.setQuoteMode(true);
-        executeTest(parserConfig, "/comma.csv");
+        assertCsvLines(execute(parserConfig, "/comma.csv"));
+    }
+
+    @Test(expected = IOException.class)
+    public void whenParse_NonExistingFile_ThenReject() throws URISyntaxException {
+        execute(createCsvFileConfig(), "/not-found.csv");
     }
 
     /**
@@ -50,42 +57,41 @@ public class CsvParserTest {
      * of segments not matching number of header columns, please refer to abnormal.csv
      * file for details
      */
-    @Test(expected = ParseException.class)
-    public void whenParse_AbnormalDelimiter_ThenReject() throws URISyntaxException {
+    @Test(expected = IOException.class)
+    public void whenParse_AbnormalDelimiter_ThenReject() throws URISyntaxException, IOException {
         final CsvFileConfig parserConfig = new CsvFileConfig();
         parserConfig.setDelimiter(",");
         parserConfig.setQuoteMode(true);
-        executeTest(parserConfig, "/abnormal.csv");
+        execute(parserConfig, "/abnormal.csv");
     }
 
-    private void executeTest(CsvFileConfig config, String fileName) throws URISyntaxException {
+    private List<CsvLine> execute(CsvFileConfig config, String fileName) throws URISyntaxException {
         // Get test data from resources
         final File file = Paths.get(CsvParserTest.class.getResource(fileName).toURI()).toFile();
-
-
-        final CsvParser parser = new DefaultCsvParser(config);
-        final Iterator<CsvLine> csvLines = parser.parse(file);
+        final List<CsvLine> actualLines = new ArrayList<>();
+        final CsvParser parser = new DefaultCsvParser(file, config);
 
         // Iterate through CSV lines for result
-        int count = 0;
-        while (csvLines.hasNext()) {
-            final CsvLine csvLine = csvLines.next();
-
-            // Header line assertion
-            if (count == 0) {
-                Assert.assertEquals("FirstName", csvLine.get(0));
-                Assert.assertEquals("LastName", csvLine.get(1));
-
-                // Data line assertion
-            } else if (count == 1) {
-                Assert.assertEquals("John", csvLine.get(0));
-                Assert.assertEquals("Biden", csvLine.get(1));
-            } else if (count == 2) {
-                Assert.assertEquals("Donald", csvLine.get(0));
-                Assert.assertEquals("Trump", csvLine.get(1));
-            }
-
-            count++;
+        while (parser.hasNext()) {
+            actualLines.add(parser.next());
         }
+
+        return actualLines;
+    }
+
+    private void assertCsvLines(List<CsvLine> lines) {
+        assertEquals(3, lines.size());
+
+        CsvLine header = lines.get(0);
+        assertEquals("FirstName", header.get(0));
+        assertEquals("LastName", header.get(1));
+
+        CsvLine data1 = lines.get(1);
+        assertEquals("John", data1.get(0));
+        assertEquals("Biden", data1.get(1));
+
+        CsvLine data2 = lines.get(1);
+        assertEquals("Donald", data2.get(0));
+        assertEquals("Trump", data2.get(1));
     }
 }
