@@ -1,4 +1,4 @@
-package java.coaching.validation;
+package coaching.validation;
 
 import java.util.Collection;
 

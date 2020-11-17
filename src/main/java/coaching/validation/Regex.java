@@ -1,4 +1,4 @@
-package java.coaching.validation;
+package coaching.validation;
 
 /**
  * Regex rule

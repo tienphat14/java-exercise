@@ -1,4 +1,4 @@
-package java.coaching.csv;
+package coaching.csv;
 
 import org.junit.Test;
 
@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.coaching.csv.CsvTestUtils.createCsvFileConfig;
+import static coaching.csv.CsvTestUtils.createCsvFileConfig;
 import static org.junit.Assert.assertEquals;
 
 /**

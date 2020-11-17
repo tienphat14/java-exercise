@@ -2,12 +2,12 @@ package java.coaching.validator;
 
 import org.junit.Test;
 
-import java.coaching.validation.DefaultValidator;
-import java.coaching.validation.NotNull;
-import java.coaching.validation.Regex;
-import java.coaching.validation.Size;
-import java.coaching.validation.Validator;
-import java.coaching.validation.Violation;
+import coaching.validation.DefaultValidator;
+import coaching.validation.NotNull;
+import coaching.validation.Regex;
+import coaching.validation.Size;
+import coaching.validation.Validator;
+import coaching.validation.Violation;
 import java.util.Iterator;
 
 /**

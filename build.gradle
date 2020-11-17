@@ -12,5 +12,5 @@ dependencies {
 }
 
 application {
-    mainClassName = 'java.coaching.App'
+    mainClassName = 'coaching.App'
 }
