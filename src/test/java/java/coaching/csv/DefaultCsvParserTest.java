@@ -23,7 +23,7 @@ import static org.junit.Assert.assertEquals;
  * - Easily to maintain and highly extensible is a plus
  * - Well documented code
  */
-public class CsvParserTest {
+public class DefaultCsvParserTest {
 
     @Test
     public void whenParse_QuotedCsv_ThenCorrectlyParse() throws URISyntaxException {
@@ -67,7 +67,7 @@ public class CsvParserTest {
 
     private List<CsvLine> execute(CsvFileConfig config, String fileName) throws URISyntaxException {
         // Get test data from resources
-        final File file = Paths.get(CsvParserTest.class.getResource(fileName).toURI()).toFile();
+        final File file = Paths.get(DefaultCsvParserTest.class.getResource(fileName).toURI()).toFile();
         final List<CsvLine> actualLines = new ArrayList<>();
         final CsvParser parser = new DefaultCsvParser(file, config);
 

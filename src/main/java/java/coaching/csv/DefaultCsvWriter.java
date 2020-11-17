@@ -16,6 +16,7 @@ public class DefaultCsvWriter implements CsvWriter {
      * @param file   File to be written
      */
     public DefaultCsvWriter(CsvFileConfig config, File file) {
+        throw new UnsupportedOperationException("This method is not implemented yet");
     }
 
     /**
@@ -44,7 +45,7 @@ public class DefaultCsvWriter implements CsvWriter {
      * @throws IOException
      */
     @Override
-    public void close() throws IOException {
+    public void close() {
         throw new UnsupportedOperationException("This method is not implemented yet");
     }
 }

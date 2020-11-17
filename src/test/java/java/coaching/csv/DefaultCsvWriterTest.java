@@ -26,7 +26,7 @@ import static org.junit.Assert.assertEquals;
  * - Easily to maintain and highly extensible is a plus
  * - Well documented code
  */
-public class CsvWriterTest {
+public class DefaultCsvWriterTest {
 
     @Test
     public void whenWriteSingle_QuoteModeOn_ThenWrite() throws IOException {
