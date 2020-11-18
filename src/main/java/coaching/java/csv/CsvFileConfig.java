@@ -1,4 +1,4 @@
-package java.coaching.csv;
+package coaching.java.csv;
 
 /**
  * Configuration used to determine parsing strategy and writing strategy

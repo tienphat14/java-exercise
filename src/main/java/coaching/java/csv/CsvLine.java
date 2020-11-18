@@ -1,4 +1,4 @@
-package java.coaching.csv;
+package coaching.java.csv;
 
 /**
  * Supplies information about CSV line

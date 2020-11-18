@@ -1,4 +1,4 @@
-package java.coaching.csv;
+package coaching.java.csv;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,7 +24,7 @@ public class DefaultCsvParser implements CsvParser {
      * @throws IOException
      */
     @Override
-    public void close() throws IOException {
+    public void close() {
         throw new UnsupportedOperationException("This method is not implemented yet");
     }
 

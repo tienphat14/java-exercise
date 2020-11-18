@@ -1,13 +1,13 @@
-package java.coaching.validator;
+package coaching.java.validator;
 
-import java.coaching.validation.Violation;
+import coaching.java.validation.Violation;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class ViolationAssertion {
+public final class ViolationAssertion {
     private String fieldName;
     private Object invalidValue;
     private final List<String> messages = new ArrayList<>();
