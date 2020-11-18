@@ -1,4 +1,4 @@
-package coaching.java.csv;
+package coaching.csv;
 
 import org.junit.Test;
 
@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
 
-import static coaching.java.csv.CsvTestUtils.createCsvFileConfig;
+import static coaching.csv.CsvTestUtils.createCsvFileConfig;
 
 /**
  * Required Knowledge

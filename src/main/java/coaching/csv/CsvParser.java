@@ -1,4 +1,4 @@
-package coaching.java.csv;
+package coaching.csv;
 
 import java.io.Closeable;
 import java.util.Iterator;

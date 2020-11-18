@@ -1,0 +1,57 @@
+1. What is the output?
+public static void main(String[] args) {
+    int month = 8;
+    String monthString;
+    switch (month) {
+        case 1:  monthString = "January";
+        case 2:  monthString = "February";
+        case 3:  monthString = "March";
+        case 4:  monthString = "April";
+        case 5:  monthString = "May";
+        case 6:  monthString = "June";
+        case 7:  monthString = "July";
+        case 8:  monthString = "August";
+        case 9:  monthString = "September";
+        case 10: monthString = "October";
+        case 11: monthString = "November";
+        case 12: monthString = "December";
+        default: monthString = "Invalid month";
+                 break;
+    }
+    System.out.println(monthString);
+}
+
+2. Modify the code to print all array elements, one in each line
+public static void main(String[] args) {
+    int[] numbers = {1,2,3,4,5,6,7,8,9,10};
+    for(int i = 0; ; i++) {
+        System.out.print(i);
+    }
+}
+
+3. Modify the code in exercise 2 using enhanced for loop
+
+4. Modify the code in exercise 2 using while
+
+5. Is below code output the same with exercise 2?
+public static void main(String args[]) {
+    int[] numbers = {1,2,3,4,5,6,7,8,9,10};
+    int index = 0;
+    do {
+        System.out.println(numbers[index++]);
+    } while (index < numbers.length);
+}
+
+6. What is the output?
+public static void main(String args[]) {
+    int[] numbers = {1,2,3,4,5,6,7,8,9,10};
+    for(int i = 0; i < numbers.length; i++) {
+        if (numbers[i] % 2 == 0) {
+            continue;
+        }
+        if (i == 5) {
+            break;
+        }
+        System.out.println(numbers[i]);
+    }
+}

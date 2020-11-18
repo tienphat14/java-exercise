@@ -1,4 +1,4 @@
-package coaching.java.csv;
+package coaching.csv;
 
 import java.util.ArrayList;
 import java.util.HashMap;

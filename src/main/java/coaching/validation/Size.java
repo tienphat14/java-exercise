@@ -1,4 +1,4 @@
-package coaching.java.validation;
+package coaching.validation;
 
 /**
  * Size rule

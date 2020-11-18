@@ -1,4 +1,4 @@
-package coaching.java.csv;
+package coaching.csv;
 
 import org.junit.Test;
 
@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.function.Consumer;
 
-import static coaching.java.csv.CsvTestUtils.createCsvFileConfig;
-import static coaching.java.csv.CsvTestUtils.createDumpCsvLines;
-import static coaching.java.csv.CsvTestUtils.createTestFile;
-import static coaching.java.csv.CsvTestUtils.writeWithAssertion;
+import static coaching.csv.CsvTestUtils.createCsvFileConfig;
+import static coaching.csv.CsvTestUtils.createDumpCsvLines;
+import static coaching.csv.CsvTestUtils.createTestFile;
+import static coaching.csv.CsvTestUtils.writeWithAssertion;
 import static org.junit.Assert.assertEquals;
 
 /**

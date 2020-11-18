@@ -1,4 +1,4 @@
-package coaching.java.csv;
+package coaching.csv;
 
 import java.io.File;
 import java.io.IOException;
