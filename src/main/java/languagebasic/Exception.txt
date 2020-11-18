@@ -1,0 +1,57 @@
+1. Does this compile? If yes, what is the output? If no, fixed it
+public static void main(String args[]) {
+    try {
+        int a = 30;
+        int b = 0;
+        int c = a / b;
+        System.out.println ("Result = " + c);
+    }
+}
+
+2. Does this compile? If yes, what is the output? If no, fixed it
+public static void main(String args[]) {
+    try {
+        File file = new File("E://file.txt");
+        FileReader fr = new FileReader(file);
+    } catch (RuntimeException e) {
+       System.out.println("File does not exist");
+    }
+}
+
+3. What is the output?
+public static void main(String args[]) {
+    try {
+        System.out.println("try block");
+        throw new IOException();
+    } catch (FileNotFoundException e) {
+        System.out.println("catch FileNotFoundException");
+    } catch (IOException e) {
+        System.out.println("catch IOException");
+    } catch (Exception e) {
+        System.out.println("catch Exception");
+    } finally {
+        System.out.println("finally block");
+    }
+}
+
+4. If remove catch (IOException e) block from exercise 3, is there an error? If not, what is the output?
+
+5. What is the output?
+public static void main(String[] args) {
+    try (CustomResource resource = new CustomResource()) {
+        System.out.println("try block");
+        throw new Exception();
+    } catch (Exception e) {
+        System.out.println("catch Exception");
+    } finally {
+        System.out.println("finally block");
+    }
+}
+
+private static class CustomResource implements AutoCloseable {
+    @Override
+    public void close() throws Exception {
+        System.out.println("resource has been closed");
+    }
+}
+

@@ -1,6 +1,6 @@
-package java.coaching.validator;
+package coaching.validator;
 
-import java.coaching.validation.Violation;
+import coaching.validation.Violation;
 import java.util.ArrayList;
 import java.util.List;
 
