@@ -1,4 +1,4 @@
-package java.coaching.validator;
+package coaching.validator;
 
 import org.junit.Test;
 

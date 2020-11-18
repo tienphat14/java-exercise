@@ -1,0 +1,122 @@
+1. What is the output?
+public class LanguageBasic {
+    public static void main(String args[]) {
+        Child c1 = new Child();
+        System.out.println("**********");
+        Child c2 = new Child(50);
+    }
+}
+
+class Child extends Parent {
+    Child() {
+        System.out.println("Child() constructor");
+    }
+
+    Child(int x) {
+        super(x);
+    }
+}
+
+class Parent extends Grandparent {
+    Parent() {
+        this(25);
+        System.out.println("Parent() constructor");
+    }
+
+    Parent(int x) {
+        System.out.println("Parent(" + x + ") constructor");
+    }
+}
+
+2. What is the output?
+public static void main(String args[]) {
+    Rectangle rectangle = new Rectangle(20, 10);
+    enlarge(rectangle, 2);
+    System.out.println(rectangle.width + " " + rectangle.height);
+}
+
+private static void enlarge(Rectangle rectangle, int multiplier) {
+    rectangle.width *= multiplier;
+    rectangle.height *= multiplier;
+    rectangle = new Rectangle(100, 50);
+}
+
+3. Find errors and fix if any
+private class A {
+    private class B {
+        private class C {}
+    }
+}
+
+4. Find errors and fix if any
+public class A {
+    private class B {}
+}
+
+public class MainClass extends A {
+    public static void main(String[] args) {
+        B b = new B();
+    }
+}
+
+5. Find errors and fix if any
+class X {
+   protected int i = 1221;
+   void methodOfX() {
+       System.out.println(i);
+   }
+}
+
+public class MainClass {
+   public static void main(String[] args) {
+       X x = new X();
+       System.out.println(x.i);
+       x.methodOfX();
+   }
+}
+
+6. Find errors and fix if any
+package pack1;
+class A {
+    public A(){}
+}
+
+package pack2;
+import pack1.*;
+class B {
+    A a = new A();
+}
+
+7. Find errors and fix if any
+package pack1;
+public class A {
+   protected A(int i) {}
+}
+
+package pack2;
+import pack1.A;
+
+class B extends A {
+   public B() {
+       super(10);
+   }
+}
+
+8. Is there any errors? If not, what is the output?
+private static int count = 0;
+private String s = "Hello World!";
+
+public static void main(String[] args) {
+    LanguageBasic lb = new LanguageBasic();
+    System.out.println(lb.s);
+    System.out.println(LanguageBasic.count);
+    while (count < 10) {
+        increaseCount();
+        System.out.println(count);
+    }
+    System.out.println(lb.count);
+}
+
+public static void increaseCount() {
+    count++;
+}
