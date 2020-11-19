@@ -2,7 +2,7 @@
 
 ## Exercise Format
 Exercise is designed to follow Test-Driven Development principles, which means your implementation
-must pass all unit tests that is definition of done. We have defined set of classes and methods that
+must pass all unit tests as definition of done. We have defined set of classes and methods that
 you need to implement.
 
 ## Required Knowledge
@@ -21,5 +21,4 @@ you need to implement.
 - Code documentation is required (apply to public method and class), it should clarify the
   purpose and usage.
 - Implementation must align to coding conventions which is readable, maintainable, extensible.
-- Reflection API is not allowed in this exercise.
 - All unit tests must be passed, which determine your result.
