@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 import static coaching.csv.CsvTestUtils.createCsvFileConfig;
+import static coaching.csv.CsvTestUtils.createDumpCsvLines;
 import static coaching.csv.CsvTestUtils.createTestFile;
 import static coaching.csv.CsvTestUtils.writeWithAssertion;
 import static org.junit.Assert.assertEquals;
@@ -30,111 +31,75 @@ public class DefaultCsvWriterTest {
 
     @Test
     public void whenWriteSingle_QuoteModeOn_ThenWrite() throws IOException {
-        List<String> actualLines = execute((csvFileConfig, testFile) -> {
-            final CsvWriter writer = new DefaultCsvWriter(csvFileConfig, testFile);
-            final CsvLine line = new CsvLine();
-
-            line.set(0, "FirstName");
-            line.set(1, "LastName");
-            writeWithAssertion(writer, line);
-        });
-
-        assertEquals(1, actualLines.size());
-        assertEquals("\"FirstName\",\"LastName\"", actualLines.get(0));
+        execute(createCsvFileConfig(),
+                writer -> writeWithAssertion(writer, createDumpCsvLines().get(0)),
+                actual -> {
+                    assertEquals(1, actual.size());
+                    assertEquals("\"FirstName\",\"LastName\"", actual.get(0));
+                });
     }
 
     @Test
     public void whenWriteSingle_QuoteModeOff_ThenWrite() throws IOException {
-        List<String> actualLines = execute((csvFileConfig, testFile) -> {
-            csvFileConfig.setQuoteMode(false);
-            final CsvWriter writer = new DefaultCsvWriter(csvFileConfig, testFile);
-            final CsvLine line = new CsvLine();
-
-            line.set(0, "FirstName");
-            line.set(1, "LastName");
-            writeWithAssertion(writer, line);
-        });
-
-        assertEquals(1, actualLines.size());
-        assertEquals("FirstName,LastName", actualLines.get(0));
+        final CsvFileConfig csvFileConfig = createCsvFileConfig();
+        csvFileConfig.setQuoteMode(false);
+        execute(csvFileConfig,
+                writer -> writeWithAssertion(writer, createDumpCsvLines().get(0)),
+                actual -> {
+                    assertEquals(1, actual.size());
+                    assertEquals("FirstName,LastName", actual.get(0));
+                });
     }
 
     @Test
     public void whenWriteSingle_PipeLineDelimiter_ThenWrite() throws IOException {
-        List<String> actualLines = execute((csvFileConfig, testFile) -> {
-            csvFileConfig.setDelimiter("|");
-            final CsvWriter writer = new DefaultCsvWriter(csvFileConfig, testFile);
-            final CsvLine line = new CsvLine();
+        final CsvFileConfig csvFileConfig = createCsvFileConfig();
+        csvFileConfig.setDelimiter("|");
+        execute(csvFileConfig,
+                writer -> writeWithAssertion(writer, createDumpCsvLines().get(0)),
+                actual -> {
+                    assertEquals(1, actual.size());
+                    assertEquals("\"FirstName\"|\"LastName\"", actual.get(0));
+                });
 
-            line.set(0, "FirstName");
-            line.set(1, "LastName");
-            writeWithAssertion(writer, line);
-        });
-
-        assertEquals(1, actualLines.size());
-        assertEquals("\"FirstName\"|\"LastName\"", actualLines.get(0));
     }
 
     @Test
     public void whenWriteMultiple_QuoteModeOn_ThenWrite() throws IOException {
-        List<String> actualLines = execute((csvFileConfig, testFile) -> {
-            final CsvWriter writer = new DefaultCsvWriter(csvFileConfig, testFile);
-            final CsvLine header = new CsvLine();
-            final CsvLine data = new CsvLine();
+        execute(createCsvFileConfig(),
+                writer -> writeWithAssertion(writer, createDumpCsvLines()),
+                actual -> {
+                    assertEquals(2, actual.size());
+                    assertEquals("\"FirstName\",\"LastName\"", actual.get(0));
+                    assertEquals("\"John\",\"Biden\"", actual.get(1));
+                });
 
-            header.set(0, "FirstName");
-            header.set(1, "LastName");
-
-            data.set(0, "John");
-            data.set(1, "Biden");
-            writeWithAssertion(writer, Arrays.asList(header, data));
-        });
-
-        assertEquals(2, actualLines.size());
-        assertEquals("\"FirstName\",\"LastName\"", actualLines.get(0));
-        assertEquals("\"John\",\"Biden\"", actualLines.get(1));
     }
 
     @Test
     public void whenWriteMultiple_QuoteModeOff_ThenWrite() throws IOException {
-        List<String> actualLines = execute((csvFileConfig, testFile) -> {
-            csvFileConfig.setQuoteMode(false);
-            final CsvWriter writer = new DefaultCsvWriter(csvFileConfig, testFile);
-            final CsvLine header = new CsvLine();
-            final CsvLine data = new CsvLine();
-
-            header.set(0, "FirstName");
-            header.set(1, "LastName");
-
-            data.set(0, "John");
-            data.set(1, "Biden");
-            writeWithAssertion(writer, Arrays.asList(header, data));
-        });
-
-        assertEquals(2, actualLines.size());
-        assertEquals("FirstName,LastName", actualLines.get(0));
-        assertEquals("John,Biden", actualLines.get(1));
+        final CsvFileConfig csvFileConfig = createCsvFileConfig();
+        csvFileConfig.setQuoteMode(false);
+        execute(csvFileConfig,
+                writer -> writeWithAssertion(writer, createDumpCsvLines()),
+                actual -> {
+                    assertEquals(2, actual.size());
+                    assertEquals("FirstName,LastName", actual.get(0));
+                    assertEquals("John,Biden", actual.get(1));
+                });
     }
 
     @Test
     public void whenWriteMultiple_PipelineDelimiter_ThenWrite() throws IOException {
-        List<String> actualLines = execute((csvFileConfig, testFile) -> {
-            csvFileConfig.setQuoteMode(false);
-            final CsvWriter writer = new DefaultCsvWriter(csvFileConfig, testFile);
-            final CsvLine header = new CsvLine();
-            final CsvLine data = new CsvLine();
-
-            header.set(0, "FirstName");
-            header.set(1, "LastName");
-
-            data.set(0, "John");
-            data.set(1, "Biden");
-            writeWithAssertion(writer, Arrays.asList(header, data));
-        });
-
-        assertEquals(2, actualLines.size());
-        assertEquals("\"FirstName\"|\"LastName\"", actualLines.get(0));
-        assertEquals("\"John\"|\"Biden\"", actualLines.get(1));
+        final CsvFileConfig csvFileConfig = createCsvFileConfig();
+        csvFileConfig.setDelimiter("|");
+        execute(csvFileConfig,
+                writer -> writeWithAssertion(writer, createDumpCsvLines()),
+                actual -> {
+                    assertEquals(2, actual.size());
+                    assertEquals("\"FirstName\"|\"LastName\"", actual.get(0));
+                    assertEquals("\"John\"|\"Biden\"", actual.get(1));
+                });
     }
 
     @Test(expected = IOException.class)
@@ -149,17 +114,20 @@ public class DefaultCsvWriterTest {
         writer.write(Arrays.asList(new CsvLine(), new CsvLine()));
     }
 
-    private List<String> execute(BiConsumer<CsvFileConfig, File> execute) throws IOException {
+    private void execute(CsvFileConfig csvFileConfig, Consumer<CsvWriter> writerConsumer, Consumer<List<String>> assertion) throws IOException {
         final List<String> actualLines = new ArrayList<>();
         final File testFile = createTestFile();
-        final CsvFileConfig csvFileConfig = createCsvFileConfig();
+        final CsvWriter writer = new DefaultCsvWriter(csvFileConfig, testFile);
 
-        execute.accept(csvFileConfig, testFile);
+        writerConsumer.accept(writer);
+
         try (Scanner scanner = new Scanner(testFile)) {
             while (scanner.hasNext()) {
                 actualLines.add(scanner.next());
             }
-            return actualLines;
+        } finally {
+            writer.close();
+            assertion.accept(actualLines);
         }
     }
 }

@@ -1,13 +1,13 @@
 package coaching.validator;
 
-import org.junit.Test;
-
 import coaching.validation.DefaultValidator;
 import coaching.validation.NotNull;
 import coaching.validation.Regex;
 import coaching.validation.Size;
 import coaching.validation.Validator;
 import coaching.validation.Violation;
+import org.junit.Test;
+
 import java.util.Iterator;
 
 /**
