@@ -1,13 +1,13 @@
 package coaching.validator;
 
-import org.junit.Test;
-
 import coaching.validation.DefaultValidator;
 import coaching.validation.NotNull;
 import coaching.validation.Regex;
 import coaching.validation.Size;
 import coaching.validation.Validator;
 import coaching.validation.Violation;
+import org.junit.Test;
+
 import java.util.Iterator;
 
 /**
@@ -40,17 +40,14 @@ public class DefaultValidatorTest {
 
         final Iterator<Violation> violations = validator.validate(client).iterator();
 
-        ViolationAssertion.create()
+        ViolationsAssertion.create()
                 .expectField("firstName")
-                .expectMessage("First name must not be null")
-                .expectInvalidValue(client.getFirstName())
-                .assertViolation(violations.next());
-
-        ViolationAssertion.create()
-                .expectField("lastName")
-                .expectMessage("Last name length must be within 1 and 5 characters")
-                .expectInvalidValue(client.getLastName())
-                .assertViolation(violations.next());
+                    .withMessage("First name must not be null")
+                    .withInvalidValue(client.getFirstName())
+                .and().expectField("lastName")
+                    .withMessage("Last name length must be within 1 and 5 characters")
+                    .withInvalidValue(client.getLastName())
+                .and().assertViolations(violations);
     }
 
     public static class SingleRuleClient {
@@ -92,19 +89,16 @@ public class DefaultValidatorTest {
 
         final Iterator<Violation> violations = validator.validate(client).iterator();
 
-        ViolationAssertion.create()
+        ViolationsAssertion.create()
                 .expectField("firstName")
-                .expectMessage("First name length must be within 2 and 5 characters")
-                .expectMessage("Digit characters is only allowed")
-                .expectInvalidValue(client.getFirstName())
-                .assertViolation(violations.next());
-
-        ViolationAssertion.create()
-                .expectField("lastName")
-                .expectMessage("Last name length must be within 1 and 5 characters")
-                .expectMessage("Alphabet characters is only allowed")
-                .expectInvalidValue(client.getLastName())
-                .assertViolation(violations.next());
+                    .withMessage("First name length must be within 2 and 5 characters")
+                    .withMessage("Digit characters is only allowed")
+                    .withInvalidValue(client.getFirstName())
+                .and().expectField("lastName")
+                    .withMessage("Last name length must be within 1 and 5 characters")
+                    .withMessage("Alphabet characters is only allowed")
+                    .withInvalidValue(client.getLastName())
+                .and().assertViolations(violations);
     }
 
     public static class MultipleRuleClient {
