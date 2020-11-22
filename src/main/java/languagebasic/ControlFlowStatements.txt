@@ -21,6 +21,11 @@ public static void main(String[] args) {
     System.out.println(monthString);
 }
 
+/**
+Output:
+Invalid month
+*/
+
 2. Modify the code to print all array elements, one in each line
 public static void main(String[] args) {
     int[] numbers = {1,2,3,4,5,6,7,8,9,10};
@@ -28,10 +33,36 @@ public static void main(String[] args) {
         System.out.print(i);
     }
 }
+/**
+Output:
+Print 012345667.... , print for ever.
+Not sure when it stop.
+*/
+
 
 3. Modify the code in exercise 2 using enhanced for loop
+/**
+Updated code:
+public static void main(String[] args) {
+    int[] numbers = {1,2,3,4,5,6,7,8,9,10};
+    for(int i = 0; i < numbers.length ; i++) {
+        System.out.print(numbers[i]);
+    }
+}
+*/
 
 4. Modify the code in exercise 2 using while
+/**
+Updated code:
+public static void main(String[] args) {
+    int[] numbers = {1,2,3,4,5,6,7,8,9,10};
+    int i=0;
+    while (i < numbers.length) {
+        System.out.print(numbers[i]);
+        i++;
+    }
+}
+*/
 
 5. Is below code output the same with exercise 2?
 public static void main(String args[]) {
@@ -41,6 +72,10 @@ public static void main(String args[]) {
         System.out.println(numbers[index++]);
     } while (index < numbers.length);
 }
+/**
+The same of the result of exercise 2 but the numbers on 10 line,
+each line is the item of array numbers.
+*/
 
 6. What is the output?
 public static void main(String args[]) {
@@ -55,3 +90,12 @@ public static void main(String args[]) {
         System.out.println(numbers[i]);
     }
 }
+
+/**
+Output:
+1
+3
+5
+7
+9
+*/
