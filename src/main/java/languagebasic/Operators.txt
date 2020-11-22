@@ -30,3 +30,31 @@ public static void main(String args[]) {
     System.out.println(c << 1);
     System.out.println(c >>> 1);
 }
+
+/**
+The errors are showed in
+    byte a = 7;
+    byte b = 9;
+--> 2 parameters are declare in above
+
+Assume are not errors
+Output :
+
+**********
+30Hello
+Hello 1020
+true
+false
+**********
+
+1
+15
+14
+-8
+3
+14
+3
+-4
+-16
+??????? -> don't know
+*/
