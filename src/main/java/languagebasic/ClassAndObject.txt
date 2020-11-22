@@ -6,6 +6,14 @@ public class LanguageBasic {
         Child c2 = new Child(50);
     }
 }
+/**
+Out put:
+Parent(25) constructor
+Parent() constructor
+Child() constructor
+**********
+Parent(50) constructor
+*/
 
 class Child extends Parent {
     Child() {
@@ -40,6 +48,9 @@ private static void enlarge(Rectangle rectangle, int multiplier) {
     rectangle.height *= multiplier;
     rectangle = new Rectangle(100, 50);
 }
+/**
+Out put: 40 20
+*/
 
 3. Find errors and fix if any
 private class A {
@@ -47,6 +58,9 @@ private class A {
         private class C {}
     }
 }
+/**
+Out put: No error, allow to nested classes
+*/
 
 4. Find errors and fix if any
 public class A {
@@ -58,6 +72,14 @@ public class MainClass extends A {
         B b = new B();
     }
 }
+/**
+Error: B b = new B();
+Fix:
+class A {
+    public static class B {}
+}
+*/
+
 
 5. Find errors and fix if any
 class X {
@@ -74,6 +96,9 @@ public class MainClass {
        x.methodOfX();
    }
 }
+/**
+no error
+*/
 
 6. Find errors and fix if any
 package pack1;
@@ -86,6 +111,13 @@ import pack1.*;
 class B {
     A a = new A();
 }
+/**
+Fix:
+public class A {
+    public A(){}
+}
+*/
+
 
 7. Find errors and fix if any
 package pack1;
@@ -101,6 +133,9 @@ class B extends A {
        super(10);
    }
 }
+/**
+No errors
+*/
 
 8. Is there any errors? If not, what is the output?
 private static int count = 0;
@@ -120,3 +155,6 @@ public static void main(String[] args) {
 public static void increaseCount() {
     count++;
 }
+/**
+Errors: "2 method main(String[] args) and increaseCount()" must belong to a class with name the same of the java file.
+*/
