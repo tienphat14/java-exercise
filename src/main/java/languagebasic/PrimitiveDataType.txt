@@ -10,6 +10,11 @@ public static void main(String args[]) {
     System.out.println(c);
 }
 
+/**
+Errors:
+The param "boolean boolean = false;" could not the same with Type
+*/
+
 2. What is the output?
 public static void main(String args[]) {
     byte a = 126;
@@ -21,6 +26,12 @@ public static void main(String args[]) {
     a++;
     System.out.println(a);
 }
+/**
+126
+127
+-128
+-127
+*/
 
 3. Find invalid code
 public static void main(String args[]) {
@@ -55,6 +66,21 @@ public static void main(String args[]) {
     int x6 = 0x5_2;
     int x7 = 0x52_;
 }
+/**
+1. char c3 = '\u002a' --> missing ';'
+2. int i = 9876543210; --> over integer number
+3. float f2  = 1.234e2; --> is a double type
+4.         float pi1 = 3_.1415F;
+           float pi2 = 3._1415F;
+           long socialSecurityNumber1 = 999_99_9999_L; -> incorrect the type (illegal)
+5. int i = 1234567890; --> double declare parameter
+6.          int x2 = 52_;
+           int x3 = 5_______2;
+           int x4 = 0_x52;
+           int x5 = 0x_52;
+           int x6 = 0x5_2;
+           int x7 = 0x52_; -> incorrect the type (illegal)
+*/
 
 4. What is the output?
 public static void main(String args[]) {
@@ -88,3 +114,20 @@ public static void main(String args[]) {
     System.out.println(myFloat);
     System.out.println(myDouble);
 }
+
+/**
+47
+**********
+9
+9
+9.0
+**********
+9.78
+9
+**********
+9876543210
+?????????? -> don't know, run code will show it clear
+**********
+9.78
+9.78????????? -> don't know, run code will show it clear
+*/
