@@ -7,6 +7,22 @@ public static void main(String args[]) {
         System.out.println ("Result = " + c);
     }
 }
+/**
+Error compile missing catch or finally (guess because don't run it)
+Fixed:
+public static void main(String args[]) {
+    try {
+        int a = 30;
+        int b = 0;
+        int c = a / b;
+        System.out.println ("Result = " + c);
+    }catch(Exception ex){
+        //TODO...
+    }finally{
+        //TODO...
+    }
+}
+*/
 
 2. Does this compile? If yes, what is the output? If no, fixed it
 public static void main(String args[]) {
@@ -17,6 +33,20 @@ public static void main(String args[]) {
        System.out.println("File does not exist");
     }
 }
+/**
+Error complied.
+Not found the class File, FileReader
+Fixed:
+import java.io.*
+public static void main(String args[]) {
+    try {
+        File file = new File("E://file.txt");
+        FileReader fr = new FileReader(file);
+    } catch (Exception e) {
+       System.out.println("File does not exist");
+    }
+}
+*/
 
 3. What is the output?
 public static void main(String args[]) {
@@ -33,8 +63,22 @@ public static void main(String args[]) {
         System.out.println("finally block");
     }
 }
+/**
+Output:
+try block
+catch IOException
+finally block
+*/
 
 4. If remove catch (IOException e) block from exercise 3, is there an error? If not, what is the output?
+
+/**
+Not error.
+Output:
+try block
+catch Exception
+finally block
+*/
 
 5. What is the output?
 public static void main(String[] args) {
@@ -54,4 +98,9 @@ private static class CustomResource implements AutoCloseable {
         System.out.println("resource has been closed");
     }
 }
-
+/**
+try block
+resource has been closed
+catch Exception
+finally block
+*/
