@@ -9,6 +9,26 @@ public static void main(String args[]) {
     boolean c;
     System.out.println(c);
 }
+----------------------------------------------------------------
+Error:
+    boolean boolean = false; => Shouldn't name the variable same as data type
+
+    boolean b = 1; => required type = boolean, but provided type = int
+
+    boolean c; => don't have default value
+
+Fix:
+public static void main(String args[]) {
+        boolean d = false;
+        System.out.println(d);
+        boolean a = true;
+        System.out.println(a);
+        boolean b = false;
+        System.out.println(b);
+        boolean c = true;
+        System.out.println(c);
+    }
+----------------------------------------------------------------
 
 2. What is the output?
 public static void main(String args[]) {
@@ -21,6 +41,12 @@ public static void main(String args[]) {
     a++;
     System.out.println(a);
 }
+----------------------------------------------------------------
+126
+127
+-128
+-127
+----------------------------------------------------------------
 
 3. Find invalid code
 public static void main(String args[]) {
@@ -55,6 +81,28 @@ public static void main(String args[]) {
     int x6 = 0x5_2;
     int x7 = 0x52_;
 }
+----------------------------------------------------------------
+Error:
+        char c3 = '\u002a' => missing ;
+
+        int i = 9876543210; => too big, maximum: 2147483647
+
+        float f2  = 1.234e2; => missing "f"
+
+        long creditCardNumber = 1234_5678_9012_3456L; => missing "L"
+
+        float pi1 = 3_.1415F; => _ shouldn't be next to .
+        float pi2 = 3._1415F;=> _ shouldn't be next to .
+        long socialSecurityNumber1 = 999_99_9999_L; => _ shouldn't be next to L
+        int i = 1234567890; => already defined
+
+        int x2 = 52_; => _ shouldn't be at the end of number
+
+        int x4 = 0_x52; => _ shouldn't be next to x
+        int x5 = 0x_52; => _ shouldn't be next to x
+
+        int x7 = 0x52_;  => _ shouldn't be at the end of number
+----------------------------------------------------------------
 
 4. What is the output?
 public static void main(String args[]) {
