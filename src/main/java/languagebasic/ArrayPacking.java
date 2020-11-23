@@ -17,17 +17,63 @@ package languagebasic;
  */
 public class ArrayPacking {
 
-    /**
-     *
-     * @param array An array of up to four non-negative integers, each less than 256
-     * @return The obtained integer packed from given array
-     * @throws CustomException if the input violates rules
-     *          1 ≤ array.length ≤ 4
-     *          0 ≤ array[i] < 256
-     */
-    public int arrayPacking(int[] array) {
-        //TODO: create the CustomException class
-        //TODO: implement this method
-        throw new UnsupportedOperationException("This method is not implemented yet");
+//     **
+//     *
+//     * @param array An array of up to four non-negative integers, each less than 256
+//     * @return The obtained integer packed from given array
+//     * @throws CustomException if the input violates rules
+//     *          1 ≤ array.length ≤ 4
+//     *          0 ≤ array[i] < 256
+//     */
+
+    public static void main(String args[]) {
+        int[] myIntArray = new int[]{24, 85, 0};
+        int result = arrayPacking(myIntArray);
+        System.out.println("*************");
+        System.out.println(result);
     }
+
+    /**
+     * Get the packing number
+     * @param array the array input
+     * @return packing number
+     */
+    public static int arrayPacking(int[] array) {
+        String s = "";
+        for(int i = array.length-1; i >= 0; i--) {
+            s += getBinary(array[i]);
+        }
+        return Integer.parseInt(s, 2);
+    }
+
+    /**
+     * Get binary of integer
+     * @param val input value
+     * @return the bit string of integer
+     */
+    public static String getBinary(int val) {
+        String s = "";
+        for(int i = 0; i < 8; i++) {
+            if(val % 2 == 1)
+                s = 1 + s;
+            else if(val % 2 == 0)
+                s = 0 + s;
+
+            val = val/2;
+        }
+
+        return s;
+    }
+
+    /**
+     * Class CustomException if the input violates rules
+     *           1 ≤ array.length ≤ 4
+     *           0 ≤ array[i] < 256
+     */
+    public class CustomException extends Exception {
+        public CustomException(String message) {
+            super(message);
+        }
+    }
+
 }
