@@ -20,6 +20,7 @@ public static void main(String[] args) {
     }
     System.out.println(monthString);
 }
+1. Answer ===> August
 
 2. Modify the code to print all array elements, one in each line
 public static void main(String[] args) {
@@ -28,10 +29,27 @@ public static void main(String[] args) {
         System.out.print(i);
     }
 }
+2. Answer ===>
+    public static void main(String[] args) {
+        int[] numbers = {1,2,3,4,5,6,7,8,9,10};
+        for(int i = 0; i< numbers.length ; i++) {
+            System.out.println(numbers[i]);
+        }
+    }
 
 3. Modify the code in exercise 2 using enhanced for loop
+3. Answer ===>
+    for (int i : numbers) {
+        System.out.println(i);
+    }
 
 4. Modify the code in exercise 2 using while
+4. Answer ===>
+    int i = 0;
+    while (i < numbers.length) {
+        System.out.println(numbers.get[i]);
+        i++;
+    }
 
 5. Is below code output the same with exercise 2?
 public static void main(String args[]) {
@@ -41,6 +59,17 @@ public static void main(String args[]) {
         System.out.println(numbers[index++]);
     } while (index < numbers.length);
 }
+5. Answer ===> different
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    10
+   Null Pointer
 
 6. What is the output?
 public static void main(String args[]) {
@@ -55,3 +84,6 @@ public static void main(String args[]) {
         System.out.println(numbers[i]);
     }
 }
+6. Answer ===>
+    2
+    4

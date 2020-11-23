@@ -28,6 +28,16 @@ class Parent extends Grandparent {
     }
 }
 
+1. Answer ===>
+    Parent(25) constructor
+    Parent() constructor
+    Child() constructor
+    **********
+    Parent(50) constructor
+
+
+
+
 2. What is the output?
 public static void main(String args[]) {
     Rectangle rectangle = new Rectangle(20, 10);
@@ -41,6 +51,9 @@ private static void enlarge(Rectangle rectangle, int multiplier) {
     rectangle = new Rectangle(100, 50);
 }
 
+2. Answer ===>
+    100 50
+
 3. Find errors and fix if any
 private class A {
     private class B {
@@ -48,10 +61,22 @@ private class A {
     }
 }
 
+3. Answer ===> error and fix as below
+    public class A {
+        public class B {
+            private class C {}
+        }
+    }
+
 4. Find errors and fix if any
 public class A {
     private class B {}
 }
+
+4. Answer ===> errors and fix as below:
+    public class A {
+        public class B {}
+    }
 
 public class MainClass extends A {
     public static void main(String[] args) {
@@ -75,6 +100,14 @@ public class MainClass {
    }
 }
 
+5. Answer ===> error and fix
+    class X {
+       public int i = 1221;
+       public void methodOfX() {
+           System.out.println(i);
+       }
+    }
+
 6. Find errors and fix if any
 package pack1;
 class A {
@@ -85,6 +118,11 @@ package pack2;
 import pack1.*;
 class B {
     A a = new A();
+}
+
+6. Answer ===> fix
+public class A {
+    public A(){}
 }
 
 7. Find errors and fix if any
@@ -101,6 +139,8 @@ class B extends A {
        super(10);
    }
 }
+
+7. Answer ===> no error
 
 8. Is there any errors? If not, what is the output?
 private static int count = 0;

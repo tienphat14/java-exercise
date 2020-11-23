@@ -1,10 +1,10 @@
 1. Find errors and fix them
 public static void main(String args[]) {
-    boolean boolean = false;
-    System.out.println(boolean);
+    boolean boolean = false; ===> boolean bl = false;
+    System.out.println(boolean); ===> System.out.println(bl);
     boolean a = true;
     System.out.println(a);
-    boolean b = 1;
+    boolean b = 1; ===> boolean b;
     System.out.println(b);
     boolean c;
     System.out.println(c);
