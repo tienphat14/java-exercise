@@ -20,6 +20,7 @@ public static void main(String[] args) {
     }
     System.out.println(monthString);
 }
+Answer: invalid month
 
 2. Modify the code to print all array elements, one in each line
 public static void main(String[] args) {
@@ -28,10 +29,20 @@ public static void main(String[] args) {
         System.out.print(i);
     }
 }
+Answer: for(int i = 0; i < numbers.length ; i++) {
+                System.out.print(i);
+            }
 
 3. Modify the code in exercise 2 using enhanced for loop
+Answer: Array.stream(numbers).foreach(s -> sout(s))
 
 4. Modify the code in exercise 2 using while
+Answer:
+int count = 0;
+while(count < numbers.length) {
+    sout(number[count]);
+    count++;
+}
 
 5. Is below code output the same with exercise 2?
 public static void main(String args[]) {
@@ -41,6 +52,7 @@ public static void main(String args[]) {
         System.out.println(numbers[index++]);
     } while (index < numbers.length);
 }
+Answer: the same
 
 6. What is the output?
 public static void main(String args[]) {
@@ -55,3 +67,5 @@ public static void main(String args[]) {
         System.out.println(numbers[i]);
     }
 }
+Answer:
+1 3 5 7 9
