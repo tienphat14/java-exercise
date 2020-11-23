@@ -21,13 +21,52 @@ public class ArrayPacking {
      *
      * @param array An array of up to four non-negative integers, each less than 256
      * @return The obtained integer packed from given array
-     * @throws CustomException if the input violates rules
+     * @throws NumberFormatException if the input violates rules
      *          1 ≤ array.length ≤ 4
      *          0 ≤ array[i] < 256
      */
     public int arrayPacking(int[] array) {
-        //TODO: create the CustomException class
-        //TODO: implement this method
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        String s = "";
+        try{
+            if (array.length <1 || array.length > 4) {
+                throw new NumberFormatException();
+            }
+            condition:
+            while (true) {
+                for(int i =0; i< array.length; i++) {
+                    if(array[i] < 0) {
+                        System.out.println("Please enter 0 <= array[i]");
+                        throw new NumberFormatException();
+                    }
+                    if(array[i] >=256) {
+                        System.out.println("Please enter array[i] < 256");
+                        throw new NumberFormatException();
+                    }
+                    s += getBinary(array[i]);
+                    System.out.println("DEBUG ONLY: >>> " +array[i]+", The binary given = " +s);
+                    if(i == 0) { break condition; }
+                }
+
+            }
+        } catch (NumberFormatException nfe){
+            System.out.println("MESSAGE: The input violates rules: "+ nfe);
+            return 0;
+        }
+        return Integer.parseInt(s, 2);
+    }
+
+    private static String getBinary(int val) {
+        String s = "";
+        while (val>= 0){
+            for(int i = 0; i < 8; i++) {
+                if(val % 2 == 1)
+                    s = 1 + s;
+                else if(val % 2 == 0)
+                    s = 0 + s;
+
+                val = val/2;
+            }
+        }
+        return s;
     }
 }
