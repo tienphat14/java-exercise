@@ -1,0 +1,32 @@
+1. What is the output?
+public static void main(String args[]) {
+    double a = 10.0;
+    double b = 3.0;
+    System.out.println(a / b);
+    System.out.println(a % b);
+    System.out.println("**********");
+
+    String s = "Hello ";
+    String s1 = s;
+    String s2 = s + "World!";
+    String s3 = "Hello World!";
+    System.out.println(10 + 20 + s); // 10 * 20
+    System.out.println(s + 10 + 20); // 10 * 20
+    System.out.println(s == s1);
+    System.out.println(s2 == s3);
+    System.out.println("**********");
+
+    byte a = 7;
+    byte b = 9;
+    byte c = -8;
+    System.out.println(a & b);
+    System.out.println(a | b);
+    System.out.println(a ^ b);
+    System.out.println(~a);
+    System.out.println(a >> 1);
+    System.out.println(a << 1);
+    System.out.println(a >>> 1);
+    System.out.println(c >> 1);
+    System.out.println(c << 1);
+    System.out.println(c >>> 1);
+}

@@ -1,0 +1,58 @@
+1. How many String Objects are created?
+public static void main(String args[]) {
+    String s1 = "Hello ";
+    s1 += "World! ";
+    String s2 = "From KMS!";
+    System.out.println(s1);
+    System.out.println(s1 + s2);
+}
+
+2. Find invalid code
+public static void main(String args[]) {
+    Character ch = 'a';
+    String s = 'Hello World!';
+    int sum = sum(7, 8);
+    int intArray[] = new int[]{};
+    char[] charArray = {'H', 'e', 'l', 'l', 'o'};
+    String[] stringArray = new String[]();
+}
+
+private static Integer sum(Integer a, Integer b) {
+    return a + b;
+}
+
+3. What is output?
+public static void main(String[] args) {
+    int[] intArray = new int[]{1,2,3,4};
+    System.out.println(intArray.length);
+    System.out.println(intArray);
+    System.out.println(intArray[0]);
+    System.out.println("**********");
+
+    intArray = new int[3];
+    System.out.println(intArray.length);
+    System.out.println(intArray);
+    System.out.println(intArray[0]);
+}
+
+4. What is output?
+public static void main(String args[]) {
+    Integer count = 1;
+    increase(count);
+    System.out.println(count);
+    System.out.println("**********");
+
+    Rectangle rectangle = new Rectangle(20, 10);
+    enlarge(rectangle, 2);
+    System.out.println(rectangle.width + " " + rectangle.height);
+}
+
+private static void increase(Integer a) {
+    a++;
+    System.out.println(a);
+}
+
+private static void enlarge(Rectangle rectangle, int multiplier) {
+    rectangle.width *= multiplier;
+    rectangle.height *= multiplier;
+}
