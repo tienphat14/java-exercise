@@ -15,6 +15,8 @@ public class RandomRosterGenerator {
      * @return A roster with the desired size or empty if invalid input
      */
     public String[] getRandomRoster(String[] availableNames, int size) {
+        if(size > availableNames.length || size <= 0)
+            return new String[0];
         ArrayList<Integer> list = getRandomNonRepeatingIntegers(size, 0, size);
         try {
             String[] listResult = new String[size];
@@ -23,7 +25,7 @@ public class RandomRosterGenerator {
             }
             return listResult;
         }catch (Exception ex){
-            return null;
+            return new String[0];
         }
     }
 
