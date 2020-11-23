@@ -9,6 +9,9 @@ public static void main(String args[]) {
     boolean c;
     System.out.println(c);
 }
+Answer:
+boolean boolean = false;
+Don't allow set parameter the same as type
 
 2. What is the output?
 public static void main(String args[]) {
@@ -21,6 +24,11 @@ public static void main(String args[]) {
     a++;
     System.out.println(a);
 }
+Answer: Output
+126
+127
+-128
+-127
 
 3. Find invalid code
 public static void main(String args[]) {
@@ -29,10 +37,10 @@ public static void main(String args[]) {
     char c = 42;
     char c1 = 052;
     char c2 = 0x2a;
-    char c3 = '\u002a'
+    char c3 = '\u002a' //missing ;
     byte b = 100;
     short s = 10000;
-    int i = 9876543210;
+    int i = 9876543210; //over large number (range -2147483648 to 2147483647)
     int decVal = 26;
     int hexVal = 0x1a;
     int binVal = 0b11010;
@@ -45,46 +53,47 @@ public static void main(String args[]) {
     float pi =  3.14_15F;
     float pi1 = 3_.1415F;
     float pi2 = 3._1415F;
-    long socialSecurityNumber1 = 999_99_9999_L;
+    long socialSecurityNumber1 = 999_99_9999_L; //Not allow _ is the end of number
     int i = 1234567890;
     int x1 = 5_2;
-    int x2 = 52_;
+    int x2 = 52_; //Not allow _ is the end of number
     int x3 = 5_______2;
     int x4 = 0_x52;
     int x5 = 0x_52;
     int x6 = 0x5_2;
-    int x7 = 0x52_;
+    int x7 = 0x52_; // Not allow _ is the end of number
 }
+Answer: See comment in above
 
 4. What is the output?
 public static void main(String args[]) {
     char c1 = 42;
     char c2 = '\u0005';
-    System.out.println(c1 + c2);
+    System.out.println(c1 + c2); //47
     System.out.println("**********");
 
     int myInt = 9;
     long myLong = myInt;
     double myDouble = myInt;
-    System.out.println(myInt);
-    System.out.println(myLong);
-    System.out.println(myDouble);
+    System.out.println(myInt); //9
+    System.out.println(myLong); //9
+    System.out.println(myDouble); //9.0
     System.out.println("**********");
 
     myDouble = 9.78;
     myInt = (int) myDouble;
-    System.out.println(myDouble);
-    System.out.println(myInt);
+    System.out.println(myDouble); //9.78
+    System.out.println(myInt); //9
     System.out.println("**********");
 
     myLong = 9876543210L;
     myInt = (int) myLong;
-    System.out.println(myLong);
-    System.out.println(myInt);
+    System.out.println(myLong); //9876543210
+    System.out.println(myInt); //meo biet
     System.out.println("**********");
 
     float myFloat = 9.78F;
     myDouble = myFloat;
-    System.out.println(myFloat);
-    System.out.println(myDouble);
+    System.out.println(myFloat);//9.78
+    System.out.println(myDouble);//meo biet luon
 }

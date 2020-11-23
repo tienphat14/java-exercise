@@ -8,6 +8,20 @@ public static void main(String args[]) {
     }
 }
 
+Answer: No compile, missing catch
+Fix:
+public static void main(String args[]) {
+    int a = 30;
+    int b = 0;
+    try {
+        int c = a / b;
+    }
+    catch (Exception e){
+        //Handle exception here
+    }
+    System.out.println ("Result = " + c);
+}
+
 2. Does this compile? If yes, what is the output? If no, fixed it
 public static void main(String args[]) {
     try {
@@ -17,6 +31,18 @@ public static void main(String args[]) {
        System.out.println("File does not exist");
     }
 }
+Answer:
+Not correct exception, to handle the File Reader, use IOException, and FileNotFoundException
+Fix:
+public static void main(String args[]) {
+    try {
+        File file = new File("E://file.txt");
+        FileReader fr = new FileReader(file);
+    } catch (FileNotFoundException e) {
+       System.out.println("File does not exist");
+    }
+}
+
 
 3. What is the output?
 public static void main(String args[]) {
@@ -34,7 +60,18 @@ public static void main(String args[]) {
     }
 }
 
+Answer:
+try block
+catch IOException
+catch Exception
+finally block
+
 4. If remove catch (IOException e) block from exercise 3, is there an error? If not, what is the output?
+Answer: No error, and the output is
+try block
+catch Exception
+finally block
+
 
 5. What is the output?
 public static void main(String[] args) {
@@ -54,4 +91,7 @@ private static class CustomResource implements AutoCloseable {
         System.out.println("resource has been closed");
     }
 }
-
+Answer: Print the following:
+resource has been closed
+catch Exception
+finally block
