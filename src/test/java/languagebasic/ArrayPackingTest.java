@@ -9,6 +9,9 @@ public class ArrayPackingTest {
     private static final String EMPTY_ARRAY = "emptyArray";
     private static final String NORMAL_ARRAY = "normalArray";
     private static final String SINGLE_ELEMENT_ARRAY = "singleElementArray";
+    private static final String LONG_ARRAYS = "arrayLonger";
+
+
     @DataProvider(name = EMPTY_ARRAY)
     public Object[][] emptyArrayProvider() {
         return new Object[][]{
@@ -30,6 +33,19 @@ public class ArrayPackingTest {
         return new Object[][]{
                 {new int[]{121}}
         };
+    }
+
+    @DataProvider(name = LONG_ARRAYS)
+    public Object[][] allArrayProvider() {
+        return new Object[][]{
+                {new int[]{24, 85, 0, 6, 8, 8}}
+        };
+    }
+
+    @Test(dataProvider = LONG_ARRAYS)
+    public void getRandomRoster_negativeSize_returnEmpty(int[] availableNumbers) {
+        int result = arrayPacking.arrayPacking(availableNumbers);
+        Assert.assertEquals(result, -1);
     }
 
     @Test(dataProvider = NORMAL_ARRAY)

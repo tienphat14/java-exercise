@@ -41,11 +41,15 @@ public class ArrayPacking {
     public static int arrayPacking(int[] array) {
         if(array.length <=0)
             return -1;
-        String s = "";
-        for(int i = array.length-1; i >= 0; i--) {
-            s += getBinary(array[i]);
+        try {
+            String s = "";
+            for(int i = array.length-1; i >= 0; i--) {
+                s += getBinary(array[i]);
+            }
+            return Integer.parseInt(s, 2);
+        }catch (Exception ex){
+            return -1;
         }
-        return Integer.parseInt(s, 2);
     }
 
     /**
