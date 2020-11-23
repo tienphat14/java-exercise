@@ -1,4 +1,4 @@
-1. How many String Objects are created?
+1. How many String Objects are created? // 5
 public static void main(String args[]) {
     String s1 = "Hello ";
     s1 += "World! ";
@@ -10,11 +10,11 @@ public static void main(String args[]) {
 2. Find invalid code
 public static void main(String args[]) {
     Character ch = 'a';
-    String s = 'Hello World!';
+    String s = 'Hello World!';                      // String s = "Hello World!";
     int sum = sum(7, 8);
     int intArray[] = new int[]{};
     char[] charArray = {'H', 'e', 'l', 'l', 'o'};
-    String[] stringArray = new String[]();
+    String[] stringArray = new String[]();          // String[] stringArray = new String[]{};
 }
 
 private static Integer sum(Integer a, Integer b) {
@@ -24,15 +24,15 @@ private static Integer sum(Integer a, Integer b) {
 3. What is output?
 public static void main(String[] args) {
     int[] intArray = new int[]{1,2,3,4};
-    System.out.println(intArray.length);
-    System.out.println(intArray);
-    System.out.println(intArray[0]);
+    System.out.println(intArray.length);    // 4
+    System.out.println(intArray);           // [I@6d6f6e28
+    System.out.println(intArray[0]);        // 1
     System.out.println("**********");
 
     intArray = new int[3];
-    System.out.println(intArray.length);
-    System.out.println(intArray);
-    System.out.println(intArray[0]);
+    System.out.println(intArray.length);    // 3
+    System.out.println(intArray);           // [I@135fbaa4
+    System.out.println(intArray[0]);        // 0
 }
 
 4. What is output?
@@ -56,3 +56,8 @@ private static void enlarge(Rectangle rectangle, int multiplier) {
     rectangle.width *= multiplier;
     rectangle.height *= multiplier;
 }
+
+// 2
+// 1
+// **********
+// 40 20

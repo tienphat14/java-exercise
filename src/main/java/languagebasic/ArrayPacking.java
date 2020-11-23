@@ -25,9 +25,20 @@ public class ArrayPacking {
      *          1 ≤ array.length ≤ 4
      *          0 ≤ array[i] < 256
      */
-    public int arrayPacking(int[] array) {
-        //TODO: create the CustomException class
-        //TODO: implement this method
-        throw new UnsupportedOperationException("This method is not implemented yet");
+    public int arrayPacking(int[] array) throws CustomException {
+        int size = array.length;
+        if (size < 1 || size > 4) {
+            throw new CustomException("invalid array length = " + size);
+        }
+
+        int result = 0;
+        for (int i = 0; i < size; i++) {
+            int current = array[i];
+            if (current < 0 || current > 255) {
+                throw new CustomException("array element [" + i + "] has invalid value = " + current);
+            }
+            result += current << (8 * i);
+        }
+        return result;
     }
 }

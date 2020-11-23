@@ -18,22 +18,35 @@ public static void main(String[] args) {
         default: monthString = "Invalid month";
                  break;
     }
-    System.out.println(monthString);
+    System.out.println(monthString);    // Invalid month
 }
 
 2. Modify the code to print all array elements, one in each line
 public static void main(String[] args) {
     int[] numbers = {1,2,3,4,5,6,7,8,9,10};
-    for(int i = 0; ; i++) {
-        System.out.print(i);
+    for(int i = 0; ; i++) {     // for(int i = 0; i < numbers.length; i++)
+        System.out.print(i);    // System.out.println(i);
     }
 }
 
 3. Modify the code in exercise 2 using enhanced for loop
+public static void main(String[] args) {
+    int[] numbers = {1,2,3,4,5,6,7,8,9,10};
+    for(int i : numbers) {
+        System.out.println(i);
+    }
+}
 
 4. Modify the code in exercise 2 using while
+public static void main(String[] args) {
+    int[] numbers = {1,2,3,4,5,6,7,8,9,10};
+    int i = 0;
+    while(i++ < numbers.length) {
+        System.out.println(i);
+    }
+}
 
-5. Is below code output the same with exercise 2?
+5. Is below code output the same with exercise 2?   // Yes
 public static void main(String args[]) {
     int[] numbers = {1,2,3,4,5,6,7,8,9,10};
     int index = 0;
@@ -55,3 +68,8 @@ public static void main(String args[]) {
         System.out.println(numbers[i]);
     }
 }
+// 1
+// 3
+// 5
+// 7
+// 9

@@ -18,9 +18,27 @@ public class ArrayPreviousLess {
      *          3 ≤ items.length ≤ 15
      *          1 ≤ items[i] ≤ 200
      */
-    public int[] arrayPreviousLess(int[] items) {
-        //TODO: create the CustomException class
-        //TODO: implement this method
-        throw new UnsupportedOperationException("This method is not implemented yet");
+    public int[] arrayPreviousLess(int[] items) throws CustomException {
+        int size = items.length;
+        if (size < 3 || size > 15) {
+            throw new CustomException("invalid array length = " + size);
+        }
+
+        int[] result = new int[size];
+        for (int i = 0; i < size; i++) {
+            int current = items[i];
+            if (current < 1 || current > 200) {
+                throw new CustomException("array element [" + i + "] has invalid value = " + current);
+            }
+
+            int small = -1;
+            for (int j = 0; j < i; j++) {
+                if (items[j] < current) {
+                    small = items[j];
+                }
+            }
+            result[i] = small;
+        }
+        return result;
     }
 }

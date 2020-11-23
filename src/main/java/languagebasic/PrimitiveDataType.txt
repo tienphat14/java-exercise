@@ -1,25 +1,25 @@
 1. Find errors and fix them
 public static void main(String args[]) {
-    boolean boolean = false;
-    System.out.println(boolean);
+    boolean boolean = false;        // boolean boo = false;
+    System.out.println(boolean);    // System.out.println(boo);
     boolean a = true;
     System.out.println(a);
-    boolean b = 1;
+    boolean b = 1;                  // boolean b = true;
     System.out.println(b);
-    boolean c;
+    boolean c;                      // boolean c = false;
     System.out.println(c);
 }
 
 2. What is the output?
 public static void main(String args[]) {
     byte a = 126;
-    System.out.println(a);
+    System.out.println(a);  // 126
     a++;
-    System.out.println(a);
+    System.out.println(a);  // 127
     a++;
-    System.out.println(a);
+    System.out.println(a);  // -128
     a++;
-    System.out.println(a);
+    System.out.println(a);  // -127
 }
 
 3. Find invalid code
@@ -27,64 +27,64 @@ public static void main(String args[]) {
     boolean result = true;
     char multiple = '*';
     char c = 42;
-    char c1 = 052;
+    char c1 = 052;                                  // not recommended
     char c2 = 0x2a;
-    char c3 = '\u002a'
+    char c3 = '\u002a';
     byte b = 100;
     short s = 10000;
-    int i = 9876543210;
+    int i = 9876543210;                             // int i = 4_294_967_295
     int decVal = 26;
     int hexVal = 0x1a;
     int binVal = 0b11010;
     float f1  = 123.4f;
-    float f2  = 1.234e2;
+    float f2  = 1.234e2;                            // float f2  = 1.234e2F;
     double d1 = 123.4;
     double d2 = 1.234e2;
-    long creditCardNumber = 1234_5678_9012_3456;
+    long creditCardNumber = 1234_5678_9012_3456;    // long creditCardNumber = 1234_5678_9012_3456L;
     long socialSecurityNumber = 999_99_9999L;
     float pi =  3.14_15F;
-    float pi1 = 3_.1415F;
-    float pi2 = 3._1415F;
-    long socialSecurityNumber1 = 999_99_9999_L;
-    int i = 1234567890;
+    float pi1 = 3_.1415F;                           // float pi1 = 3.1415F;
+    float pi2 = 3._1415F;                           // float pi2 = 3.1415F;
+    long socialSecurityNumber1 = 999_99_9999_L;     // long socialSecurityNumber1 = 999_99_9999L;
+    int i = 1234567890;                             // int i2 = 1234567890;
     int x1 = 5_2;
-    int x2 = 52_;
+    int x2 = 52_;                                   // int x2 = 52;
     int x3 = 5_______2;
-    int x4 = 0_x52;
-    int x5 = 0x_52;
+    int x4 = 0_x52;                                 // int x4 = 0x52;
+    int x5 = 0x_52;                                 // int x5 = 0x52;
     int x6 = 0x5_2;
-    int x7 = 0x52_;
+    int x7 = 0x52_;                                 // int x7 = 0x52;
 }
 
 4. What is the output?
 public static void main(String args[]) {
     char c1 = 42;
     char c2 = '\u0005';
-    System.out.println(c1 + c2);
+    System.out.println(c1 + c2);                    // 47
     System.out.println("**********");
 
     int myInt = 9;
     long myLong = myInt;
     double myDouble = myInt;
-    System.out.println(myInt);
-    System.out.println(myLong);
-    System.out.println(myDouble);
+    System.out.println(myInt);                      // 9
+    System.out.println(myLong);                     // 9
+    System.out.println(myDouble);                   // 9.0
     System.out.println("**********");
 
     myDouble = 9.78;
     myInt = (int) myDouble;
-    System.out.println(myDouble);
-    System.out.println(myInt);
+    System.out.println(myDouble);                   // 9.78
+    System.out.println(myInt);                      // 9
     System.out.println("**********");
 
     myLong = 9876543210L;
     myInt = (int) myLong;
-    System.out.println(myLong);
-    System.out.println(myInt);
+    System.out.println(myLong);                     // 9876543210
+    System.out.println(myInt);                      // 1286608618
     System.out.println("**********");
 
     float myFloat = 9.78F;
     myDouble = myFloat;
-    System.out.println(myFloat);
-    System.out.println(myDouble);
+    System.out.println(myFloat);                    // 9.78
+    System.out.println(myDouble);                   // 9.779999732971191
 }
