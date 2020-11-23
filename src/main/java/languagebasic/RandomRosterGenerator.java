@@ -16,7 +16,7 @@ public class RandomRosterGenerator {
      */
     public String[] getRandomRoster(String[] availableNames, int size) {
         if(size > availableNames.length || size <= 0)
-            return new String[0];
+            return new String[]{};
         ArrayList<Integer> list = getRandomNonRepeatingIntegers(size, 0, size);
         try {
             String[] listResult = new String[size];
@@ -25,7 +25,7 @@ public class RandomRosterGenerator {
             }
             return listResult;
         }catch (Exception ex){
-            return new String[0];
+            return new String[]{};
         }
     }
 

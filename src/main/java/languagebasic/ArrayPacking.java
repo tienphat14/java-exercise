@@ -39,6 +39,8 @@ public class ArrayPacking {
      * @return packing number
      */
     public static int arrayPacking(int[] array) {
+        if(array.length <=0)
+            return -1;
         String s = "";
         for(int i = array.length-1; i >= 0; i--) {
             s += getBinary(array[i]);

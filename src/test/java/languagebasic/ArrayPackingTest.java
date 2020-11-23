@@ -6,7 +6,15 @@ import org.testng.annotations.Test;
 
 public class ArrayPackingTest {
 
+    private static final String EMPTY_ARRAY = "emptyArray";
     private static final String NORMAL_ARRAY = "normalArray";
+    private static final String SINGLE_ELEMENT_ARRAY = "singleElementArray";
+    @DataProvider(name = EMPTY_ARRAY)
+    public Object[][] emptyArrayProvider() {
+        return new Object[][]{
+                {new int[]{}}
+        };
+    }
 
     private ArrayPacking arrayPacking = new ArrayPacking();
 
@@ -17,9 +25,28 @@ public class ArrayPackingTest {
         };
     }
 
+    @DataProvider(name = SINGLE_ELEMENT_ARRAY)
+    public Object[][] singleElementArrayProvider() {
+        return new Object[][]{
+                {new int[]{121}}
+        };
+    }
+
     @Test(dataProvider = NORMAL_ARRAY)
-    public void getArrayPacking_normalArray_returnTheIntegerNumber(int[] availableNumbers) {
+    public void getArrayPacking_normalArray_returnTheIntegerNumberMore2Items(int[] availableNumbers) {
         int result = arrayPacking.arrayPacking(availableNumbers);
         Assert.assertEquals(result, 21784);
+    }
+
+    @Test(dataProvider = SINGLE_ELEMENT_ARRAY)
+    public void getArrayPacking_singleElementArray_returnTheIntegerNumberWith1Items(int[] availableNumbers) {
+        int result = arrayPacking.arrayPacking(availableNumbers);
+        Assert.assertEquals(result , 121);
+    }
+
+    @Test(dataProvider = EMPTY_ARRAY)
+    public void getArrayPacking_emptyArray_returnEmpty(int[] availableNumbers) {
+        int result = arrayPacking.arrayPacking(availableNumbers);
+        Assert.assertEquals(result, -1);
     }
 }
