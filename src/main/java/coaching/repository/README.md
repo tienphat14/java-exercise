@@ -34,7 +34,7 @@ class App {
                                         
         // Save a new staff into data persistence
         final Staff staff = new Staff();
-        repository.save(staff);
+        repository.save(Collections.singletonList(staff));
 
         // Retrieve all staffs
         final Collection<Staff> staffs = repository.findAll();
