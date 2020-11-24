@@ -68,7 +68,7 @@ public class DefaultCsvParserTest {
         final CsvParser parser = new DefaultCsvParser(file, config);
 
         // Assert lines
-        CsvLineAssertion
+        CsvLinesAssertion
                 .create().expectLine(0)
                     .atSegment(0, "FirstName")
                     .atSegment(1, "LastName")

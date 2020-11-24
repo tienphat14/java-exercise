@@ -1,4 +1,4 @@
-# MODULE 1 - CSV Parser and CSV Writer
+# MODULE 2 - Validation
 
 ## Exercise Format
 Exercise is designed to follow Test-Driven Development principles, which means your implementation
@@ -7,17 +7,15 @@ you need to implement.
 
 ## Required Knowledge
 - Java Basic (conditional statement, loop, string manipulate...) 
-- Java IO
-- Java Collection
+- Java Reflection API
+- Java Annotation
 
 ## Requirements
-- Implement CSV parser that could iterate CSV file line by line (for memory optimization). 
-  The parser should be customizable. For example, the parser could handle different set of
-  delimiter character such as comma, pipeline, ... It could also handle data wrapped by 
-  double quotes.
-- Implement CSV writer that could flush all data into a file in CSV format. The writer is
-  expected to be customizable with a custom delimiter, whether data should be wrapped with
-  double quotes.
+- Implement validation engine that utilizes field-level annotation to run rules against declared 
+  fields. After validation, violation set is returned that contains which field violates which rules.
+- The engine should be extensible which means that you could add your custom validation rule with
+  very little effort. For this one, please propose your approach, implement it and then write unit
+  tests to validate this aspect.
 - Code documentation is required (apply to public method and class), it should clarify the
   purpose and usage.
 - Implementation must align to coding conventions which is readable, maintainable, extensible.
