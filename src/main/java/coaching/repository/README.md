@@ -11,6 +11,7 @@ you need to implement.
 - Java Collection
 - Java Data Source API
 - Database Resources Management
+- Basic SQL
 
 ## Requirements
 - Implement repository that utilizes Java DataSource API. Here are suggested data source implementation:
