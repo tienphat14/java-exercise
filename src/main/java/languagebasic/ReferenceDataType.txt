@@ -7,6 +7,9 @@ public static void main(String args[]) {
     System.out.println(s1 + s2);
 }
 
+Answer #1:
+4 String objected are created.
+
 2. Find invalid code
 public static void main(String args[]) {
     Character ch = 'a';
@@ -21,6 +24,10 @@ private static Integer sum(Integer a, Integer b) {
     return a + b;
 }
 
+Answer #2:
+Error 1: String s = 'Hello World!'; => should be String s = "Hello World!";
+Error 2: String[] stringArray = new String[](); => should be String[] stringArray = new String[]{};
+
 3. What is output?
 public static void main(String[] args) {
     int[] intArray = new int[]{1,2,3,4};
@@ -34,6 +41,15 @@ public static void main(String[] args) {
     System.out.println(intArray);
     System.out.println(intArray[0]);
 }
+
+Answer #3:
+4
+[I@7852e922 //info to refer to the array
+1
+**********
+3
+[I@4e25154f //info to refer to the new array
+0
 
 4. What is output?
 public static void main(String args[]) {
@@ -56,3 +72,9 @@ private static void enlarge(Rectangle rectangle, int multiplier) {
     rectangle.width *= multiplier;
     rectangle.height *= multiplier;
 }
+
+Answer #4:
+2
+1            //note for Integer type
+**********
+40 20

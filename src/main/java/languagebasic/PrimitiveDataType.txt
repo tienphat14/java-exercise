@@ -10,6 +10,22 @@ public static void main(String args[]) {
     System.out.println(c);
 }
 
+Answer #1:
+- Error 1: cannot use a primitive type name "boolean" to name for a variable (boolean boolean = false)
+- Error 2: cannot assign an integer value to a boolean variable (boolean b = 1)
+- Error 3: must have an initial value in a variable declared in a method (boolean c)
+The fixing is:
+public static void main(String args[]) {
+    boolean isEnabled = false;
+    System.out.println(isEnabled);
+    boolean a = true;
+    System.out.println(a);
+    boolean b = true;
+    System.out.println(b);
+    boolean c = false;
+    System.out.println(c);
+}
+
 2. What is the output?
 public static void main(String args[]) {
     byte a = 126;
@@ -21,6 +37,13 @@ public static void main(String args[]) {
     a++;
     System.out.println(a);
 }
+
+Answer #2:
+126
+127
+-128
+-127
+Note: Byte is a primitive type having a minimum value of -128 and a maximum value of 127
 
 3. Find invalid code
 public static void main(String args[]) {
@@ -56,6 +79,21 @@ public static void main(String args[]) {
     int x7 = 0x52_;
 }
 
+Answer #3:
+Error 1: char c3 = '\u002a' => missing the semicolon char ";" at the end
+Error 2: int i = 9876543210; => too large value for an integer (-2147483648 to 2147483647)
+Error 3: float f2  = 1.234e2; => should add "f" at the end of number or use the double type
+Error 4: long creditCardNumber = 1234_5678_9012_3456; => the number is too large
+Error 5: int i = 1234567890; => Variable 'i' is already defined in the scope
+Error 6,7,8,9,10,11,12: => Illegal underscore:
+   float pi1 = 3_.1415F;
+   float pi2 = 3._1415F;
+   long socialSecurityNumber1 = 999_99_9999_L;
+   int x2 = 52_;
+   int x4 = 0_x52;
+   int x5 = 0x_52;
+   int x7 = 0x52_;
+
 4. What is the output?
 public static void main(String args[]) {
     char c1 = 42;
@@ -88,3 +126,19 @@ public static void main(String args[]) {
     System.out.println(myFloat);
     System.out.println(myDouble);
 }
+
+Answer #4:
+47
+**********
+9
+9
+9.0
+**********
+9.78
+9
+**********
+9876543210
+1286608618
+**********
+9.78
+9.779999732971191

@@ -28,6 +28,13 @@ class Parent extends Grandparent {
     }
 }
 
+Answer #1:
+Parent(25) constructor
+Parent() constructor
+Child() constructor
+**********
+Parent(50) constructor
+
 2. What is the output?
 public static void main(String args[]) {
     Rectangle rectangle = new Rectangle(20, 10);
@@ -41,12 +48,34 @@ private static void enlarge(Rectangle rectangle, int multiplier) {
     rectangle = new Rectangle(100, 50);
 }
 
+Answer #2:
+40 20
+
 3. Find errors and fix if any
 private class A {
     private class B {
         private class C {}
     }
 }
+
+Answer #3:
+We can only declare the public or and default access modifier for an outer class. So the fixing is:
+public class A {
+    private class B {
+        private class C {}
+    }
+}
+or
+class A {
+    private class B {
+        private class C {}
+    }
+}
+However, the trainer, please help to explain my unclear point:
+My question is if a default modifier is allowed for an outer class,
+why a protected modifier isn't allowed even though default modifier has a lesser scope than.
+Protected can be accessed through Same class,
+Same package and Sub-class. Default can be accessed through only Same class and Same package
 
 4. Find errors and fix if any
 public class A {
@@ -56,6 +85,20 @@ public class A {
 public class MainClass extends A {
     public static void main(String[] args) {
         B b = new B();
+    }
+}
+
+Answer #4:
+Must change the access modifier of the inner class B into protected or public to allow access from other classes.
+Besides, the object creation for an inner class must also be corrected. So the fixing is:
+
+public class A {
+    protected class B {}  //or public
+}
+
+public class MainClass extends A {
+    public static void main(String[] args) {
+        B b = new A().new B();
     }
 }
 
@@ -75,9 +118,28 @@ public class MainClass {
    }
 }
 
+Answer #5:
+No error. The result is:
+1221
+1221
+
 6. Find errors and fix if any
 package pack1;
 class A {
+    public A(){}
+}
+
+package pack2;
+import pack1.*;
+class B {
+    A a = new A();
+}
+
+Answer #6:
+Can not access class A outside package pack1 because access modifier of A is in default, it means it only allows
+access from classes in the same package. To fix this error, we declare a public modifier for class A as below:
+package pack1;
+public class A {
     public A(){}
 }
 
@@ -102,6 +164,9 @@ class B extends A {
    }
 }
 
+Answer #7:
+No error. B is a subclass of A so it can call the protected constructor from A.
+
 8. Is there any errors? If not, what is the output?
 private static int count = 0;
 private String s = "Hello World!";
@@ -120,3 +185,19 @@ public static void main(String[] args) {
 public static void increaseCount() {
     count++;
 }
+
+Answer #8:
+No error. The result is:
+Hello World!
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+10
