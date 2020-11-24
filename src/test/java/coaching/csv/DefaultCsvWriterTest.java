@@ -102,6 +102,16 @@ public class DefaultCsvWriterTest {
                 });
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void whenInit_NullConfigParam_ThenReject() throws IOException {
+        new DefaultCsvParser(createTestFile(), null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenInit_NullFileParam_ThenReject() {
+        new DefaultCsvParser(null, createCsvFileConfig());
+    }
+
     @Test(expected = IOException.class)
     public void whenWriteSingle_NonExistingFile_ThenReject() throws IOException {
         final CsvWriter writer = new DefaultCsvWriter(createCsvFileConfig(), new File("non-existing.csv"));
