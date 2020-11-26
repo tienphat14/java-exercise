@@ -39,7 +39,7 @@ public final class ViolationsAssertion {
             }
         }
 
-        assertNotEquals("No violations found for " + assertedFieldNames.values(), 0, assertedFieldNames.size());
+        assertEquals("No violations found for " + assertedFieldNames.values(), 0, assertedFieldNames.size());
     }
 
     public class FieldAssertion {
@@ -71,8 +71,17 @@ public final class ViolationsAssertion {
 
         public void assertField(Violation violation) {
             assertEquals(invalidValue, violation.getInvalidValue());
-            assertTrue("Expected violation messages does not meet the expectation",
+            assertTrue("Expected violation messages does not meet the expectation " + messages,
                     violation.getMessages().containsAll(messages));
+        }
+
+        @Override
+        public String toString() {
+            return "FieldAssertion{" +
+                    "fieldName='" + fieldName + '\'' +
+                    ", messages=" + messages +
+                    ", invalidValue=" + invalidValue +
+                    '}';
         }
     }
 }
