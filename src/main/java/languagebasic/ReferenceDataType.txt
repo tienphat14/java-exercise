@@ -6,6 +6,8 @@ public static void main(String args[]) {
     System.out.println(s1);
     System.out.println(s1 + s2);
 }
+=> "Hello World! "
+"Hello World! From KMS!"
 
 2. Find invalid code
 public static void main(String args[]) {
@@ -20,6 +22,7 @@ public static void main(String args[]) {
 private static Integer sum(Integer a, Integer b) {
     return a + b;
 }
+=> String[] stringArray = new String[](); -> Does not have array size
 
 3. What is output?
 public static void main(String[] args) {
@@ -34,6 +37,13 @@ public static void main(String[] args) {
     System.out.println(intArray);
     System.out.println(intArray[0]);
 }
+=> 4
+Object...
+1
+**********
+3
+Object... (new)
+0
 
 4. What is output?
 public static void main(String args[]) {
@@ -56,3 +66,7 @@ private static void enlarge(Rectangle rectangle, int multiplier) {
     rectangle.width *= multiplier;
     rectangle.height *= multiplier;
 }
+=> 2
+2
+**********
+20 40
