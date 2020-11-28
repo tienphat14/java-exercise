@@ -2,9 +2,7 @@ package languagebasic;
 
 import personal.models.IntervalObject;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class OverlappingIntervalPairs {
     /*
@@ -16,7 +14,7 @@ public class OverlappingIntervalPairs {
 
     public String findOverlap(int[]... arrays) {
         List<IntervalObject> inputtedArrays = convertParamToObject(arrays);
-        List<StringBuilder> output = new ArrayList<>();
+        Set<String> output = new HashSet<>();
         for (int x = 0; x < inputtedArrays.size(); x++) {
             IntervalObject srcObject = inputtedArrays.get(x);
             for (int y = x + 1; y < inputtedArrays.size(); y++) {
@@ -27,7 +25,7 @@ public class OverlappingIntervalPairs {
                     stringBuilder.append(srcObject.toString())
                             .append(" and ")
                             .append(desObject.toString());
-                    output.add(stringBuilder);
+                    output.add(stringBuilder.toString());
                 }
             }
         }
