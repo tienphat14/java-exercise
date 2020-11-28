@@ -12,7 +12,16 @@ public class RandomRosterGenerator {
      * @return A roster with the desired size or empty if invalid input
      */
     public String[] getRandomRoster(String[] availableNames, int size) {
-        //TODO: implement this method
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        if (size <= 0) {
+           return new String[]{};
+        }
+        String[] result = new String[size];
+        if (size <= availableNames.length) {
+            System.arraycopy(availableNames, 0, result, 0, size);
+            return result;
+        }
+        else {
+            return new String[]{};
+        }
     }
 }
