@@ -10,6 +10,7 @@ repositories {
 dependencies {
     implementation 'ch.qos.logback:logback-classic:1.2.3'
     implementation 'com.zaxxer:HikariCP:3.4.5'
+    implementation 'org.junit.jupiter:junit-jupiter:5.4.2'
 
     testImplementation 'junit:junit:4.13'
     testImplementation 'org.testng:testng:6.10'
