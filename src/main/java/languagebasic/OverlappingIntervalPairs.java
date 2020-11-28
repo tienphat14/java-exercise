@@ -55,13 +55,13 @@ public class OverlappingIntervalPairs {
         System.out.println("Input intervals: ");
         String[] in = overlap.getInputIntervals(interval);
         for (String s: in){
-            System.out.print(s + " ");
+            System.out.print(s + "; ");
         }
 
         System.out.println("\n\nOverlap Interval Pairs: ");
         String[] out = overlap.getAllOverlapPairs(interval);
         for (String s: out){
-            System.out.print(s + " ");
+            System.out.print(s + ";\n ");
         }
 
     }
