@@ -31,14 +31,14 @@ public class ArrayPreviousLessTest {
     @DataProvider(name = NORMAL_ARRAY)
     public Object[][] normalArrayProvider() {
         return new Object[][]{
-                {new int[]{3, 5, 2, 4, 5, 6, 11, 3, 8, 8}}
+                {new int[]{1, 2, 10, 4, 5, 10, 7, 8, 9, 10}}
         };
     }
 
     @Test(dataProvider = NORMAL_ARRAY)
     public void getPreviousLess_normalArray(int[] availableNumbers) throws ArrayPreviousLess.CustomException {
         int[] results = arrayPreviousLess.arrayPreviousLess(availableNumbers);
-        Assert.assertTrue(Arrays.equals(results, new int[]{-1, 3, -1, 2, 4}));
+        Assert.assertTrue(Arrays.equals(results, new int[]{-1, 1, 2, 2, 4, 5, 5, 7, 8, 9}));
 
     }
 
@@ -48,9 +48,9 @@ public class ArrayPreviousLessTest {
             arrayPreviousLess.arrayPreviousLess(availableNumbers);
         } catch (ArrayPreviousLess.CustomException e) {
             Assert.assertTrue(e.getMessage().contains("The input break the rule items.length between 3 to 15"));
-        }catch (Exception ex){
-            Assert.fail("The message errors are not expected results.");
+            return;
         }
+        Assert.fail("The message errors are not expected results.");
     }
 
     @Test(dataProvider = EXCEPTION_ARRAY)
@@ -59,8 +59,8 @@ public class ArrayPreviousLessTest {
             arrayPreviousLess.arrayPreviousLess(availableNumbers);
         } catch (ArrayPreviousLess.CustomException e) {
             Assert.assertTrue(e.getMessage().contains("The input break the rule items.length between 3 to 15"));
-        }catch (Exception ex){
-            Assert.fail("The message errors are not expected results.");
+            return;
         }
+        Assert.fail("The message errors are not expected results.");
     }
 }
