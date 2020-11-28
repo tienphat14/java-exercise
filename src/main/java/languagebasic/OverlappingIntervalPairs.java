@@ -11,7 +11,7 @@ public class OverlappingIntervalPairs {
     Given [1, 5], [6, 8], [5, 12], [2, 6] => return [1, 5] and [5, 12], [1, 5] and [2, 6], [6, 8] and [5, 12], [5, 12] and [2, 6]
      */
      private boolean isOverlap(Interval a, Interval b){
-         return (a.getStartInterval() >= b.getStartInterval()) && (a.getStartInterval()<=b.getEndInterval());
+         return (b.getStartInterval() >= a.getStartInterval()) && (b.getStartInterval()<=a.getEndInterval());
      }
 
     private String printInterval(Interval interval){
@@ -24,8 +24,17 @@ public class OverlappingIntervalPairs {
         }
         return "";
     }
-     public String[] printAllOverlapInterval(Interval[] intervals){
-         ArrayList<String> result = new ArrayList<String>();
+
+    public String[] getInputIntervals(Interval[] intervals){
+        ArrayList<String> result = new ArrayList<>();
+        for(Interval in: intervals){
+            result.add("[" + in.getStartInterval() + ", " + in.getEndInterval() + "]");
+        }
+        return result.toArray(new String[]{});
+    }
+
+     public String[] getAllOverlapPairs(Interval[] intervals){
+         ArrayList<String> result = new ArrayList<>();
         for(int i=0; i< intervals.length; i++){
             for (int j = 0; j<intervals.length; j++){
                 if (i==j) continue;
@@ -39,13 +48,20 @@ public class OverlappingIntervalPairs {
 
     public static void main(String[] args) {
 
-        //Interval[] interval = {new Interval(11, 15), new Interval(3, 9), new Interval(1, 4), new Interval(15,18), new Interval(2, 7)};
-        Interval[] interval = {new Interval(11, 15)};
+        Interval[] interval = {new Interval(11, 15), new Interval(3, 9), new Interval(1, 4), new Interval(15,18), new Interval(2, 7)};
+        //Interval[] interval = {new Interval(11, 15)};
         OverlappingIntervalPairs overlap = new OverlappingIntervalPairs();
 
-        String[] out = overlap.printAllOverlapInterval(interval);
+        System.out.println("Input intervals: ");
+        String[] in = overlap.getInputIntervals(interval);
+        for (String s: in){
+            System.out.print(s + " ");
+        }
+
+        System.out.println("\n\nOverlap Interval Pairs: ");
+        String[] out = overlap.getAllOverlapPairs(interval);
         for (String s: out){
-            System.out.println(s);
+            System.out.print(s + " ");
         }
 
     }
