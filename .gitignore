@@ -21,6 +21,7 @@
 .idea/**/dbnavigator.xml
 
 # Gradle
+.gradle
 .idea/**/gradle.xml
 .idea/**/libraries
 
@@ -46,8 +47,12 @@ cmake-build-*/
 # File-based project format
 *.iws
 
-# IntelliJ
-out/
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+/out/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
