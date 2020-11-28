@@ -18,16 +18,41 @@ package languagebasic;
 public class ArrayPacking {
 
     /**
-     *
      * @param array An array of up to four non-negative integers, each less than 256
      * @return The obtained integer packed from given array
      * @throws CustomException if the input violates rules
-     *          1 ≤ array.length ≤ 4
-     *          0 ≤ array[i] < 256
+     *                         1 ≤ array.length ≤ 4
+     *                         0 ≤ array[i] < 256
      */
-    public int arrayPacking(int[] array) {
-        //TODO: create the CustomException class
-        //TODO: implement this method
-        throw new UnsupportedOperationException("This method is not implemented yet");
+    public int arrayPacking(int[] array) throws CustomException{
+        int packing = 0;
+
+        if (array.length <1 || array.length > 4) {
+            throw new CustomException("Array length must be from 1 to 4. Current length: " + array.length);
+        }
+
+        for (int i = 0; i<array.length; i++) {
+            if (array[i] < 0 || array[i] > 255){
+                throw new CustomException("Array value must be from 0 to 255. Invalid value: " + array[i]);
+            }
+            packing += array[i] << i * 8;
+        }
+        return packing;
+        //throw new UnsupportedOperationException("This method is not implemented yet");
+    }
+
+    public static void main(String[] args) {
+
+        ArrayPacking arrPack = new ArrayPacking();
+        int[] test = {0, 10, 25};
+        int result;
+        try {
+            result = arrPack.arrayPacking(test);
+        }catch (CustomException err){
+            System.out.println(err);
+            return;
+        }
+        System.out.println(result);
     }
 }
+
