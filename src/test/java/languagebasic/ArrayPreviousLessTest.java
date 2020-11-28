@@ -1,5 +1,66 @@
 package languagebasic;
 
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import java.util.Arrays;
+
 public class ArrayPreviousLessTest {
-    //TODO: Write tests for your code
+    private static final String NORMAL_ARRAY = "normalArray";
+    private static final String EMPTY_ARRAY = "emptyArray";
+    private static final String EXCEPTION_ARRAY = "exceptionArray";
+
+    ArrayPreviousLess arrayPreviousLess = new ArrayPreviousLess();
+
+    @DataProvider(name = EXCEPTION_ARRAY)
+    public Object[][] exceptionArrayProvider() {
+        return new Object[][]{
+                {new int[]{1,2}},
+                {new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16}}
+        };
+    }
+
+    @DataProvider(name = EMPTY_ARRAY)
+    public Object[][] emptyArrayProvider() {
+        return new Object[][]{
+                {new int[]{}}
+        };
+    }
+
+    @DataProvider(name = NORMAL_ARRAY)
+    public Object[][] normalArrayProvider() {
+        return new Object[][]{
+                {new int[]{3, 5, 2, 4, 5, 6, 11, 3, 8, 8}}
+        };
+    }
+
+    @Test(dataProvider = NORMAL_ARRAY)
+    public void getPreviousLess_normalArray(int[] availableNumbers) throws ArrayPreviousLess.CustomException {
+        int[] results = arrayPreviousLess.arrayPreviousLess(availableNumbers);
+        Assert.assertTrue(Arrays.equals(results, new int[]{-1, 3, -1, 2, 4}));
+
+    }
+
+    @Test(dataProvider = EMPTY_ARRAY)
+    public void getPreviousLess_emptyArray(int[] availableNumbers){
+        try {
+            arrayPreviousLess.arrayPreviousLess(availableNumbers);
+        } catch (ArrayPreviousLess.CustomException e) {
+            Assert.assertTrue(e.getMessage().contains("The input break the rule items.length between 3 to 15"));
+        }catch (Exception ex){
+            Assert.fail("The message errors are not expected results.");
+        }
+    }
+
+    @Test(dataProvider = EXCEPTION_ARRAY)
+    public void getPreviousLess_exceptionArray(int[] availableNumbers){
+        try {
+            arrayPreviousLess.arrayPreviousLess(availableNumbers);
+        } catch (ArrayPreviousLess.CustomException e) {
+            Assert.assertTrue(e.getMessage().contains("The input break the rule items.length between 3 to 15"));
+        }catch (Exception ex){
+            Assert.fail("The message errors are not expected results.");
+        }
+    }
 }
