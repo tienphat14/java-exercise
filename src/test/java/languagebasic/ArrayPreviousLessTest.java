@@ -36,7 +36,7 @@ public class ArrayPreviousLessTest {
     }
 
     @Test(dataProvider = NORMAL_ARRAY)
-    public void getPreviousLess_normalArray(int[] availableNumbers) throws ArrayPreviousLess.CustomException {
+    public void getPreviousLess_normalArray(int[] availableNumbers) throws CustomException {
         int[] results = arrayPreviousLess.arrayPreviousLess(availableNumbers);
         Assert.assertTrue(Arrays.equals(results, new int[]{-1, 1, 2, 2, 4, 5, 5, 7, 8, 9}));
 
@@ -46,7 +46,7 @@ public class ArrayPreviousLessTest {
     public void getPreviousLess_emptyArray(int[] availableNumbers){
         try {
             arrayPreviousLess.arrayPreviousLess(availableNumbers);
-        } catch (ArrayPreviousLess.CustomException e) {
+        } catch (CustomException e) {
             Assert.assertTrue(e.getMessage().contains("The input break the rule items.length between 3 to 15"));
             return;
         }
@@ -57,7 +57,7 @@ public class ArrayPreviousLessTest {
     public void getPreviousLess_exceptionArray(int[] availableNumbers){
         try {
             arrayPreviousLess.arrayPreviousLess(availableNumbers);
-        } catch (ArrayPreviousLess.CustomException e) {
+        } catch (CustomException e) {
             Assert.assertTrue(e.getMessage().contains("The input break the rule items.length between 3 to 15"));
             return;
         }

@@ -37,10 +37,4 @@ public class ArrayPreviousLess {
         }
         return -1;
     }
-
-    public class CustomException extends Exception {
-        public CustomException(String errorMessage) {
-            super(errorMessage);
-        }
-    }
 }

@@ -17,33 +17,25 @@ package languagebasic;
  */
 public class ArrayPacking {
 
-//     **
-//     *
-//     * @param array An array of up to four non-negative integers, each less than 256
-//     * @return The obtained integer packed from given array
-//     * @throws CustomException if the input violates rules
-//     *          1 ≤ array.length ≤ 4
-//     *          0 ≤ array[i] < 256
-//     */
-
-    public static void main(String args[]) {
-        int[] myIntArray = new int[]{24, 85, 0};
-        int result = arrayPacking(myIntArray);
-        System.out.println("*************");
-        System.out.println(result);
-    }
-
+    /**
+     * Class CustomException if the input violates rules
+     *           1 ≤ array.length ≤ 4
+     *           0 ≤ array[i] < 256
+     */
     /**
      * Get the packing number
      * @param array the array input
      * @return packing number
      */
-    public static int arrayPacking(int[] array) {
-        if(array.length <=0)
-            return -1;
+    public int arrayPacking(int[] array) throws CustomException {
+        if(array.length < 1 || array.length > 4)
+            throw new CustomException("The input break the rule array.length between 1 to 4");
+
         try {
             String s = "";
             for(int i = array.length-1; i >= 0; i--) {
+                if(array[i] < 0 || array[i] >= 256)
+                    throw new CustomException("Existing a item in array break the rule as value between 0 to 255");
                 s += getBinary(array[i]);
             }
             return Integer.parseInt(s, 2);
@@ -57,7 +49,7 @@ public class ArrayPacking {
      * @param val input value
      * @return the bit string of integer
      */
-    public static String getBinary(int val) {
+    public String getBinary(int val) {
         String s = "";
         for(int i = 0; i < 8; i++) {
             if(val % 2 == 1)
@@ -69,17 +61,6 @@ public class ArrayPacking {
         }
 
         return s;
-    }
-
-    /**
-     * Class CustomException if the input violates rules
-     *           1 ≤ array.length ≤ 4
-     *           0 ≤ array[i] < 256
-     */
-    public class CustomException extends Exception {
-        public CustomException(String message) {
-            super(message);
-        }
     }
 
 }
