@@ -18,7 +18,51 @@ you need to implement.
 - Implement CSV writer that could flush all data into a file in CSV format. The writer is
   expected to be customizable with a custom delimiter, whether data should be wrapped with
   double quotes.
+- Exceptions should be handled correctly
 - Code documentation is required (apply to public method and class), it should clarify the
   purpose and usage.
 - Implementation must align to coding conventions which is readable, maintainable, extensible.
 - All unit tests must be passed, which determine your result.
+
+### Expected API Usage
+Code sample of CsvParser API usage
+```java
+class App {
+    public static void main(String ...args) {                                             
+        // Initialize parser
+        final File file = new File("foo.csv");
+        final CsvParser parser = new DefaultCsvParser(file);
+        
+        // Iterate through each lines
+        while (parser.hasNext()) {
+            final CsvLine line = parser.next();
+            // Print value of the first segment
+            System.out.println(line.get(0));
+        }
+
+        // Close resource after reading a file
+        parser.close();
+    }
+}
+```
+
+Code sample of CsvWriter API usage
+```java
+class App {
+    public static void main(String ...args) {
+        // Initialize writer
+        final File file = new File("foo.csv");
+        final CsvWriter writer = new DefaultCsvWriter();
+
+        // Set value for the first segment
+        final CsvLine line = new CsvLine();
+        line.set(0, "bar");
+
+        // Write data into a file
+        writer.write(line);
+
+        // Close resources
+        writer.close();
+    }
+}
+```

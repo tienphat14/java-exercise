@@ -1,0 +1,95 @@
+1. Is there an error? If not, what is the output?
+class A {
+    public static void hello() {
+        System.out.println("A.hello()");
+    }
+    public void goodbye() {
+        System.out.println("A.goodbye()");
+    }
+}
+
+class B extends A {
+    public static void hello() {
+        System.out.println("B.hello()");
+    }
+    public void goodbye() {
+        System.out.println("B.goodbye()");
+    }
+}
+
+public class Main {
+    public static void main(String args[]) {
+        A a = new B();
+        a.hello();
+        a.goodbye();
+    }
+}
+
+2. Is there an error? If not, what is the output?
+class Grandparent {
+    public void Print() {
+        System.out.println("Grandparent's Print()");
+    }
+}
+
+class Parent extends Grandparent {
+    public void Print() {
+        System.out.println("Parent's Print()");
+    }
+}
+
+class Child extends Parent {
+    public void Print() {
+        super.super.Print();
+        System.out.println("Child's Print()");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Child c = new Child();
+        c.Print();
+    }
+}
+
+3. Is there an error? If not, what is the output?
+class Complex {
+    private final double re;
+    private final double im;
+
+    public Complex(double re, double im) {
+        this.re = re;
+        this.im = im;
+    }
+
+    public String toString() {
+        return "(" + re + " + " + im + "i)";
+    }
+}
+
+public class Main {
+    public static void main(String args[]) {
+        Complex c = new Complex(10, 15);
+        System.out.println("Complex number is " + c);
+    }
+}
+
+4. Is there an error? If not, what is the output?
+class Animal {
+    public void run() {
+        System.out.println("An animal is running");
+    }
+}
+
+class Dog extends Animal {
+    public void bark() {
+        System.out.println("Woof!");
+    }
+}
+
+public class Main {
+    public static void main(String args[]) {
+        Animal a = new Dog();
+        a.bark();
+    }
+}

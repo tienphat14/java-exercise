@@ -25,6 +25,11 @@ import java.util.Iterator;
  */
 public class DefaultValidatorTest {
 
+    @Test(expected = IllegalArgumentException.class)
+    public void whenValidate_NullValidatedObject_ThenReject() {
+        new DefaultValidator().validate(null);
+    }
+
     /*
      *
      * Testing validator with model having only one rule for each fields
@@ -37,6 +42,7 @@ public class DefaultValidatorTest {
         final SingleRuleClient client = new SingleRuleClient();
         client.setFirstName(null);
         client.setLastName("more-than-5-characters");
+        client.setAge(15);
 
         final Iterator<Violation> violations = validator.validate(client).iterator();
 
@@ -47,6 +53,9 @@ public class DefaultValidatorTest {
                 .and().expectField("lastName")
                     .withMessage("Last name length must be within 1 and 5 characters")
                     .withInvalidValue(client.getLastName())
+                .and().expectField("age")
+                    .withMessage("Age must be within 18 and 80 years old")
+                    .withInvalidValue(client.getAge())
                 .and().assertViolations(violations);
     }
 
@@ -56,6 +65,9 @@ public class DefaultValidatorTest {
 
         @Size(max = 5, message = "Last name length must be within 1 and 5 characters")
         private String lastName;
+
+        @Size(min = 18, max = 80, message = "Age must be within 18 and 80 years old")
+        private Integer age;
 
         public String getFirstName() {
             return firstName;
@@ -71,6 +83,14 @@ public class DefaultValidatorTest {
 
         public void setLastName(String lastName) {
             this.lastName = lastName;
+        }
+
+        public Integer getAge() {
+            return age;
+        }
+
+        public void setAge(Integer age) {
+            this.age = age;
         }
     }
 
