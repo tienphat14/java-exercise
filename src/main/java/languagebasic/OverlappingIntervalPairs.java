@@ -42,25 +42,22 @@ public class OverlappingIntervalPairs {
             for (int j = 0; j<intervals.length; j++){
                 if (i==j) continue;
                 if (isOverlap(intervals[i], intervals[j])){
-                    result.add(printOverlapInterval(intervals[i], intervals[j]));
+                    //Not add if duplication
+                    if (!result.contains(printOverlapInterval(intervals[i], intervals[j]))) {
+                        result.add(printOverlapInterval(intervals[i], intervals[j]));
+                    }
                 }
             }
         }
 
-        //Remove duplicates
-         ArrayList<String> newResult = new ArrayList<>();
-        for (String s: result){
-            if (!newResult.contains(s)){
-                newResult.add(s);
-            }
-        }
-        return newResult.toArray(new String[]{});
+
+        return result.toArray(new String[]{});
      }
 
     public static void main(String[] args) {
 
         Interval[] interval = {new Interval(11, 15), new Interval(3, 9),
-                new Interval(1, 4), new Interval(15,18), new Interval(2, 7),
+                new Interval(1, 4), new Interval(15,18), new Interval(2, 7), new Interval(1, 20),
                 new Interval(20, 30), new Interval(40, 50), new Interval(20, 30)};
         //Interval[] interval = {new Interval(11, 15)};
         OverlappingIntervalPairs overlap = new OverlappingIntervalPairs();
