@@ -68,7 +68,7 @@ public class OverlappingIntervalPairs {
         System.out.println("\n\nOverlap Interval Pairs: ");
         String[] out = overlap.getAllOverlapPairs(interval);
         for (String s: out){
-            System.out.print(s + ";\n ");
+            System.out.println(s + ";");
         }
 
     }
