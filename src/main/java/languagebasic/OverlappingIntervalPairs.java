@@ -13,7 +13,11 @@ public class OverlappingIntervalPairs {
 
 
      private boolean isOverlap(Interval a, Interval b){
-         return (b.getStartInterval() >= a.getStartInterval()) && (b.getStartInterval()<=a.getEndInterval());
+         if ((b.getStartInterval() >= a.getStartInterval()) && (b.getStartInterval()<=a.getEndInterval()))
+             return true;
+         if ((a.getStartInterval() >= b.getStartInterval()) && (a.getStartInterval()<=b.getEndInterval()))
+             return true;
+         return false;
      }
 
 
@@ -39,8 +43,7 @@ public class OverlappingIntervalPairs {
      public String[] getAllOverlapPairs(Interval[] intervals){
          ArrayList<String> result = new ArrayList<>();
         for(int i=0; i< intervals.length; i++){
-            for (int j = 0; j<intervals.length; j++){
-                if (i==j) continue;
+            for (int j = i+1; j<intervals.length; j++){
                 if (isOverlap(intervals[i], intervals[j])){
                     //Not add if duplication
                     if (!result.contains(printOverlapInterval(intervals[i], intervals[j]))) {
@@ -59,7 +62,6 @@ public class OverlappingIntervalPairs {
         Interval[] interval = {new Interval(11, 15), new Interval(3, 9),
                 new Interval(1, 4), new Interval(15,18), new Interval(2, 7), new Interval(1, 20),
                 new Interval(20, 30), new Interval(40, 50), new Interval(20, 30)};
-        //Interval[] interval = {new Interval(11, 15)};
         OverlappingIntervalPairs overlap = new OverlappingIntervalPairs();
 
         System.out.println("Input intervals: ");
