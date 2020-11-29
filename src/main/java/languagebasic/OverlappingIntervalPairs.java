@@ -10,9 +10,12 @@ public class OverlappingIntervalPairs {
     Given [11, 15], [3, 9], [1, 4], [15, 18] => return [11, 15] and [15, 18], [3, 9] and [1, 4].
     Given [1, 5], [6, 8], [5, 12], [2, 6] => return [1, 5] and [5, 12], [1, 5] and [2, 6], [6, 8] and [5, 12], [5, 12] and [2, 6]
      */
+
+
      private boolean isOverlap(Interval a, Interval b){
          return (b.getStartInterval() >= a.getStartInterval()) && (b.getStartInterval()<=a.getEndInterval());
      }
+
 
     private String printInterval(Interval interval){
         return "[" + interval.getStartInterval() + ", " + interval.getEndInterval() + "]";
@@ -43,12 +46,22 @@ public class OverlappingIntervalPairs {
                 }
             }
         }
-        return result.toArray(new String[]{});
+
+        //Remove duplicates
+         ArrayList<String> newResult = new ArrayList<>();
+        for (String s: result){
+            if (!newResult.contains(s)){
+                newResult.add(s);
+            }
+        }
+        return newResult.toArray(new String[]{});
      }
 
     public static void main(String[] args) {
 
-        Interval[] interval = {new Interval(11, 15), new Interval(3, 9), new Interval(1, 4), new Interval(15,18), new Interval(2, 7)};
+        Interval[] interval = {new Interval(11, 15), new Interval(3, 9),
+                new Interval(1, 4), new Interval(15,18), new Interval(2, 7),
+                new Interval(20, 30), new Interval(40, 50), new Interval(20, 30)};
         //Interval[] interval = {new Interval(11, 15)};
         OverlappingIntervalPairs overlap = new OverlappingIntervalPairs();
 
