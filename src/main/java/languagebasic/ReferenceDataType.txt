@@ -6,20 +6,27 @@ public static void main(String args[]) {
     System.out.println(s1);
     System.out.println(s1 + s2);
 }
+----------------------------------------------------------------
+"Hello ", "World! ", "Hello World! ", "From KMS!", "Hello World! From KMS!"
+----------------------------------------------------------------
 
 2. Find invalid code
 public static void main(String args[]) {
     Character ch = 'a';
-    String s = 'Hello World!';
+    String s = 'Hello World!'; =>
     int sum = sum(7, 8);
     int intArray[] = new int[]{};
     char[] charArray = {'H', 'e', 'l', 'l', 'o'};
     String[] stringArray = new String[]();
 }
-
 private static Integer sum(Integer a, Integer b) {
     return a + b;
 }
+
+----------------------------------------------------------------
+String s = 'Hello World!'; => String s = "Hello World!" (" " for String, '' for Character)
+String[] stringArray = new String[](); => String[] stringArray = new String[]{};
+----------------------------------------------------------------
 
 3. What is output?
 public static void main(String[] args) {
@@ -34,6 +41,17 @@ public static void main(String[] args) {
     System.out.println(intArray);
     System.out.println(intArray[0]);
 }
+----------------------------------------------------------------
+    System.out.println(intArray.length); => 4
+    System.out.println(intArray); => reference
+    System.out.println(intArray[0]); => 1
+    System.out.println("**********"); => **********
+
+    intArray = new int[3];
+    System.out.println(intArray.length); => 3
+    System.out.println(intArray); => reference
+    System.out.println(intArray[0]); => 0
+----------------------------------------------------------------
 
 4. What is output?
 public static void main(String args[]) {
@@ -56,3 +74,9 @@ private static void enlarge(Rectangle rectangle, int multiplier) {
     rectangle.width *= multiplier;
     rectangle.height *= multiplier;
 }
+----------------------------------------------------------------
+2
+1
+**********
+40 20
+----------------------------------------------------------------

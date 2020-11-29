@@ -13,6 +13,15 @@ public class RandomRosterGenerator {
      */
     public String[] getRandomRoster(String[] availableNames, int size) {
         //TODO: implement this method
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        //throw new UnsupportedOperationException("This method is not implemented yet");
+        int i;
+        if (availableNames.length != 0 && size > 0) {
+            String [] rosterRandomNames = new String[size];
+            for(i = 0; i < size; i++) {
+                rosterRandomNames[i] = availableNames[(int) (Math.random() * (availableNames.length - 1))];
+            }
+            return rosterRandomNames;
+        }
+        return new String[0];
     }
 }

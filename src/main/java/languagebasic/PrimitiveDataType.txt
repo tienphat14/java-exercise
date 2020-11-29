@@ -108,31 +108,31 @@ Error:
 public static void main(String args[]) {
     char c1 = 42;
     char c2 = '\u0005';
-    System.out.println(c1 + c2);
+    System.out.println(c1 + c2); => because of "+" => char convert to int => 47
     System.out.println("**********");
 
     int myInt = 9;
     long myLong = myInt;
     double myDouble = myInt;
-    System.out.println(myInt);
-    System.out.println(myLong);
-    System.out.println(myDouble);
+    System.out.println(myInt); => 9
+    System.out.println(myLong); => 9
+    System.out.println(myDouble); => 9.0
     System.out.println("**********");
 
     myDouble = 9.78;
     myInt = (int) myDouble;
-    System.out.println(myDouble);
-    System.out.println(myInt);
+    System.out.println(myDouble); => 9.78
+    System.out.println(myInt); => 9
     System.out.println("**********");
 
     myLong = 9876543210L;
     myInt = (int) myLong;
-    System.out.println(myLong);
-    System.out.println(myInt);
+    System.out.println(myLong); => 9876543210
+    System.out.println(myInt); => 1286608618
     System.out.println("**********");
 
     float myFloat = 9.78F;
     myDouble = myFloat;
-    System.out.println(myFloat);
-    System.out.println(myDouble);
+    System.out.println(myFloat); => 9.78
+    System.out.println(myDouble); => 9.779999732971191
 }
