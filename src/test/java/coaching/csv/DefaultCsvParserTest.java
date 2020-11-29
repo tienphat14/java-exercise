@@ -55,11 +55,22 @@ public class DefaultCsvParserTest {
      * file for details
      */
     @Test(expected = IOException.class)
-    public void whenParse_AbnormalDelimiter_ThenReject() throws URISyntaxException, IOException {
+    public void whenParse_CorruptedFile_ThenReject() throws URISyntaxException, IOException {
         final CsvFileConfig parserConfig = new CsvFileConfig();
         parserConfig.setDelimiter(",");
         parserConfig.setQuoteMode(true);
         execute(parserConfig, "/abnormal.csv");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenInit_NullConfigParam_ThenReject() throws URISyntaxException {
+        final File file = Paths.get(DefaultCsvParserTest.class.getResource("/comma.csv").toURI()).toFile();
+        new DefaultCsvParser(file, null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenInit_NullFileParam_ThenReject() {
+        new DefaultCsvParser(null, createCsvFileConfig());
     }
 
     private void execute(CsvFileConfig config, String fileName) throws URISyntaxException, IOException {
@@ -70,14 +81,14 @@ public class DefaultCsvParserTest {
         // Assert lines
         CsvLinesAssertion
                 .create().expectLine(0)
-                    .atSegment(0, "FirstName")
-                    .atSegment(1, "LastName")
+                .atSegment(0, "FirstName")
+                .atSegment(1, "LastName")
                 .and().expectLine(1)
-                    .atSegment(0, "John")
-                    .atSegment(1, "Biden")
+                .atSegment(0, "John")
+                .atSegment(1, "Biden")
                 .and().expectLine(2)
-                    .atSegment(0, "Donald")
-                    .atSegment(1, "Trump")
+                .atSegment(0, "Donald")
+                .atSegment(1, "Trump")
                 .and().assertCsvLine(parser);
 
         // Close resources
