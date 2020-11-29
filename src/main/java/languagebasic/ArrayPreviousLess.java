@@ -9,7 +9,6 @@ package languagebasic;
  * arrayPreviousLess(items) = [-1, 3, -1, 2, 4]
  */
 public class ArrayPreviousLess {
-
     /**
      *
      * @param items Non-empty array of positive integers
@@ -18,9 +17,35 @@ public class ArrayPreviousLess {
      *          3 ≤ items.length ≤ 15
      *          1 ≤ items[i] ≤ 200
      */
-    public int[] arrayPreviousLess(int[] items) {
-        //TODO: create the CustomException class
-        //TODO: implement this method
-        throw new UnsupportedOperationException("This method is not implemented yet");
+    public int[] arrayPreviousLess(int[] items) throws CustomException {
+        if (items == null) {
+            throw new CustomException("The array is null!");
+        }
+
+        if (items.length >= 3 && items.length <= 15) {
+            int[] arrayPreviousLess = new int[items.length];
+
+            if (items[0] < 1 || items[0] > 200) {
+                throw new CustomException("The element must be from 1 to 200!");
+            }
+
+            arrayPreviousLess[0] = -1;
+            int previousIndex = 0;
+            for (int index = 1; index < items.length; index++) {
+                previousIndex = index - 1;
+                if (items[index] >= 1 && items[index] <= 200) {
+                    if (items[previousIndex] < items[index]) {
+                        arrayPreviousLess[index] = items[previousIndex];
+                    } else {
+                        arrayPreviousLess[index] = -1;
+                    }
+                } else {
+                    throw new CustomException("The element must be from 1 to 200!");
+                }
+            }
+            return arrayPreviousLess;
+        } else {
+            throw new CustomException("The array's size must be between 3 and 15!");
+        }
     }
 }

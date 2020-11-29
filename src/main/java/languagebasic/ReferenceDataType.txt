@@ -8,7 +8,7 @@ public static void main(String args[]) {
 }
 
 Answer #1:
-4 String objected are created.
+5 String objected are created. ("Hello", "World! " , "Hello World! ", "From KMS", "Hello World! From KMS")
 
 2. Find invalid code
 public static void main(String args[]) {
