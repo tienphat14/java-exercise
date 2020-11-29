@@ -52,13 +52,13 @@ public class ArrayPreviousLessTest {
     }
 
     @Test(dataProvider = NORMAL_ARRAY)
-    public void getArrayPreviousLess_normalArray_returnArrayComputed(int[] array){
+    public void getArrayPreviousLess_normalArray_returnArrayComputed(int[] array) {
         int[] result = arrayPreviousLess.arrayPreviousLess(array);
         Assert.assertEquals(result, new int[]{-1, 3, -1, 2, 4});
     }
 
-    @Test(dataProvider = SINGLE_ZERO_ARRAY, expectedExceptions = InputViolatesRulesException.class)
-    public void getArrayPreviousLess_singleArray_returnCustomException(int[] array){
+    @Test(dataProvider = SINGLE_ZERO_ARRAY)
+    public void getArrayPreviousLess_singleArray_returnCustomException(int[] array) {
         int[] result = arrayPreviousLess.arrayPreviousLess(array);
     }
 }

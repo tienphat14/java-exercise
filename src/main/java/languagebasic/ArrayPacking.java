@@ -25,39 +25,27 @@ public class ArrayPacking {
      *          1 ≤ array.length ≤ 4
      *          0 ≤ array[i] < 256
      */
-    public int arrayPacking(int[] array) {
-        String s = "";
-        try{
-            if (array.length <1 || array.length > 4) {
-                throw new NumberFormatException();
-            }
-            condition:
-            while (true) {
-                for(int i =0; i< array.length; i++) {
-                    if(array[i] < 0) {
-                        System.out.println("Please enter 0 <= array[i]");
-                        throw new NumberFormatException();
-                    }
-                    if(array[i] >=256) {
-                        System.out.println("Please enter array[i] < 256");
-                        throw new NumberFormatException();
-                    }
-                    s += getBinary(array[i]);
-                    System.out.println("DEBUG ONLY: >>> " +array[i]+", The binary given = " +s);
-                    if(i == 0) { break condition; }
-                }
-
-            }
-        } catch (NumberFormatException nfe){
-            System.out.println("MESSAGE: The input violates rules: "+ nfe);
-            return 0;
+    public int arrayPacking(int[] arrays) {
+        String output = "";
+        if (arrays.length < 1 || arrays.length > 4) {
+            throw new NumberFormatException();
         }
-        return Integer.parseInt(s, 2);
+        for(int i = arrays.length-1; i >= 0; i--) {
+            output += getBinary(arrays[i]);
+            if (arrays[i] < 0) {
+                System.out.println("Please enter 0 <= array[i]");
+                break;
+            }
+            if (arrays[i] >= 256) {
+                System.out.println("Please enter array[i] < 256");
+                break;
+            }
+        }
+        return Integer.parseInt(output, 2);
     }
 
     private static String getBinary(int val) {
         String s = "";
-        while (val>= 0){
             for(int i = 0; i < 8; i++) {
                 if(val % 2 == 1)
                     s = 1 + s;
@@ -65,7 +53,6 @@ public class ArrayPacking {
                     s = 0 + s;
 
                 val = val/2;
-            }
         }
         return s;
     }
