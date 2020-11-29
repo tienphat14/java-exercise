@@ -3,7 +3,7 @@ package coaching.validation;
 import java.util.Collection;
 
 /**
- * Supply information about constrain violation
+ * Supply information about constraint violation
  */
 public class Violation {
 
@@ -12,7 +12,7 @@ public class Violation {
      *
      * @return Invalid value
      */
-    public String getInvalidValue() {
+    public Object getInvalidValue() {
         throw new UnsupportedOperationException("This method is not implemented yet");
     }
 
@@ -31,7 +31,16 @@ public class Violation {
      *
      * @return Field name
      */
-    public String getField() {
+    public String getFieldName() {
         throw new UnsupportedOperationException("This method is not implemented yet");
+    }
+
+    @Override
+    public String toString() {
+        return "Violation{" +
+                "fieldName: '" + getFieldName() + "', " +
+                "invalidValue: '" + getInvalidValue() + "', " +
+                "messages: '" + getMessages() + "'" +
+                "}";
     }
 }
