@@ -1,6 +1,5 @@
 package languagebasic;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class OverlappingIntervalPairs {
@@ -13,11 +12,7 @@ public class OverlappingIntervalPairs {
 
 
      private boolean isOverlap(Interval a, Interval b){
-         if ((b.getStartInterval() >= a.getStartInterval()) && (b.getStartInterval()<=a.getEndInterval()))
-             return true;
-         if ((a.getStartInterval() >= b.getStartInterval()) && (a.getStartInterval()<=b.getEndInterval()))
-             return true;
-         return false;
+       return ((b.getStartInterval() >= a.getStartInterval()) && (b.getStartInterval()<=a.getEndInterval())) || (((a.getStartInterval() >= b.getStartInterval()) && (a.getStartInterval()<=b.getEndInterval())));
      }
 
 
