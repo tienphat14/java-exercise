@@ -15,9 +15,9 @@ public class RandomRosterGenerator {
      * @return A roster with the desired size or empty if invalid input
      */
     public String[] getRandomRoster(String[] availableNames, int size) {
-        if(size > availableNames.length || size <= 0)
+        if(availableNames.length <= 0)
             return new String[]{};
-        ArrayList<Integer> list = getRandomNonRepeatingIntegers(size, 0, size);
+        ArrayList<Integer> list = getRandomIntegers(size, 0, availableNames.length-1);
         try {
             String[] listResult = new String[size];
             for (int i = 0; i < size; i++) {
@@ -47,14 +47,11 @@ public class RandomRosterGenerator {
      * @param max max index
      * @return random array index not duplicate
      */
-    public ArrayList<Integer> getRandomNonRepeatingIntegers(int size, int min,
+    public ArrayList<Integer> getRandomIntegers(int size, int min,
                                                                    int max) {
         ArrayList<Integer> numbers = new ArrayList<Integer>();
         while (numbers.size() < size) {
-            int random = getRandomInt(min, max);
-            if (!numbers.contains(random)) {
-                numbers.add(random);
-            }
+            numbers.add(getRandomInt(min, max));
         }
         return numbers;
     }
