@@ -13,9 +13,10 @@ public class RandomRosterGenerator {
      * @param size Size of the roster you want to get
      * @return A roster with the desired size or empty if invalid input
      */
-    public String[] getRandomRoster (String[] availableNames, int size) throws CustomException {
+    public String[] getRandomRoster (String[] availableNames, int size) {
         if (availableNames.length <=0 || size <= 0) {
-           throw new CustomException("Invalid input. Empty list or size is less than zero is not allowed.");
+            return new String[0]; //return empty string if invalid input
+
         }
         String[] results = new String[size];
         for (int i=0; i<size; i++){
@@ -29,16 +30,14 @@ public class RandomRosterGenerator {
     public static void main(String[] args) {
 
        RandomRosterGenerator randomRoster = new RandomRosterGenerator();
-       String[] test = {};
+       String[] test = {"Window", "Linux", "Mac"};
        String[] result;
-       try {
-           result = randomRoster.getRandomRoster(test, 4);
-           for (String s: result){
-               System.out.println(s);
-           }
-       }catch(CustomException err){
-           System.out.println(err);
+
+       result = randomRoster.getRandomRoster(test, 4);
+       for (String s: result){
+           System.out.println(s);
        }
+
     }
 }
 
