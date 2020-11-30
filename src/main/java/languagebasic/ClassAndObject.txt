@@ -28,11 +28,17 @@ class Parent extends Grandparent {
     }
 }
 
+// Parent(25) constructor
+// Parent() constructor
+// Child() constructor
+
+// Parent(50) constructor
+
 2. What is the output?
 public static void main(String args[]) {
     Rectangle rectangle = new Rectangle(20, 10);
     enlarge(rectangle, 2);
-    System.out.println(rectangle.width + " " + rectangle.height);
+    System.out.println(rectangle.width + " " + rectangle.height);   // 40 20
 }
 
 private static void enlarge(Rectangle rectangle, int multiplier) {
@@ -42,24 +48,24 @@ private static void enlarge(Rectangle rectangle, int multiplier) {
 }
 
 3. Find errors and fix if any
-private class A {
+private class A {           // class A
     private class B {
         private class C {}
     }
 }
 
 4. Find errors and fix if any
-public class A {
-    private class B {}
+public class A {            // class A
+    private class B {}      // class B
 }
 
 public class MainClass extends A {
     public static void main(String[] args) {
-        B b = new B();
+        B b = new B();      // new A().new B(); // (new A.B() if B class is static)
     }
 }
 
-5. Find errors and fix if any
+5. Find errors and fix if any   // none
 class X {
    protected int i = 1221;
    void methodOfX() {
@@ -83,11 +89,11 @@ class A {
 
 package pack2;
 import pack1.*;
-class B {
+class B {           // class B extends class A
     A a = new A();
 }
 
-7. Find errors and fix if any
+7. Find errors and fix if any   // none
 package pack1;
 public class A {
    protected A(int i) {}
@@ -120,3 +126,19 @@ public static void main(String[] args) {
 public static void increaseCount() {
     count++;
 }
+
+/*
+Hello World!
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+10
+*/
