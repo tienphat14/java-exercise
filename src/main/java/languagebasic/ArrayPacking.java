@@ -28,39 +28,23 @@ public class ArrayPacking {
      * @return packing number
      */
     public int arrayPacking(int[] array) throws CustomException {
-        if(array.length < 1 || array.length > 4)
+        if (array == null) {
+            throw new CustomException("Array input is null");
+        }
+
+        if(array.length < 1 || array.length > 4) {
             throw new CustomException("The input break the rule array.length between 1 to 4");
+        }
 
-        try {
-            String s = "";
-            for(int i = array.length-1; i >= 0; i--) {
-                if(array[i] < 0 || array[i] >= 256)
-                    throw new CustomException("Existing a item in array break the rule as value between 0 to 255");
-                s += getBinary(array[i]);
+        int result = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] >= 0 && array[i] < 256) {
+                result += (array[i] << 8 * i);
+            } else {
+                throw new CustomException("The items violate rule, item between 0 and 256");
             }
-            return Integer.parseInt(s, 2);
-        }catch (Exception ex){
-            return -1;
         }
-    }
-
-    /**
-     * Get binary of integer
-     * @param val input value
-     * @return the bit string of integer
-     */
-    public String getBinary(int val) {
-        String s = "";
-        for(int i = 0; i < 8; i++) {
-            if(val % 2 == 1)
-                s = 1 + s;
-            else if(val % 2 == 0)
-                s = 0 + s;
-
-            val = val/2;
-        }
-
-        return s;
+        return result;
     }
 
 }

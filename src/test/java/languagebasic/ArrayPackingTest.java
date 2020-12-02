@@ -58,7 +58,7 @@ public class ArrayPackingTest {
         try {
             arrayPacking.arrayPacking(availableNumbers);
         }catch (CustomException ex){
-            Assert.assertEquals(ex.getMessage(), "Existing a item in array break the rule as value between 0 to 255");
+            Assert.assertEquals(ex.getMessage(), "The items violate rule, item between 0 and 256");
         }
     }
 
