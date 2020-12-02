@@ -1,6 +1,5 @@
 package languagebasic;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -15,44 +14,14 @@ public class RandomRosterGenerator {
      * @return A roster with the desired size or empty if invalid input
      */
     public String[] getRandomRoster(String[] availableNames, int size) {
-        if(availableNames.length <= 0)
-            return new String[]{};
-        ArrayList<Integer> list = getRandomIntegers(size, 0, availableNames.length-1);
-        try {
-            String[] listResult = new String[size];
-            for (int i = 0; i < size; i++) {
-                listResult[i] = availableNames[list.get(i)];
-            }
-            return listResult;
-        }catch (Exception ex){
+        int length = availableNames.length;
+        if (availableNames == null || length == 0 || size <= 0) {
             return new String[]{};
         }
-    }
-
-    /**
-     * get a random int form min to max
-     * @param min min int
-     * @param max max int
-     * @return the random int
-     */
-    public int getRandomInt(int min, int max) {
-        Random random = new Random();
-        return random.nextInt((max - min) + 1) + min;
-    }
-
-    /**
-     * Get the random int list from max to min with size of list
-     * @param size size list
-     * @param min min index
-     * @param max max index
-     * @return random array index not duplicate
-     */
-    public ArrayList<Integer> getRandomIntegers(int size, int min,
-                                                                   int max) {
-        ArrayList<Integer> numbers = new ArrayList<Integer>();
-        while (numbers.size() < size) {
-            numbers.add(getRandomInt(min, max));
+        String[] listResult = new String[size];
+        for (int i = 0; i < size; i++) {
+            listResult[i] = availableNames[new Random().nextInt(length)];
         }
-        return numbers;
+        return listResult;
     }
 }
