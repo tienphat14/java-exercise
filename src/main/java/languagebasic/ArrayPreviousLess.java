@@ -25,6 +25,8 @@ public class ArrayPreviousLess {
             throw new CustomException("The input break the rule items.length between 3 to 15");
         int[] results = new int[items.length];
         for(int i = 0; i < items.length; i++){
+            if(items[i] < 1 || items[i] > 200)
+                throw new CustomException("The input break the rule item value between 1 to 200");
             results[i] = getPreviousNumberSmaller(items, i);
         }
         return results;
