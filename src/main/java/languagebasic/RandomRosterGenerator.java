@@ -24,20 +24,7 @@ public class RandomRosterGenerator {
             results[i] = availableNames[ran];
         }
         return results;
-        //throw new UnsupportedOperationException("This method is not implemented yet");
     }
 
-    public static void main(String[] args) {
-
-       RandomRosterGenerator randomRoster = new RandomRosterGenerator();
-       String[] test = {"Window", "Linux", "Mac"};
-       String[] result;
-
-       result = randomRoster.getRandomRoster(test, 4);
-       for (String s: result){
-           System.out.println(s);
-       }
-
-    }
 }
 

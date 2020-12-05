@@ -12,7 +12,9 @@ public class OverlappingIntervalPairs {
 
 
      private boolean isOverlap(Interval a, Interval b){
-       return ((b.getStartInterval() >= a.getStartInterval()) && (b.getStartInterval()<=a.getEndInterval())) || (((a.getStartInterval() >= b.getStartInterval()) && (a.getStartInterval()<=b.getEndInterval())));
+         return (a.getStartInterval()<= b.getEndInterval() && a.getEndInterval() >= b.getStartInterval());
+     //  return ((b.getStartInterval() >= a.getStartInterval()) && (b.getStartInterval()<=a.getEndInterval())) ||
+        //       (((a.getStartInterval() >= b.getStartInterval()) && (a.getStartInterval()<=b.getEndInterval())));
      }
 
 
@@ -22,18 +24,13 @@ public class OverlappingIntervalPairs {
 
     private String printOverlapInterval(Interval a, Interval b){
         if (isOverlap(a, b)){
-            return printInterval(a) + " and " + printInterval(b);
+            //sort the the pair interval so it will not be duplicated by swapping
+            return (a.getStartInterval() <= b.getStartInterval())? printInterval(a) + " and " + printInterval(b):
+                    printInterval(b) + " and " + printInterval(a);
         }
         return "";
     }
 
-    public String[] getInputIntervals(Interval[] intervals){
-        ArrayList<String> result = new ArrayList<>();
-        for(Interval in: intervals){
-            result.add("[" + in.getStartInterval() + ", " + in.getEndInterval() + "]");
-        }
-        return result.toArray(new String[]{});
-    }
 
      public String[] getAllOverlapPairs(Interval[] intervals){
          ArrayList<String> result = new ArrayList<>();
@@ -51,6 +48,16 @@ public class OverlappingIntervalPairs {
 
         return result.toArray(new String[]{});
      }
+
+    public String[] getInputIntervals(Interval[] intervals){
+        ArrayList<String> result = new ArrayList<>();
+        for(Interval in: intervals){
+            result.add("[" + in.getStartInterval() + ", " + in.getEndInterval() + "]");
+        }
+        return result.toArray(new String[]{});
+    }
+
+
 
     public static void main(String[] args) {
 

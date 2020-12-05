@@ -18,7 +18,7 @@ public class ArrayPreviousLess {
      *          3 ≤ items.length ≤ 15
      *          1 ≤ items[i] ≤ 200
      */
-    private int[] arrayPreviousLess(int[] items) throws CustomException {
+    public int[] arrayPreviousLess(int[] items) throws CustomException {
         if (items.length < 3 || items.length > 15){
             throw new CustomException("Number of items must be from 3 to 15. Number of items :" + items.length);
         }
@@ -39,22 +39,7 @@ public class ArrayPreviousLess {
         }
         return result;
 
-       // throw new UnsupportedOperationException("This method is not implemented yet");
     }
 
-    public static void main(String[] args) {
 
-        ArrayPreviousLess arr = new ArrayPreviousLess();
-        int[] test = {3, 5, 2, 4, 200};
-        int[] result;
-        try {
-            result = arr.arrayPreviousLess(test);
-            for (int item: result){
-                System.out.println(item);
-            }
-        }catch(CustomException err){
-            System.out.println(err);
-        }
-
-    }
 }

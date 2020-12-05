@@ -38,21 +38,7 @@ public class ArrayPacking {
             packing += array[i] << i * 8;
         }
         return packing;
-        //throw new UnsupportedOperationException("This method is not implemented yet");
     }
 
-    public static void main(String[] args) {
-
-        ArrayPacking arrPack = new ArrayPacking();
-        int[] test = {0, 10, 25};
-        int result;
-        try {
-            result = arrPack.arrayPacking(test);
-        }catch (CustomException err){
-            System.out.println(err);
-            return;
-        }
-        System.out.println(result);
-    }
 }
 
