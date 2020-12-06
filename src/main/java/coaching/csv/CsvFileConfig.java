@@ -5,13 +5,15 @@ package coaching.csv;
  */
 public class CsvFileConfig {
 
+    private String delimiter;
+    private boolean quoted;
     /**
      * Character as splitting character between segments
      *
      * @param delimiter Delimiter character
      */
     public void setDelimiter(String delimiter) {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        this.delimiter= delimiter;
     }
 
     /**
@@ -20,6 +22,6 @@ public class CsvFileConfig {
      * @param quoted true is double-quotes-wrapped data, otherwise false
      */
     public void setQuoteMode(boolean quoted) {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        this.quoted = quoted;
     }
 }

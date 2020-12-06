@@ -7,6 +7,8 @@ import java.io.IOException;
  * TODO Implement CSV parsing logic here
  */
 public class DefaultCsvParser implements CsvParser {
+    private CsvFileConfig parserConfig;
+    private File file;
 
     /**
      * Initialize parser
@@ -15,7 +17,8 @@ public class DefaultCsvParser implements CsvParser {
      * @param parserConfig Configuration
      */
     public DefaultCsvParser(File file, CsvFileConfig parserConfig) {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        this.file = file;
+        this.parserConfig = parserConfig;
     }
 
     /**

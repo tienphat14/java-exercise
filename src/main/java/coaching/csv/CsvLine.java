@@ -1,18 +1,23 @@
 package coaching.csv;
 
+import java.util.List;
+
 /**
  * Supplies information about CSV line
  */
 public class CsvLine {
 
+    private int position;
+    private String data;
+    private List<String> listData;
     /**
      * Get data at specific position in a row
      *
      * @param index Position of segment
      * @return Data
      */
-    public String get(int index) {
-        throw new UnsupportedOperationException("This method is not implemented yet, please implement");
+    public String get(int index) throws  IndexOutOfBoundsException{
+        return listData.get(index);
     }
 
     /**
@@ -22,6 +27,7 @@ public class CsvLine {
      * @param data     Data
      */
     public void set(int position, String data) {
-        throw new UnsupportedOperationException("This method is not implemented yet, please implement");
+        this.position = position;
+        this.data = data;
     }
 }

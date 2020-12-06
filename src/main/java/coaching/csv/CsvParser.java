@@ -11,4 +11,7 @@ import java.util.Iterator;
  * - Closable: https://docs.oracle.com/javase/8/docs/api/java/io/Closeable.html
  */
 public interface CsvParser extends Iterator<CsvLine>, Closeable {
+    public void close();
+    public boolean hasNext();
+    public CsvLine next();
 }
