@@ -1,12 +1,21 @@
 package coaching.csv;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  * TODO Implement CSV parsing logic here
  */
 public class DefaultCsvParser implements CsvParser {
+
+    private final Scanner scanner;
+    private Map<String, String> headers = new HashMap<>();
 
     /**
      * Initialize parser
@@ -15,7 +24,17 @@ public class DefaultCsvParser implements CsvParser {
      * @param parserConfig Configuration
      */
     public DefaultCsvParser(File file, CsvFileConfig parserConfig) {
+        try {
+            this.scanner = new Scanner(file);
+            setHeaders();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         throw new UnsupportedOperationException("This method is not implemented yet");
+    }
+
+    private void setHeaders() {
+
     }
 
     /**
@@ -25,7 +44,9 @@ public class DefaultCsvParser implements CsvParser {
      */
     @Override
     public void close() {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        if (this.scanner != null) {
+            this.scanner.close();
+        }
     }
 
     /**
@@ -35,7 +56,10 @@ public class DefaultCsvParser implements CsvParser {
      */
     @Override
     public boolean hasNext() {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        if (this.scanner != null) {
+            return this.scanner.hasNextLine();
+        }
+        return false;
     }
 
     /**
@@ -45,6 +69,11 @@ public class DefaultCsvParser implements CsvParser {
      */
     @Override
     public CsvLine next() {
+        if (this.scanner != null) {
+            String line = this.scanner.nextLine();
+            List<String> attributes = this.scanner.useDelimiter(",").tokens().collect(Collectors.toList());
+
+        }
         throw new UnsupportedOperationException("This method is not implemented yet");
     }
 }
