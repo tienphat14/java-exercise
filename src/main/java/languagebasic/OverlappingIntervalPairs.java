@@ -1,7 +1,9 @@
 package languagebasic;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class OverlappingIntervalPairs {
     /*
@@ -21,9 +23,20 @@ public class OverlappingIntervalPairs {
                 List<Integer> current = intervals.get(currIdx);
                 Integer currFirstEle = current.get(0);
                 Integer currSecondEle = current.get(1);
-                if ((prevFirstEle <= currFirstEle && currFirstEle <= prevSecondEle)
-                        || (currFirstEle <= prevFirstEle && prevFirstEle <= currSecondEle)
-                ) {
+                if ((prevFirstEle <= currSecondEle && currFirstEle <= prevSecondEle)) {
+                    boolean duplicate = false;
+                    for (List<List<Integer>> ele : result) {
+                        if ((prevFirstEle.equals(ele.get(0).get(0)) && prevSecondEle.equals(ele.get(0).get(1))
+                                && currFirstEle.equals(ele.get(1).get(0)) && currSecondEle.equals(ele.get(1).get(1)))
+                                || (prevFirstEle.equals(ele.get(1).get(0)) && prevSecondEle.equals(ele.get(1).get(1))
+                                && currFirstEle.equals(ele.get(0).get(0)) && currSecondEle.equals(ele.get(0).get(1)))) {
+                            duplicate = true;
+                            break;
+                        }
+                    }
+                    if (duplicate) {
+                        continue;
+                    }
                     List<List<Integer>> tmp = new ArrayList<>();
                     tmp.add(previous);
                     tmp.add(current);

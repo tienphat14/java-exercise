@@ -51,6 +51,20 @@ public class OverlappingIntervalPairsTest {
                 new ArrayList(){{add(2); add(6);}}
         );
     }};
+    private static final ArrayList<ArrayList<Integer>> duplicatePairs = new ArrayList<>() {{
+        add(
+                new ArrayList<>(){{add(1); add(5);}}
+        );
+        add(
+                new ArrayList<>(){{add(11); add(15);}}
+        );
+        add(
+                new ArrayList<>(){{add(13); add(16);}}
+        );
+        add(
+                new ArrayList<>(){{add(11); add(15);}}
+        );
+    }};
     private OverlappingIntervalPairs pairs = new OverlappingIntervalPairs();
 
     @Test
@@ -111,5 +125,20 @@ public class OverlappingIntervalPairsTest {
                 )
         );
         Assert.assertEquals(pairs.naiveMethod(morePairs), expected);
+    }
+
+    @Test
+    public void givenDuplicatePairs_whenCheckOverlapping_thenReturnPairsWithoutDuplications() {
+        List<List<List<Integer>>> expected = Arrays.asList(
+                Arrays.asList(
+                        Arrays.asList(11, 15),
+                        Arrays.asList(13, 16)
+                ),
+                Arrays.asList(
+                        Arrays.asList(11, 15),
+                        Arrays.asList(11, 15)
+                )
+        );
+        Assert.assertEquals(pairs.naiveMethod(duplicatePairs), expected);
     }
 }
