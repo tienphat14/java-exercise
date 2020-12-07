@@ -1,5 +1,7 @@
 package languagebasic;
 
+import java.util.Random;
+
 /**
  * Generate a random roster to review assignments =]]
  */
@@ -17,9 +19,9 @@ public class RandomRosterGenerator {
             return new String[0];
         String[] rst = new String[size];
         int count = -1;
-        int maxAvailableIdx = availableNames.length;
+        Random random = new Random();
         while (++count < size) {
-            rst[count] = availableNames[(int) (Math.random() * (maxAvailableIdx - 1))];
+            rst[count] = availableNames[random.nextInt(availableNames.length)];
         }
         return rst;
     }
