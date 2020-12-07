@@ -17,18 +17,37 @@ public class OverlappingIntervalPairs {
     public int[][][] getTheCoupleArrayOverlapRange(int[][] items){
         int length = getLengthArray(items.length);
         int[][][] results = new int[length][2][2];
+        int[][][] resultDup = new int[length][2][2];
         int index = 0;
+        int t = 0;
         for(int i=0; i < items.length; i++){
             int[] intArray1 = items[i];
             for(int j=i+1; j < items.length; j++){
                 int[] intArray2 = items[j];
-                if(isOverlap(intArray1, intArray2)){
+                if(isOverlap(intArray1, intArray2) && !duplicate(resultDup, intArray1, intArray2)){
                     results[index][0] = intArray1;
                     results[index++][1] = intArray2;
+                    resultDup[t][0] = intArray1;
+                    resultDup[t++][1] = intArray2;
                 }
             }
         }
         return Arrays.copyOf(results,index);
+    }
+
+    public boolean duplicate(int[][][] resultDup,int[] intArray1, int[] intArray2){
+        for(int i=0; i< resultDup.length; i++){
+            if(duplicate2Array(resultDup[i][0], intArray1) &&
+                    duplicate2Array(resultDup[i][1], intArray2))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean duplicate2Array(int[] array1, int[] array2){
+        if(array1[0] == array2[0] && array1[1] == array2[1])
+            return true;
+        return false;
     }
 
     /**
