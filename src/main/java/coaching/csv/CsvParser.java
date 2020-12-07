@@ -1,6 +1,7 @@
 package coaching.csv;
 
 import java.io.Closeable;
+import java.io.FileNotFoundException;
 import java.util.Iterator;
 
 /**
@@ -11,4 +12,5 @@ import java.util.Iterator;
  * - Closable: https://docs.oracle.com/javase/8/docs/api/java/io/Closeable.html
  */
 public interface CsvParser extends Iterator<CsvLine>, Closeable {
+    CsvParser parse () throws FileNotFoundException;
 }
