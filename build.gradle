@@ -19,3 +19,7 @@ dependencies {
 application {
     mainClassName = 'coaching.App'
 }
+
+test {
+    useTestNG()
+}
