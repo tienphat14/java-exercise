@@ -4,6 +4,8 @@ package coaching.csv;
  * Supplies information about CSV line
  */
 public class CsvLine {
+    private int position;
+    private String data;
 
     /**
      * Get data at specific position in a row
@@ -23,5 +25,21 @@ public class CsvLine {
      */
     public void set(int position, String data) {
         throw new UnsupportedOperationException("This method is not implemented yet, please implement");
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 }

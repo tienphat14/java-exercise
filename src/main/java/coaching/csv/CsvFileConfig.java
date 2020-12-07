@@ -4,15 +4,8 @@ package coaching.csv;
  * Configuration used to determine parsing strategy and writing strategy
  */
 public class CsvFileConfig {
-
-    /**
-     * Character as splitting character between segments
-     *
-     * @param delimiter Delimiter character
-     */
-    public void setDelimiter(String delimiter) {
-        throw new UnsupportedOperationException("This method is not implemented yet");
-    }
+    private String delimiter;
+    private boolean quoted;
 
     /**
      * Is data wrapped with double quotes
@@ -20,6 +13,23 @@ public class CsvFileConfig {
      * @param quoted true is double-quotes-wrapped data, otherwise false
      */
     public void setQuoteMode(boolean quoted) {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        this.quoted = quoted;
+    }
+
+    public String getDelimiter() {
+        return delimiter;
+    }
+
+    /**
+     * Character as splitting character between segments
+     *
+     * @param delimiter Delimiter character
+     */
+    public void setDelimiter(String delimiter) {
+        this.delimiter = delimiter;
+    }
+
+    public boolean isQuoted() {
+        return quoted;
     }
 }

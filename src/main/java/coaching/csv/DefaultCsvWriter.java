@@ -8,6 +8,8 @@ import java.util.Collection;
  * TODO Implement CSV writing logic here
  */
 public class DefaultCsvWriter implements CsvWriter {
+    private CsvFileConfig csvFileConfig;
+    private File csvFile;
 
     /**
      * Initialize writer
@@ -16,7 +18,8 @@ public class DefaultCsvWriter implements CsvWriter {
      * @param file   File to be written
      */
     public DefaultCsvWriter(CsvFileConfig config, File file) {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        this.csvFileConfig = config;
+        this.csvFile = file;
     }
 
     /**
@@ -47,5 +50,13 @@ public class DefaultCsvWriter implements CsvWriter {
     @Override
     public void close() {
         throw new UnsupportedOperationException("This method is not implemented yet");
+    }
+
+    public CsvFileConfig getCsvFileConfig() {
+        return csvFileConfig;
+    }
+
+    public File getCsvFile() {
+        return csvFile;
     }
 }
