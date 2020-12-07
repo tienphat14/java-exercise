@@ -24,6 +24,7 @@ public class Main {
         a.goodbye();
     }
 }
+=> Yes. Method goodbye of class B should have @Override annotation because it is not static method.
 
 2. Is there an error? If not, what is the output?
 class Grandparent {
@@ -51,6 +52,7 @@ public class Main {
         c.Print();
     }
 }
+=> Yes, error in Print() of class Child. Can not call super more than once.
 
 3. Is there an error? If not, what is the output?
 class Complex {
@@ -73,6 +75,7 @@ public class Main {
         System.out.println("Complex number is " + c);
     }
 }
+=> No error, print Complex object.
 
 4. Is there an error? If not, what is the output?
 class Animal {
@@ -93,3 +96,4 @@ public class Main {
         a.bark();
     }
 }
+=> Error, Animal class does not have bark() method.
