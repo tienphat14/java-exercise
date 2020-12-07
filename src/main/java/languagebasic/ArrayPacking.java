@@ -25,42 +25,32 @@ public class ArrayPacking {
      *          1 ≤ array.length ≤ 4
      *          0 ≤ array[i] < 256
      */
-    public int arrayPacking(int[] array) throws CustomException{
+    public int arrayPacking(int[] array) throws CustomException {
         //TODO: create the CustomException class
         //TODO: implement this method
         //throw new UnsupportedOperationException("This method is not implemented yet");
         int i;
-        if (isArrayLengthValid(array) && isArrayElementValid(array)) {
-            StringBuilder binaryAppendFromArray = new StringBuilder();
-            for (i = array.length-1; i >= 0; i--) {
-                binaryAppendFromArray.append(String.format("%8s",Integer.toBinaryString(array[i])).replace(" ","0"));
-            }
-            String givenBinaryString = String.valueOf(binaryAppendFromArray);
-            if (givenBinaryString.length() <= 31) {
-                return Integer.parseInt(String.valueOf(binaryAppendFromArray),2);
-            } else {
-                throw new CustomException("The binary value is bigger than the MAX_VALUE. Actual value: " + givenBinaryString
-                        + " (" + givenBinaryString.length() + ")");
-            }
-        } else if (!isArrayLengthValid(array)){
+        if (!isArrayLengthValid(array)) {
             throw new CustomException("Invalid array length. Actual length: " + array.length + ". Expected length: 1 - 4");
-        } else {
-            throw new CustomException("Invalid array elements. Expected value: 0 <= array[i] < 256");
         }
+
+        StringBuilder binaryAppendFromArray = new StringBuilder();
+        for (i = array.length - 1; i >= 0; i--) {
+            if (isArrayElementValid(array[i])) {
+                binaryAppendFromArray.append(String.format("%8s", Integer.toBinaryString(array[i])).replace(" ", "0"));
+            }
+            else {
+                throw new CustomException("Invalid array elements. Expected value: 0 <= array[i] < 256");
+            }
+        }
+        return Integer.parseUnsignedInt(String.valueOf(binaryAppendFromArray), 2);
     }
 
     private boolean isArrayLengthValid(int[] array) {
         return array.length >= 1 && array.length <= 4;
     }
 
-    private boolean isArrayElementValid(int[] array) {
-        int i = 0;
-        return array[i] >= 0 && array[i] < 256;
-    }
-
-    public static class CustomException extends Exception {
-        public CustomException(String msg) {
-            super(msg);
-        }
+    private boolean isArrayElementValid(int integer) {
+        return integer >= 0 && integer < 256;
     }
 }

@@ -25,7 +25,7 @@ public class ArrayPackingTest {
     public Object[][] invalidArrayProvider() {
         return new Object[][]{
                 {new int[]{}},
-                {new int[]{-1, -10}},
+                {new int[]{1, -10}},
                 {new int[]{256, 300, 500}},
                 {new int[]{2, 100, 150, 250, 255}}
         };
@@ -39,25 +39,22 @@ public class ArrayPackingTest {
     }
 
     @Test(dataProvider = VALID_ARRAY)
-    public void arrayPacking_validArray_returnPackedInteger(int[] array) throws ArrayPacking.CustomException {
-           int result = arrayPacking.arrayPacking(array);
-           Assert.assertEquals(result,16737290);
+    public void arrayPacking_validArray_returnPackedInteger(int[] array) throws CustomException {
+        int result = arrayPacking.arrayPacking(array);
+        Assert.assertEquals(result,16737290);
+    }
+
+    @Test(dataProvider = TOO_LARGE_INTEGER_ARRAY)
+    public void arrayPacking_tooLargeIntegerArray_returnException(int[] array) throws CustomException {
+        int result = arrayPacking.arrayPacking(array);
+        Assert.assertEquals(result,-354716);
     }
 
     @Test(dataProvider = INVALID_ARRAY)
     public void arrayPacking_invalidArray_returnException(int[] array) {
         try {
             arrayPacking.arrayPacking(array);
-        } catch (ArrayPacking.CustomException c) {
-            System.out.println(c.getMessage());
-        }
-    }
-
-    @Test(dataProvider = TOO_LARGE_INTEGER_ARRAY)
-    public void arrayPacking_tooLargeIntegerArray_returnException(int[] array) {
-        try {
-            arrayPacking.arrayPacking(array);
-        } catch (ArrayPacking.CustomException c) {
+        } catch (CustomException c) {
             System.out.println(c.getMessage());
         }
     }

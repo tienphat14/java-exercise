@@ -18,7 +18,7 @@ public class RandomRosterGenerator {
         if (availableNames.length != 0 && size > 0) {
             String [] rosterRandomNames = new String[size];
             for(i = 0; i < size; i++) {
-                rosterRandomNames[i] = availableNames[(int) (Math.random() * (availableNames.length - 1))];
+                rosterRandomNames[i] = availableNames[(int) (Math.random() * (availableNames.length))];
             }
             return rosterRandomNames;
         }

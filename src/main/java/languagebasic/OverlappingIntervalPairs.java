@@ -1,9 +1,6 @@
 package languagebasic;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class OverlappingIntervalPairs {
@@ -14,37 +11,44 @@ public class OverlappingIntervalPairs {
     Given [1, 5], [6, 8], [5, 12], [2, 6] => return [1, 5] and [5, 12], [1, 5] and [2, 6], [6, 8] and [5, 12], [5, 12] and [2, 6]
      */
 
-    public void overlappingIntervalPairs(int[][] givenIntegers) {
-        List<Interval> givenIntervalsList = new ArrayList<>();
-        for (int[] givenInteger : givenIntegers) {
-            givenIntervalsList.add(new Interval(givenInteger[0], givenInteger[1]));
-        }
-        List<Interval> givenIntervalsListWithoutDup = givenIntervalsList.stream().distinct().collect(Collectors.toList());
-        ArrayList<String> listOfOverlappingIntervalPairs = new ArrayList<>();
-        for (int i = 0; i < givenIntervalsListWithoutDup.size(); i++) {
-            for (int j = i + 1; j < givenIntervalsListWithoutDup.size(); j++) {
-                if (isOverlapped(givenIntervalsListWithoutDup.get(i), givenIntervalsListWithoutDup.get(j))) {
-                    listOfOverlappingIntervalPairs.add("[" + givenIntervalsListWithoutDup.get(i).start + ", " + givenIntervalsListWithoutDup.get(i).end
-                            + "] and [" + givenIntervalsListWithoutDup.get(j).start + "," + givenIntervalsListWithoutDup.get(j).end + "]");
+        public void overlappingIntervalPairs(int[][] givenIntegers) {
+            ArrayList<Interval> intervalsList = new ArrayList<>();
+            for (int[] givenInteger : givenIntegers) {
+                intervalsList.add(new Interval(givenInteger[0], givenInteger[1]));
+            }
+
+            ArrayList<String> listOfOverlappingIntervalPairs = new ArrayList<>();
+            for (int i = 0; i < intervalsList.size(); i++) {
+                for (int j = i + 1; j < intervalsList.size(); j++) {
+                    if (isOverlapped(intervalsList.get(i), intervalsList.get(j))) {
+                        if (!listOfOverlappingIntervalPairs.contains(printIntervalPair(intervalsList.get(i), intervalsList.get(j)))) {
+                            listOfOverlappingIntervalPairs.add(printIntervalPair(intervalsList.get(i), intervalsList.get(j)));
+                        }
+                    }
                 }
             }
+
+            for (String l : listOfOverlappingIntervalPairs) {
+                System.out.println(l);
+            }
         }
-        for (String l : listOfOverlappingIntervalPairs) {
-            System.out.println(l);
+
+        private boolean isOverlapped(Interval firstInterval, Interval secondInterval) {
+            return (secondInterval.getEnd() >= firstInterval.getStart()) && (secondInterval.getStart() <= firstInterval.getEnd());
         }
-    }
 
-    private boolean isOverlapped(Interval firstInterval, Interval secondInterval) {
-        return isThe2ndIntervalStartBetweenThe1stInterval(firstInterval, secondInterval) || isThe1stIntervalStartBetweenThe2ndInterval(firstInterval, secondInterval);
-    }
+        private String printInterval(Interval interval) {
+            return "[" + interval.getStart() + ", " + interval.getEnd() + "]";
+        }
 
-    private boolean isThe2ndIntervalStartBetweenThe1stInterval(Interval firstInterval, Interval secondInterval) {
-        return (secondInterval.getStart() >= firstInterval.getStart()) && (secondInterval.getStart() <= firstInterval.getEnd());
-    }
-
-    private boolean isThe1stIntervalStartBetweenThe2ndInterval(Interval firstInterval, Interval secondInterval) {
-        return (firstInterval.getStart() >= secondInterval.getStart()) && (firstInterval.getStart() <= secondInterval.getEnd());
-    }
+        private String printIntervalPair(Interval a, Interval b) {
+            if (a.start <= b.start) {
+                return printInterval(a) + " and " + printInterval(b);
+            }
+            else {
+                return printInterval(b) + " and " + printInterval(a);
+            }
+        }
 
 
     static class Interval {
@@ -63,19 +67,5 @@ public class OverlappingIntervalPairs {
         public int getEnd() {
             return this.end;
         }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (obj instanceof Interval) {
-                return ((Interval) obj).start == start && ((Interval) obj).end == end;
-            }
-            return false;
-        }
-
-        @Override
-        public int hashCode() {
-            return this.start;
-        }
     }
 }
-
