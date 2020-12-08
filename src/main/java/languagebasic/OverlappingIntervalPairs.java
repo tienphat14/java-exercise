@@ -37,8 +37,10 @@ public class OverlappingIntervalPairs {
 
     public boolean duplicate(int[][][] resultDup,int[] intArray1, int[] intArray2){
         for(int i=0; i< resultDup.length; i++){
-            if(duplicate2Array(resultDup[i][0], intArray1) &&
-                    duplicate2Array(resultDup[i][1], intArray2))
+            if((duplicate2Array(resultDup[i][0], intArray1) &&
+                    duplicate2Array(resultDup[i][1], intArray2)) ||
+                    (duplicate2Array(resultDup[i][0], intArray2) &&
+                            duplicate2Array(resultDup[i][1], intArray1)))
                 return true;
         }
         return false;

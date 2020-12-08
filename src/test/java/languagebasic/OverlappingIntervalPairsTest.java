@@ -24,14 +24,14 @@ public class OverlappingIntervalPairsTest {
     @DataProvider(name = NORMAL_ARRAY)
     public Object[][] normalArrayProvider() {
         return new Object[][]{
-                {new int[][]{{11, 15},{11, 15}, {13, 16}}}
+                {new int[][]{{11, 15}, {13, 16}, {11, 15}}}
         };
     }
 
     @Test(dataProvider = NORMAL_ARRAY)
     public void getOverlappingIntervalPairs_normalArray_TheResultAsExpectedResult(int[][] availableNumbers) {
         int[][][] result  = overlappingIntervalPairs.getTheCoupleArrayOverlapRange(availableNumbers);
-        int[][][] expectedResult = new int[][][]{{{11,15},{11,15}},{{11, 15},{13, 16}}};
+        int[][][] expectedResult = new int[][][]{{{11, 15},{13, 16}}, {{11,15},{11,15}}};
         Assert.assertTrue(Arrays.deepEquals(expectedResult, result));
     }
 
