@@ -25,6 +25,11 @@ public class Main {
     }
 }
 
+/**
+Out put: B.hello()
+         B.goodbye()
+*/
+
 2. Is there an error? If not, what is the output?
 class Grandparent {
     public void Print() {
@@ -52,6 +57,14 @@ public class Main {
     }
 }
 
+/**
+Error: super.super.Print();
+
+If not error:
+Output:
+
+*/
+
 3. Is there an error? If not, what is the output?
 class Complex {
     private final double re;
@@ -74,6 +87,11 @@ public class Main {
     }
 }
 
+/**
+Output:
+Complex number is (10.0 + 15.0i)
+*/
+
 4. Is there an error? If not, what is the output?
 class Animal {
     public void run() {
@@ -93,3 +111,11 @@ public class Main {
         a.bark();
     }
 }
+
+/**
+Errors:
+a.bark();
+fix: ((Dog) a).bark();
+if not issue:
+Out put: Woof!
+*/
