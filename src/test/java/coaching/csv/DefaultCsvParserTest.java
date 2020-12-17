@@ -13,7 +13,7 @@ import static coaching.csv.CsvTestUtils.createCsvFileConfig;
  * Required Knowledge
  * - Java basic (conditional statement, loop, ...)
  * - Java IO
- * - Java Collection
+ * - Java HashCollisionExample
  * <p>
  * Requirements
  * - Make sure your code stay consistent

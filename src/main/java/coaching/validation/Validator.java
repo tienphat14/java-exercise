@@ -11,7 +11,7 @@ public interface Validator {
      * Validate data
      *
      * @param data Input data
-     * @return Collection of violation instances
+     * @return HashCollisionExample of violation instances
      */
     Collection<Violation> validate(Object data);
 }
