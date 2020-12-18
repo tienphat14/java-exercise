@@ -30,14 +30,16 @@ public class ArrayPreviousLess {
             }
 
             arrayPreviousLess[0] = -1;
-            int previousIndex = 0;
-            for (int index = 1; index < items.length; index++) {
-                previousIndex = index - 1;
-                if (items[index] >= 1 && items[index] <= 200) {
-                    if (items[previousIndex] < items[index]) {
-                        arrayPreviousLess[index] = items[previousIndex];
-                    } else {
-                        arrayPreviousLess[index] = -1;
+            for (int i = 1; i < items.length; i++) {
+                if (items[i] >= 1 && items[i] <= 200) {
+                    for (int j = i - 1; j >= 0; j--) {
+                        if (items[i] < items[j]) {
+                            arrayPreviousLess[i] = -1;
+                            break;
+                        } else if (items[i] > items[j]) {
+                            arrayPreviousLess[i] = items[j];
+                            break;
+                        }
                     }
                 } else {
                     throw new CustomException("The element must be from 1 to 200!");

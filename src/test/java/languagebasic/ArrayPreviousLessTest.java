@@ -36,7 +36,7 @@ public class ArrayPreviousLessTest {
     @DataProvider(name = NORMAL_ARRAY)
     public Object[][] normalArrayProvider() {
         return new Object[][] {
-                {new int[] {3, 5, 2, 4, 5}}
+                {new int[] {3, 5, 2, 4, 4, 5}}
         };
     }
 
@@ -84,7 +84,8 @@ public class ArrayPreviousLessTest {
             Assert.assertEquals(result[1], 3);
             Assert.assertEquals(result[2], -1);
             Assert.assertEquals(result[3], 2);
-            Assert.assertEquals(result[4], 4);
+            Assert.assertEquals(result[4], 2);
+            Assert.assertEquals(result[5], 4);
         } catch (CustomException e) {
             System.out.println(e.getErrorMessage());
         }
@@ -107,4 +108,6 @@ public class ArrayPreviousLessTest {
             Assert.assertEquals(e.getErrorMessage(), INVALID_SIZE_ERROR);
         }
     }
+
+
 }
