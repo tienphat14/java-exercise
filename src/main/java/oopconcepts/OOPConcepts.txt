@@ -25,6 +25,11 @@ public class Main {
     }
 }
 
+Answer #1:
+No error. Result:
+A.hello()
+B.goodbye()
+
 2. Is there an error? If not, what is the output?
 class Grandparent {
     public void Print() {
@@ -52,6 +57,9 @@ public class Main {
     }
 }
 
+Answer #2:
+Error: not support super.super
+
 3. Is there an error? If not, what is the output?
 class Complex {
     private final double re;
@@ -74,6 +82,9 @@ public class Main {
     }
 }
 
+Answer #3:
+No error. Result: Complex number is (10.0 + 15.0i) (The toString method is override and is called implicitly)
+
 4. Is there an error? If not, what is the output?
 class Animal {
     public void run() {
@@ -93,3 +104,6 @@ public class Main {
         a.bark();
     }
 }
+
+Answer #4:
+Error. Must declare the bark() method in the super class
