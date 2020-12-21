@@ -1,14 +1,11 @@
 package languagebasic;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class RandomRosterGeneratorTest {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RandomRosterGeneratorTest.class);
     private static final String EMPTY_ARRAY = "emptyArray";
     private static final String SINGLE_ELEMENT_ARRAY = "singleElementArray";
     private static final String NORMAL_ARRAY = "normalArray";

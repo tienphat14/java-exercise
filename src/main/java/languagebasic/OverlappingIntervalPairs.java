@@ -13,8 +13,6 @@ public class OverlappingIntervalPairs {
 
      private boolean isOverlap(Interval a, Interval b){
          return (a.getStartInterval()<= b.getEndInterval() && a.getEndInterval() >= b.getStartInterval());
-     //  return ((b.getStartInterval() >= a.getStartInterval()) && (b.getStartInterval()<=a.getEndInterval())) ||
-        //       (((a.getStartInterval() >= b.getStartInterval()) && (a.getStartInterval()<=b.getEndInterval())));
      }
 
 
@@ -36,11 +34,10 @@ public class OverlappingIntervalPairs {
          ArrayList<String> result = new ArrayList<>();
         for(int i=0; i< intervals.length; i++){
             for (int j = i+1; j<intervals.length; j++){
-                if (isOverlap(intervals[i], intervals[j])){
                     //Not add if duplication
                     if (!result.contains(printOverlapInterval(intervals[i], intervals[j]))) {
                         result.add(printOverlapInterval(intervals[i], intervals[j]));
-                    }
+
                 }
             }
         }
