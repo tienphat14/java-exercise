@@ -5,6 +5,8 @@ package coaching.csv;
  */
 public class CsvLine {
 
+    private String[] data;
+
     /**
      * Get data at specific position in a row
      *
@@ -12,7 +14,8 @@ public class CsvLine {
      * @return Data
      */
     public String get(int index) {
-        throw new UnsupportedOperationException("This method is not implemented yet, please implement");
+        return this.data[index];
+        //throw new UnsupportedOperationException("This method is not implemented yet, please implement");
     }
 
     /**

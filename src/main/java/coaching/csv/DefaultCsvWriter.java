@@ -9,6 +9,9 @@ import java.util.Collection;
  */
 public class DefaultCsvWriter implements CsvWriter {
 
+    private CsvFileConfig csvConfig;
+    private File csvFile;
+
     /**
      * Initialize writer
      *
@@ -16,7 +19,8 @@ public class DefaultCsvWriter implements CsvWriter {
      * @param file   File to be written
      */
     public DefaultCsvWriter(CsvFileConfig config, File file) {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        this.csvConfig = config;
+        this.csvFile = file;
     }
 
     /**

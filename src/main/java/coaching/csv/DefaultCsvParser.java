@@ -1,5 +1,6 @@
 package coaching.csv;
 
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
 
@@ -8,6 +9,9 @@ import java.io.IOException;
  */
 public class DefaultCsvParser implements CsvParser {
 
+    private CsvFileConfig csvConfig;
+    private File file;
+
     /**
      * Initialize parser
      *
@@ -15,7 +19,10 @@ public class DefaultCsvParser implements CsvParser {
      * @param parserConfig Configuration
      */
     public DefaultCsvParser(File file, CsvFileConfig parserConfig) {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        this.file = file;
+        this.csvConfig = parserConfig;
+
+        //throw new UnsupportedOperationException("This method is not implemented yet");
     }
 
     /**
@@ -25,7 +32,7 @@ public class DefaultCsvParser implements CsvParser {
      */
     @Override
     public void close() {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+
     }
 
     /**
