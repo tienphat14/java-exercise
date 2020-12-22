@@ -11,4 +11,8 @@ public class Destroyer extends Robot {
     public boolean isControlRobot(boolean isControl) {
         return isControl;
     }
+
+    public void dangerosRobot(){
+        System.out.println("This is a dangerous robot. It can destroy anything");
+    }
 }
