@@ -16,7 +16,7 @@ public class IterableExcercise {
         TelevisionShowCollection showCollection = new TelevisionShowCollectionImpl();
         populateTelevisionShowCollection(showCollection);
         TelevisionShowIterator iterator = showCollection.iterator();
-        TelevisionShowIterator channelIterator = showCollection.channelIterator(Channel.VTV3);
+        TelevisionShowIterator channelIterator = showCollection.channelIterator(Channel.ALL);
 
         LOGGER.info("Forward order");
         while (iterator.hasNext()) {

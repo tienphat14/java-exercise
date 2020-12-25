@@ -11,6 +11,10 @@ public class TelevisionShow {
         this.name = name;
     }
 
+    public TelevisionShow() {
+
+    }
+
     public double getFrequency() {
         return frequency;
     }
