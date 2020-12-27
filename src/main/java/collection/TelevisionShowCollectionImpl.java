@@ -1,17 +1,22 @@
 package collection;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class TelevisionShowCollectionImpl implements TelevisionShowCollection {
+    TelevisionShowIteratorImpl iterator = new TelevisionShowIteratorImpl();
 
     @Override
     public TelevisionShowIterator iterator() {
-        // TODO
-        throw new UnsupportedOperationException();
+        return iterator;
     }
 
     @Override
     public void addShow(TelevisionShow show) {
-        // TODO
-        throw new UnsupportedOperationException();
+        if (show == null) {
+            return;
+        }
+        iterator.add(show);
     }
 
     @Override
@@ -21,29 +26,31 @@ public class TelevisionShowCollectionImpl implements TelevisionShowCollection {
     }
 
     private class TelevisionShowIteratorImpl implements TelevisionShowIterator {
+        List<TelevisionShow> shows = new LinkedList<>();
+        int currPosition = 0;
 
         @Override
         public boolean hasNext() {
-            // TODO
-            throw new UnsupportedOperationException();
+            return ((currPosition + 1) < shows.size());
         }
 
         @Override
         public TelevisionShow next() {
-            // TODO
-            throw new UnsupportedOperationException();
+            return shows.get(++currPosition);
         }
 
         @Override
         public boolean hasPrevious() {
-            // TODO
-            throw new UnsupportedOperationException();
+            return ((currPosition - 1) < shows.size());
         }
 
         @Override
         public TelevisionShow previous() {
-            // TODO
-            throw new UnsupportedOperationException();
+            return shows.get(--currPosition);
+        }
+
+        public void add(TelevisionShow show) {
+            shows.add(show);
         }
     }
 }
