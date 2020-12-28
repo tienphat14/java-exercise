@@ -41,7 +41,7 @@ public class TelevisionShowCollectionImpl implements TelevisionShowCollection {
 
         @Override
         public boolean hasPrevious() {
-            return ((currPosition - 1) < shows.size());
+            return ((currPosition - 1) < shows.size() && (currPosition - 1) >= 0);
         }
 
         @Override
