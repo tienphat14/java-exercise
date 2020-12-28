@@ -1,9 +1,17 @@
 package coaching.csv;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Supplies information about CSV line
  */
 public class CsvLine {
+
+    Map<Integer, String> segments = new HashMap<>();
 
     /**
      * Get data at specific position in a row
@@ -12,7 +20,7 @@ public class CsvLine {
      * @return Data
      */
     public String get(int index) {
-        throw new UnsupportedOperationException("This method is not implemented yet, please implement");
+        return segments.get(index);
     }
 
     /**
@@ -22,6 +30,10 @@ public class CsvLine {
      * @param data     Data
      */
     public void set(int position, String data) {
-        throw new UnsupportedOperationException("This method is not implemented yet, please implement");
+        segments.put(position, data);
+    }
+
+    public Map<Integer, String> getSegmentsInLine() {
+        return segments;
     }
 }

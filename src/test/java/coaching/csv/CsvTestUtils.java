@@ -22,6 +22,18 @@ public class CsvTestUtils {
         final CsvLine header = new CsvLine();
         final CsvLine data = new CsvLine();
 
+        header.set(0, "\"FirstName\"");
+        header.set(1, "\"LastName\"");
+
+        data.set(0, "\"John\"");
+        data.set(1, "\"Biden\"");
+        return Arrays.asList(header, data);
+    }
+
+    public static List<CsvLine> createDumpCsvLinesQuoteOff() {
+        final CsvLine header = new CsvLine();
+        final CsvLine data = new CsvLine();
+
         header.set(0, "FirstName");
         header.set(1, "LastName");
 

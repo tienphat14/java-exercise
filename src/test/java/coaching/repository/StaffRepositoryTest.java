@@ -17,8 +17,8 @@ public class StaffRepositoryTest extends DatabaseTestSupport {
     @Test
     public void whenSave_MultipleStaffs_ThenSave() {
         final CrudRepository<Staff> repository = new StaffRepository(dataSource);
-        final Staff staffA = RepositoryTestUtils.createMockStaff();
-        final Staff staffB = RepositoryTestUtils.createMockStaff();
+        final Staff staffA = RepositoryTestUtils.createMockStaffA();
+        final Staff staffB = RepositoryTestUtils.createMockStaffB();
 
         // Execute
         repository.save(Arrays.asList(staffA, staffB));

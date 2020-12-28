@@ -1,5 +1,6 @@
 package coaching.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Staff {
@@ -7,7 +8,8 @@ public class Staff {
     private String firstName;
     private String middleName;
     private String lastName;
-    private LocalDateTime dob;
+    private LocalDate dob;
+    private char gender;
     private String phone;
     private String address;
 
@@ -42,12 +44,19 @@ public class Staff {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-    public LocalDateTime getDob() {
-        return dob;
+    public char getGender() {
+        return gender;
     }
 
-    public void setDob(LocalDateTime dob) {
+    public void setGender(String gender) {
+        this.gender = gender.charAt(0);
+    }
+
+    public String getDob() {
+        return dob.toString();
+    }
+
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 

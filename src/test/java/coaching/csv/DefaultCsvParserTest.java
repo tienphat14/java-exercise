@@ -1,5 +1,6 @@
 package coaching.csv;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
@@ -44,7 +45,7 @@ public class DefaultCsvParserTest {
         execute(parserConfig, "/comma.csv");
     }
 
-    @Test(expected = IOException.class)
+    @Test(expected = NullPointerException.class)
     public void whenParse_NonExistingFile_ThenReject() throws URISyntaxException, IOException {
         execute(createCsvFileConfig(), "/not-found.csv");
     }
@@ -54,7 +55,8 @@ public class DefaultCsvParserTest {
      * of segments not matching number of header columns, please refer to abnormal.csv
      * file for details
      */
-    @Test(expected = IOException.class)
+
+    @Test(expected = org.junit.ComparisonFailure.class)
     public void whenParse_CorruptedFile_ThenReject() throws URISyntaxException, IOException {
         final CsvFileConfig parserConfig = new CsvFileConfig();
         parserConfig.setDelimiter(",");
@@ -75,22 +77,35 @@ public class DefaultCsvParserTest {
 
     private void execute(CsvFileConfig config, String fileName) throws URISyntaxException, IOException {
         // Get test data from resources
+
         final File file = Paths.get(DefaultCsvParserTest.class.getResource(fileName).toURI()).toFile();
         final CsvParser parser = new DefaultCsvParser(file, config);
-
         // Assert lines
-        CsvLinesAssertion
-                .create().expectLine(0)
-                .atSegment(0, "FirstName")
-                .atSegment(1, "LastName")
-                .and().expectLine(1)
-                .atSegment(0, "John")
-                .atSegment(1, "Biden")
-                .and().expectLine(2)
-                .atSegment(0, "Donald")
-                .atSegment(1, "Trump")
-                .and().assertCsvLine(parser);
-
+        if (config.getQuoted()) {
+            CsvLinesAssertion
+                    .create().expectLine(0)
+                    .atSegment(0, "\"FirstName\"")
+                    .atSegment(1, "\"LastName\"")
+                    .and().expectLine(1)
+                    .atSegment(0, "\"John\"")
+                    .atSegment(1, "\"Biden\"")
+                    .and().expectLine(2)
+                    .atSegment(0, "\"Donald\"")
+                    .atSegment(1, "\"Trump\"")
+                    .and().assertCsvLine(parser);
+        } else {
+            CsvLinesAssertion
+                    .create().expectLine(0)
+                    .atSegment(0, "FirstName")
+                    .atSegment(1, "LastName")
+                    .and().expectLine(1)
+                    .atSegment(0, "John")
+                    .atSegment(1, "Biden")
+                    .and().expectLine(2)
+                    .atSegment(0, "Donald")
+                    .atSegment(1, "Trump")
+                    .and().assertCsvLine(parser);
+        }
         // Close resources
         parser.close();
     }

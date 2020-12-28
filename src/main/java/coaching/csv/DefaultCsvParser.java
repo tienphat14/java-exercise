@@ -2,20 +2,31 @@ package coaching.csv;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.InvalidParameterException;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * TODO Implement CSV parsing logic here
  */
 public class DefaultCsvParser implements CsvParser {
-
+    private File file;
+    private CsvFileConfig parserConfig;
+    private CsvIterator csvIterator;
     /**
      * Initialize parser
      *
      * @param file         CSV file
      * @param parserConfig Configuration
      */
-    public DefaultCsvParser(File file, CsvFileConfig parserConfig) {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+    public DefaultCsvParser(File file, CsvFileConfig parserConfig) throws IllegalArgumentException {
+        if (file == null || parserConfig == null) {
+            throw new IllegalArgumentException();
+        }
+        this.file = file;
+        this.parserConfig = parserConfig;
+        this.csvIterator = new CsvIterator(file);
     }
 
     /**
@@ -25,8 +36,8 @@ public class DefaultCsvParser implements CsvParser {
      */
     @Override
     public void close() {
-        throw new UnsupportedOperationException("This method is not implemented yet");
-    }
+        this.csvIterator.close();
+        }
 
     /**
      * {@inheritDoc}
@@ -35,7 +46,7 @@ public class DefaultCsvParser implements CsvParser {
      */
     @Override
     public boolean hasNext() {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        return csvIterator.hasNext();
     }
 
     /**
@@ -45,6 +56,23 @@ public class DefaultCsvParser implements CsvParser {
      */
     @Override
     public CsvLine next() {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        String line = csvIterator.next();
+        if (parserConfig.getDelimiter() == "|") {
+            return mapToCsvLine(Stream.of(line.split("\\|"))
+                    .map(String::trim)
+                    .collect(Collectors.toList()));
+        }
+        return mapToCsvLine(Stream.of(line.split(parserConfig.getDelimiter()))
+                .map(String::trim)
+                .collect(Collectors.toList()));
+    }
+
+    private CsvLine mapToCsvLine(List<String> reader) {
+
+        CsvLine csvLine = new CsvLine();
+        for (int i = 0; i < reader.size(); i++) {
+            csvLine.set(i, reader.get(i));
+        }
+        return csvLine;
     }
 }

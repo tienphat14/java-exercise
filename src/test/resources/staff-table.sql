@@ -4,7 +4,7 @@ create table staff (
     middleName  varchar(50),
     lastName    varchar(50),
     dob         date,
-    gender      bit,
+    gender      char,
     phone       varchar(9),
     address     varchar(125)
 );
