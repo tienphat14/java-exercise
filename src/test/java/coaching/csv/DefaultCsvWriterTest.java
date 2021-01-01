@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
  * Required Knowledge
  * - Java basic (conditional statement, loop, ...)
  * - Java IO
- * - Java Collection
+ * - Java HashCollisionExample
  * <p>
  * Requirements
  * - Make sure your code stay consistent
