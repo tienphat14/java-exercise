@@ -3,7 +3,10 @@ package collection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 public class HashSetPractice {
@@ -12,18 +15,31 @@ public class HashSetPractice {
 
     public static void main(String[] args) {
         Set<String> hashSet = new HashSet<>();
-        // TODO: append some elements to the end of the set
+        hashSet.add("One");
+        hashSet.add("Two");
+        hashSet.add("Three");
+        hashSet.add("Four");
+        hashSet.add("Five");
+        hashSet.add("Six");
 
-        // TODO: get an iterate and use it to print out all elements in the set
+        Iterator<String> iterator = hashSet.iterator();
+        LOGGER.info("Set listing:");
+        iterator.forEachRemaining(LOGGER::info);
 
-        // TODO: print out the number of elements in the set
+        LOGGER.info("Size = {}", hashSet.size());
 
-        // TODO: convert the set to a string array
+        String[] stringArray = hashSet.toArray(new String[0]);
+        LOGGER.info("Array listing:");
+        for (String s: stringArray) {
+            LOGGER.info("{}", s);
+        }
 
-        // TODO: convert the set to a List/ArrayList
+        List<String> stringList = new ArrayList<>(hashSet);
+        LOGGER.info("List listing:");
+        stringList.forEach(LOGGER::info);
 
         Set<String> newHashSet = new HashSet<>(hashSet);
-        // TODO: compare if two sets are equal
+        LOGGER.info("Two sets are equal: {}", hashSet.equals(newHashSet));
 
         newHashSet.add("Seven");
         newHashSet.add("Eight");
@@ -31,8 +47,11 @@ public class HashSetPractice {
         newHashSet.remove("One");
         newHashSet.remove("Three");
         newHashSet.remove("Five");
-        // TODO: compare two sets and retain elements which are same on both sets
+        hashSet.retainAll(newHashSet);
+        LOGGER.info("Elements are on both sets: {}", hashSet);
 
-        // TODO: remove all of the elements from the first set, check empty before and after
+        LOGGER.info("First set is empty before: {}", hashSet.isEmpty());
+        hashSet.clear();
+        LOGGER.info("First set is empty after: {}", hashSet.isEmpty());
     }
 }

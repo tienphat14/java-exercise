@@ -3,8 +3,11 @@ package collection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ArrayListPractice {
 
@@ -21,27 +24,35 @@ public class ArrayListPractice {
     }
 
     public static List<String> reverseList(List<String> list) {
-        // TODO: return a reversed list
-        throw new UnsupportedOperationException();
+        List<String> result = new ArrayList<>(list);
+        Collections.reverse(result);
+        return result;
     }
 
     public static List<String> capitalizePlurals(List<String> list) {
-        // TODO: capitalize all plurals (ending in 's')
-        throw new UnsupportedOperationException();
+        List<String> result = new ArrayList<>(list);
+        for (int i = 0; i < result.size(); i++) {
+            String s = result.get(i);
+            if (s.endsWith("s")) {
+                result.set(i, s.substring(0, 1).toUpperCase() + s.substring(1));
+            }
+        }
+        return result;
     }
 
     public static List<String> removePlurals(List<String> list) {
-        // TODO: remove all plural (ending in 's')
-        throw new UnsupportedOperationException();
+        return list.stream().filter(s -> !s.endsWith("s")).collect(Collectors.toList());
     }
 
     public static List<String> addStars(List<String> list) {
-        // TODO: add star after each word - "one", "*", "two", "*", "books", "*",...
-        throw new UnsupportedOperationException();
+        List<String> result = new ArrayList<>(list);
+        for (int i = 1; i <= result.size(); i += 2) {
+            result.add(i, "*");
+        }
+        return result;
     }
 
     public static List<String> removeStars(List<String> list) {
-        // TODO: remove stars which added by addStars
-        throw new UnsupportedOperationException();
+        return list.stream().filter(s -> !"*".equals(s)).collect(Collectors.toList());
     }
 }
