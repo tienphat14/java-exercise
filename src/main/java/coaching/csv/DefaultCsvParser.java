@@ -30,7 +30,7 @@ public class DefaultCsvParser implements CsvParser {
     }
 
     /**
-     * {@inheritDoc}
+     * Close the csv iterator
      *
      * @throws IOException
      */
@@ -40,9 +40,8 @@ public class DefaultCsvParser implements CsvParser {
         }
 
     /**
-     * {@inheritDoc}
-     *
-     * @return
+     * Check the existence of a next line
+     * @return true if having a next line
      */
     @Override
     public boolean hasNext() {
@@ -50,9 +49,8 @@ public class DefaultCsvParser implements CsvParser {
     }
 
     /**
-     * {@inheritDoc}
-     *
-     * @return
+     * Get the next line
+     * @return a csv line
      */
     @Override
     public CsvLine next() {
@@ -67,6 +65,11 @@ public class DefaultCsvParser implements CsvParser {
                 .collect(Collectors.toList()));
     }
 
+    /**
+     * Convert a list of string to a map of csv line
+     * @param reader
+     * @return a map of csv line
+     */
     private CsvLine mapToCsvLine(List<String> reader) {
 
         CsvLine csvLine = new CsvLine();

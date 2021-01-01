@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -28,9 +27,9 @@ public class StaffRepository implements CrudRepository<Staff> {
     }
 
     /**
-     * {@inheritDoc}
+     * Insert a list of staffs into the staff table
      *
-     * @param data Data
+     * @param data a list of staffs
      */
     @Override
     public void save(Collection<Staff> data) {
@@ -42,7 +41,7 @@ public class StaffRepository implements CrudRepository<Staff> {
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
             try (final Connection connection = this.dataSource.getConnection();
                  final PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
-                System.out.println("Before: " + preparedStatement.toString());
+                LOGGER.info("Before: " + preparedStatement.toString());
                 preparedStatement.setInt(1, staff.getId());
                 preparedStatement.setString(2, staff.getFirstName());
                 preparedStatement.setString(3, staff.getMiddleName());
@@ -51,7 +50,7 @@ public class StaffRepository implements CrudRepository<Staff> {
                 preparedStatement.setString(6, String.valueOf(staff.getGender()));
                 preparedStatement.setString(7, staff.getPhone());
                 preparedStatement.setString(8, staff.getAddress());
-                System.out.println("After: " + preparedStatement.toString());
+                LOGGER.info("After: " + preparedStatement.toString());
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -59,9 +58,9 @@ public class StaffRepository implements CrudRepository<Staff> {
     }
 
     /**
-     * {@inheritDoc}
+     * Get all staffs from the staff table
      *
-     * @return
+     * @return a list of staffs
      */
     @Override
     public Collection<Staff> findAll()  {

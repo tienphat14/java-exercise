@@ -27,7 +27,7 @@ public class DefaultCsvWriter implements CsvWriter {
     }
 
     /**
-     * {@inheritDoc}
+     * Write a csv line to a csv file
      *
      * @param line CSV line
      */
@@ -40,7 +40,7 @@ public class DefaultCsvWriter implements CsvWriter {
     }
 
     /**
-     * {@inheritDoc}
+     * Write a list of csv lines to a csv file
      *
      * @param lines Multiple CSV lines
      */
@@ -55,7 +55,7 @@ public class DefaultCsvWriter implements CsvWriter {
     }
 
     /**
-     * {@inheritDoc}
+     * Close file writer
      *
      * @throws IOException
      */
@@ -66,6 +66,12 @@ public class DefaultCsvWriter implements CsvWriter {
         }
     }
 
+    /**
+     * Convert a csv line to a string
+     * @param line a line of csv
+     * @param config file configuration with delimiter, wrapper with quotes
+     * @return a string converted from csv line
+     */
     public String convertCsvLineToString(CsvLine line, CsvFileConfig config) {
         StringBuilder row = new StringBuilder();
         int size = line.getSegmentsInLine().size();
@@ -79,6 +85,4 @@ public class DefaultCsvWriter implements CsvWriter {
         }
         return row.toString();
     }
-
-
 }

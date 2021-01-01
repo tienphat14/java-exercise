@@ -15,6 +15,9 @@ public class DefaultValidator implements Validator {
      */
     @Override
     public Collection<Violation> validate(Object data) {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        if (data == null) {
+            throw new IllegalArgumentException();
+        }
+        return null;
     }
 }
