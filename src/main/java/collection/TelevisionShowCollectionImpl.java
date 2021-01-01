@@ -21,8 +21,14 @@ public class TelevisionShowCollectionImpl implements TelevisionShowCollection {
 
     @Override
     public TelevisionShowIterator channelIterator(Channel channel) {
-        // TODO
-        throw new UnsupportedOperationException();
+        TelevisionShowIteratorImpl tmp = new TelevisionShowIteratorImpl();
+        while (iterator.hasNext()) {
+            TelevisionShow tvShow = iterator.next();
+            if (tvShow.getChannel().equals(channel)) {
+                tmp.add(tvShow);
+            }
+        }
+        return tmp;
     }
 
     private class TelevisionShowIteratorImpl implements TelevisionShowIterator {
