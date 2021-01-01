@@ -1,5 +1,7 @@
 package languagebasic;
 
+import java.util.Random;
+
 /**
  * Generate a random roster to review assignments =]]
  */
@@ -13,6 +15,14 @@ public class RandomRosterGenerator {
      */
     public String[] getRandomRoster(String[] availableNames, int size) {
         //TODO: implement this method
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        if (availableNames.length == 0 || size < 1)
+            return new String[0];
+        String[] rst = new String[size];
+        int count = -1;
+        Random random = new Random();
+        while (++count < size) {
+            rst[count] = availableNames[random.nextInt(availableNames.length)];
+        }
+        return rst;
     }
 }

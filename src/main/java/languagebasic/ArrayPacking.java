@@ -25,9 +25,20 @@ public class ArrayPacking {
      *          1 ≤ array.length ≤ 4
      *          0 ≤ array[i] < 256
      */
-    public int arrayPacking(int[] array) {
+    public int arrayPacking(int[] array) throws CustomException {
         //TODO: create the CustomException class
         //TODO: implement this method
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        if (array.length < 1 || array.length > 4) {
+            throw new CustomException("Array length must be within 1 and 4");
+        }
+        int rst = 0;
+        for (int idx = array.length - 1; idx > -1; idx--) {
+            if (array[idx] < 0 || array[idx] > 255) {
+                String msg = String.format("Value at index %d (%d) not in interval [0,255]", idx, array[idx]);
+                throw new CustomException(msg);
+            }
+            rst += array[idx] << 8 * idx;
+        }
+        return rst;
     }
 }

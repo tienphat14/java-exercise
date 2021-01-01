@@ -18,9 +18,24 @@ public class ArrayPreviousLess {
      *          3 ≤ items.length ≤ 15
      *          1 ≤ items[i] ≤ 200
      */
-    public int[] arrayPreviousLess(int[] items) {
+    public int[] arrayPreviousLess(int[] items) throws CustomException {
         //TODO: create the CustomException class
         //TODO: implement this method
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        if (items.length < 3 || items.length > 15)
+            throw new CustomException("Array length must be within 3 and 15");
+        int[] rst = new int[items.length];
+        for (int idx = 0; idx < items.length; idx++) {
+            if (items[idx] < 1 || items[idx] > 200)
+                throw new CustomException("Value at index " + idx + " (" + items[idx] + ") must be within [1, 200]");
+            for (int reverseIdx = idx - 1; reverseIdx > -1; reverseIdx--) {
+                if (items[reverseIdx] < items[idx]) {
+                    rst[idx] = items[reverseIdx];
+                    break;
+                }
+            }
+            if (rst[idx] == 0)
+                rst[idx] = -1;
+        }
+        return rst;
     }
 }

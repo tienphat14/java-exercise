@@ -9,6 +9,7 @@ public static void main(String args[]) {
     boolean c;
     System.out.println(c);
 }
+=> boolean b = 1; is wrong -> boolean b = true;
 
 2. What is the output?
 public static void main(String args[]) {
@@ -21,6 +22,7 @@ public static void main(String args[]) {
     a++;
     System.out.println(a);
 }
+=> 126\n127\nRuntime error
 
 3. Find invalid code
 public static void main(String args[]) {
@@ -55,6 +57,13 @@ public static void main(String args[]) {
     int x6 = 0x5_2;
     int x7 = 0x52_;
 }
+=> char c3 = '\u002a' -> Missed ';'
+float pi1 = 3_.1415F; -> '_' next to '.'
+float pi2 = 3._1415F; -> '_' next to '.'
+int x2 = 52_; -> '_' placed at the end
+int x4 = 0_x52; -> '_' placed at the end
+int x5 = 0x_52; -> '_' placed at the beginning
+int x7 = 0x52_; -> '_' placed at the end
 
 4. What is the output?
 public static void main(String args[]) {
@@ -88,3 +97,17 @@ public static void main(String args[]) {
     System.out.println(myFloat);
     System.out.println(myDouble);
 }
+=> 42\u0005
+**********
+9
+9
+9.0
+**********
+9.78
+9
+**********
+9876543210
+9876
+**********
+9.78
+9.78

@@ -27,6 +27,9 @@ class Parent extends Grandparent {
         System.out.println("Parent(" + x + ") constructor");
     }
 }
+=> Child() constructor
+**********
+Parent(50) constructor
 
 2. What is the output?
 public static void main(String args[]) {
@@ -40,6 +43,7 @@ private static void enlarge(Rectangle rectangle, int multiplier) {
     rectangle.height *= multiplier;
     rectangle = new Rectangle(100, 50);
 }
+=> 50 100
 
 3. Find errors and fix if any
 private class A {
@@ -47,6 +51,7 @@ private class A {
         private class C {}
     }
 }
+=> class A is private, this makes the B and C are useless -> public class A....
 
 4. Find errors and fix if any
 public class A {
@@ -58,6 +63,7 @@ public class MainClass extends A {
         B b = new B();
     }
 }
+=> Cannot access class B -> A a = new A();
 
 5. Find errors and fix if any
 class X {
@@ -74,6 +80,7 @@ public class MainClass {
        x.methodOfX();
    }
 }
+=> i in System.out.println(x.i); can not be called -> public int i = 1221
 
 6. Find errors and fix if any
 package pack1;
@@ -86,6 +93,7 @@ import pack1.*;
 class B {
     A a = new A();
 }
+=> class A can not be called in class B. Its default modifier is default
 
 7. Find errors and fix if any
 package pack1;
@@ -101,6 +109,7 @@ class B extends A {
        super(10);
    }
 }
+=> No error
 
 8. Is there any errors? If not, what is the output?
 private static int count = 0;
@@ -120,3 +129,15 @@ public static void main(String[] args) {
 public static void increaseCount() {
     count++;
 }
+=> Hello World!
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
