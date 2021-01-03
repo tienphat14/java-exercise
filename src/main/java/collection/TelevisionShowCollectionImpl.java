@@ -1,49 +1,74 @@
 package collection;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
+
 public class TelevisionShowCollectionImpl implements TelevisionShowCollection {
+
+    private List<TelevisionShow> providedListShow;
+
+    public TelevisionShowCollectionImpl() {
+        providedListShow = new ArrayList<>();
+    }
 
     @Override
     public TelevisionShowIterator iterator() {
-        // TODO
-        throw new UnsupportedOperationException();
+        return new TelevisionShowIteratorImpl(this.providedListShow);
     }
 
     @Override
     public void addShow(TelevisionShow show) {
-        // TODO
-        throw new UnsupportedOperationException();
+        providedListShow.add(show);
     }
 
     @Override
     public TelevisionShowIterator channelIterator(Channel channel) {
-        // TODO
-        throw new UnsupportedOperationException();
+        if (channel == Channel.ALL) {
+            return new TelevisionShowIteratorImpl(this.providedListShow);
+        }
+        return new TelevisionShowIteratorImpl(providedListShow.stream()
+                                                              .filter(show -> show.getChannel() == channel)
+                                                              .collect(Collectors.toList()));
     }
 
     private class TelevisionShowIteratorImpl implements TelevisionShowIterator {
 
+        private int currentShowIndex = 0;
+        private List<TelevisionShow> listShow;
+
+        public TelevisionShowIteratorImpl(List<TelevisionShow> shows) {
+            listShow = shows;
+        }
+
         @Override
         public boolean hasNext() {
-            // TODO
-            throw new UnsupportedOperationException();
+            return currentShowIndex < (listShow.size());
         }
 
         @Override
         public TelevisionShow next() {
-            // TODO
-            throw new UnsupportedOperationException();
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            TelevisionShow currentShow = listShow.get(currentShowIndex);
+            currentShowIndex += 1;
+            return currentShow;
         }
 
         @Override
         public boolean hasPrevious() {
-            // TODO
-            throw new UnsupportedOperationException();
+            return currentShowIndex > 0;
         }
 
         @Override
         public TelevisionShow previous() {
-            // TODO
-            throw new UnsupportedOperationException();
+            if (!hasPrevious()) {
+                throw new NoSuchElementException();
+            }
+            currentShowIndex -= 1;
+            return listShow.get(currentShowIndex);
         }
     }
 }
