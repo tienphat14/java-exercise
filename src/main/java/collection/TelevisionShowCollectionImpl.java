@@ -1,49 +1,63 @@
 package collection;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
+
 public class TelevisionShowCollectionImpl implements TelevisionShowCollection {
+
+    private List<TelevisionShow> tvListShow;
+
+    public TelevisionShowCollectionImpl() {
+        tvListShow = new ArrayList<>();
+    }
 
     @Override
     public TelevisionShowIterator iterator() {
-        // TODO
-        throw new UnsupportedOperationException();
+        return new TelevisionShowIteratorImpl(this.tvListShow);
     }
 
     @Override
     public void addShow(TelevisionShow show) {
-        // TODO
-        throw new UnsupportedOperationException();
+        tvListShow.add(show);
     }
 
     @Override
     public TelevisionShowIterator channelIterator(Channel channel) {
-        // TODO
-        throw new UnsupportedOperationException();
+        if (channel == Channel.ALL) return new TelevisionShowIteratorImpl(this.tvListShow);
+        return new TelevisionShowIteratorImpl(tvListShow.stream().filter(show -> show.getChannel() == channel).collect(Collectors.toList()));
     }
 
     private class TelevisionShowIteratorImpl implements TelevisionShowIterator {
 
+        private int currChannel = 0;
+        private List<TelevisionShow> tvShows;
+
+        public TelevisionShowIteratorImpl(List<TelevisionShow> shows) {
+            tvShows = shows;
+        }
+
         @Override
         public boolean hasNext() {
-            // TODO
-            throw new UnsupportedOperationException();
+            return currChannel < (tvShows.size());
         }
 
         @Override
         public TelevisionShow next() {
-            // TODO
-            throw new UnsupportedOperationException();
+            if (!hasNext()) throw new NoSuchElementException();
+            return tvShows.get(currChannel++);
         }
 
         @Override
         public boolean hasPrevious() {
-            // TODO
-            throw new UnsupportedOperationException();
+            return currChannel > 0;
         }
 
         @Override
         public TelevisionShow previous() {
-            // TODO
-            throw new UnsupportedOperationException();
+            if (!hasPrevious())  throw new NoSuchElementException();
+            return tvShows.get(--currChannel);
         }
     }
 }
