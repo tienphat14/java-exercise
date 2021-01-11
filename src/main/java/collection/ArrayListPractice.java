@@ -3,7 +3,9 @@ package collection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ArrayListPractice {
@@ -21,27 +23,48 @@ public class ArrayListPractice {
     }
 
     public static List<String> reverseList(List<String> list) {
-        // TODO: return a reversed list
-        throw new UnsupportedOperationException();
+        Collections.reverse(list);
+        return list;
     }
 
     public static List<String> capitalizePlurals(List<String> list) {
-        // TODO: capitalize all plurals (ending in 's')
-        throw new UnsupportedOperationException();
+        for (int i = 0; i < list.size(); i++) {
+            String s = list.get(i);
+            if (s.endsWith("s")) {
+                list.set(i, s.substring(0, 1).toUpperCase().concat(s.substring(1)));
+            }
+        }
+        return list;
     }
 
     public static List<String> removePlurals(List<String> list) {
-        // TODO: remove all plural (ending in 's')
-        throw new UnsupportedOperationException();
+        List<String> newList = new ArrayList<>();
+        for (String s : list) {
+            if (!s.endsWith("s")) {
+                newList.add(s);
+            }
+        }
+        return newList;
     }
 
     public static List<String> addStars(List<String> list) {
-        // TODO: add star after each word - "one", "*", "two", "*", "books", "*",...
-        throw new UnsupportedOperationException();
+        List<String> newList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            newList.add(list.get(i));
+            if (!list.get(i).equals("*")) {
+                newList.add("*");
+            }
+        }
+        return newList;
     }
 
     public static List<String> removeStars(List<String> list) {
-        // TODO: remove stars which added by addStars
-        throw new UnsupportedOperationException();
+        List<String> newList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            if (!list.get(i).equals("*")) {
+                newList.add(list.get(i));
+            }
+        }
+        return newList;
     }
 }
