@@ -21,7 +21,6 @@ public class HashSetPractice {
         hashSet.add("Four");
         hashSet.add("Five");
         LOGGER.info("{}",hashSet);
-
         // get an iterate and use it to print out all elements in the set
         hashSet.iterator().forEachRemaining(LOGGER::info);
         // print out the number of elements in the set
@@ -44,8 +43,11 @@ public class HashSetPractice {
         newHashSet.remove("One");
         newHashSet.remove("Three");
         newHashSet.remove("Five");
-        // TODO: compare two sets and retain elements which are same on both sets
-
-        // TODO: remove all of the elements from the first set, check empty before and after
+        // compare two sets and retain elements which are same on both sets
+        hashSet.retainAll(newHashSet);
+        LOGGER.info("{}", hashSet);
+        // remove all of the elements from the first set, check empty before and after
+        hashSet.clear();
+        hashSet.isEmpty();
     }
 }
