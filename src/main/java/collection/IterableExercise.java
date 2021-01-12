@@ -3,12 +3,12 @@ package collection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class IterableExcercise {
+public class IterableExercise {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(IterableExcercise.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(IterableExercise.class);
 
     public static void main(String[] args) {
-        IterableExcercise exercise = new IterableExcercise();
+        IterableExercise exercise = new IterableExercise();
         exercise.iteratorInAction();
     }
 
