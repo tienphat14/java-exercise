@@ -3,7 +3,9 @@ package collection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ArrayListPractice {
@@ -14,15 +16,17 @@ public class ArrayListPractice {
         List<String> stringList = Arrays.asList("one", "two", "books", "three", "cats", "java", "dogs", "Dai", "Hung");
         LOGGER.info("All words: {}", stringList);
         LOGGER.info("All words in reverse order: {}", reverseList(stringList));
-        LOGGER.info("All words after capitalizing all plural: {}", capitalizePlurals(stringList));
-        LOGGER.info("All words after removing all plural: {}", removePlurals(stringList));
-        LOGGER.info("All words after adding star after each word: {}", addStars(stringList));
-        LOGGER.info("All words after removing stars: {}", removeStars(stringList));
+        LOGGER.info("Not effect All words: {}", stringList);
+//        LOGGER.info("All words after capitalizing all plural: {}", capitalizePlurals(stringList));
+//        LOGGER.info("All words after removing all plural: {}", removePlurals(stringList));
+//        LOGGER.info("All words after adding star after each word: {}", addStars(stringList));
+//        LOGGER.info("All words after removing stars: {}", removeStars(stringList));
     }
 
     public static List<String> reverseList(List<String> list) {
-        // TODO: return a reversed list
-        throw new UnsupportedOperationException();
+        List<String> result = new ArrayList<>(list);
+        Collections.reverse(result);
+        return result;
     }
 
     public static List<String> capitalizePlurals(List<String> list) {
