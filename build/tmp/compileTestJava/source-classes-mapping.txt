@@ -1,0 +1,12 @@
+java/coaching/csv/CsvTestUtils.java
+ java.coaching.csv.CsvTestUtils
+java/coaching/csv/DefaultCsvParserTest.java
+ java.coaching.csv.DefaultCsvParserTest
+java/coaching/csv/DefaultCsvWriterTest.java
+ java.coaching.csv.DefaultCsvWriterTest
+java/coaching/validator/ViolationAssertion.java
+ java.coaching.validator.ViolationAssertion
+java/coaching/validator/DefaultValidatorTest.java
+ java.coaching.validator.DefaultValidatorTest
+ java.coaching.validator.DefaultValidatorTest$MultipleRuleClient
+ java.coaching.validator.DefaultValidatorTest$SingleRuleClient

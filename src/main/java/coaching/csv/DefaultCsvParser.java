@@ -2,11 +2,22 @@ package coaching.csv;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.LineNumberReader;
 
 /**
  * TODO Implement CSV parsing logic here
  */
 public class DefaultCsvParser implements CsvParser {
+    private File file;
+    private LineNumberReader reader;
+    private CsvFileConfig csvDesc;
+    private StringBuilder sb = null;
+    private boolean nextRead;
+    private String[] currentLine;
+    private String[] nextLine;
+    private long lineNo;
+
+
 
     /**
      * Initialize parser
@@ -15,17 +26,9 @@ public class DefaultCsvParser implements CsvParser {
      * @param parserConfig Configuration
      */
     public DefaultCsvParser(File file, CsvFileConfig parserConfig) {
-        throw new UnsupportedOperationException("This method is not implemented yet");
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @throws IOException
-     */
-    @Override
-    public void close() {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        this.file =  file;
+        this.csvDesc = parserConfig;
+        this.sb = new StringBuilder();
     }
 
     /**
@@ -35,8 +38,9 @@ public class DefaultCsvParser implements CsvParser {
      */
     @Override
     public boolean hasNext() {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        return this.nextLine != null;
     }
+
 
     /**
      * {@inheritDoc}
@@ -46,5 +50,10 @@ public class DefaultCsvParser implements CsvParser {
     @Override
     public CsvLine next() {
         throw new UnsupportedOperationException("This method is not implemented yet");
+    }
+
+    @Override
+    public void close() throws IOException {
+
     }
 }

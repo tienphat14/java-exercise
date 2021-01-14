@@ -21,13 +21,39 @@ public class ArrayPacking {
      *
      * @param array An array of up to four non-negative integers, each less than 256
      * @return The obtained integer packed from given array
-     * @throws CustomException if the input violates rules
+     * @throws NumberFormatException if the input violates rules
      *          1 ≤ array.length ≤ 4
      *          0 ≤ array[i] < 256
      */
-    public int arrayPacking(int[] array) {
-        //TODO: create the CustomException class
-        //TODO: implement this method
-        throw new UnsupportedOperationException("This method is not implemented yet");
+    public int arrayPacking(int[] arrays) {
+        String output = "";
+        if (arrays.length < 1 || arrays.length > 4) {
+            throw new NumberFormatException();
+        }
+        for(int i = arrays.length-1; i >= 0; i--) {
+            output += getBinary(arrays[i]);
+            if (arrays[i] < 0) {
+                System.out.println("Please enter 0 <= array[i]");
+                break;
+            }
+            if (arrays[i] >= 256) {
+                System.out.println("Please enter array[i] < 256");
+                break;
+            }
+        }
+        return Integer.parseInt(output, 2);
+    }
+
+    private static String getBinary(int val) {
+        String s = "";
+            for(int i = 0; i < 8; i++) {
+                if(val % 2 == 1)
+                    s = 1 + s;
+                else if(val % 2 == 0)
+                    s = 0 + s;
+
+                val = val/2;
+        }
+        return s;
     }
 }
