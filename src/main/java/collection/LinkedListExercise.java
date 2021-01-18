@@ -3,8 +3,8 @@ package collection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LinkedListExcercise {
-    private static final Logger LOGGER = LoggerFactory.getLogger(LinkedListExcercise.class);
+public class LinkedListExercise {
+    private static final Logger LOGGER = LoggerFactory.getLogger(LinkedListExercise.class);
 
     public static void main(String[] args) {
         TelevisionShowLinkedList list = new TelevisionShowLinkedListImpl();
