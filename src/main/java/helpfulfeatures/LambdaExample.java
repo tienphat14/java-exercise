@@ -23,8 +23,8 @@ public class LambdaExample {
         LambdaExample example = new LambdaExample();
         example.method1(zeroParamFunc);
         example.method1(() -> LOGGER.info("Hello World"));
-        example.method1(() -> LambdaExample.saySomethingStatic());
-        example.method1(() -> example.saySomethingNonStatic());
+        example.method1(LambdaExample::saySomethingStatic);
+        example.method1(example::saySomethingNonStatic);
         LOGGER.info("************************************************************");
 
         LOGGER.info("Square of 10 is {}", example.method2(10, singleParamfunc));
@@ -34,11 +34,11 @@ public class LambdaExample {
         LOGGER.info("10 compare to 20 is {}", example.method3(10, 20, Integer::compare));
         LOGGER.info("************************************************************");
 
-        example.method4("Hello", s -> new Message(s));
+        example.method4("Hello", Message::new);
         LOGGER.info("************************************************************");
 
         LOGGER.info("Before sort {}", stringList);
-        stringList.sort((s1, s2) -> s1.compareTo(s2));
+        stringList.sort(String::compareTo);
         LOGGER.info("After sort {}", stringList);
     }
 
@@ -56,7 +56,7 @@ public class LambdaExample {
 
     public int method2(int a, SingleParamFuncInterface<Integer, Integer> func) {
         return func.abstractMethod(a);
-    }
+}
 
     public int method3(int a, int b, MultipleParamsFuncInterface func) {
         return func.abstractMethod(a, b);
