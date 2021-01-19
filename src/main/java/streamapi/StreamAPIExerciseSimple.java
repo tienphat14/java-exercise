@@ -32,8 +32,7 @@ public class StreamAPIExerciseSimple {
         List<String> strings = asList("9", "4", "5", "6", "2", "3", "9", "4", "3", "4", "5", "26", "13", "39");
         // TODO: find all distinct reminders of division by 13 and collect them sorted
         // [2, 3, 4, 5, 6, 9]
-        return strings.stream().map(Integer::parseInt).filter(s -> s % 13 == 0).distinct().sorted().collect(Collectors.toList());
-
+        return strings.stream().map(Integer::parseInt).map(s -> s % 13).distinct().sorted().collect(Collectors.toList());
     }
 
     public int exercise3() {
