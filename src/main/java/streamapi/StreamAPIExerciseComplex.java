@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class StreamAPIExerciseComplex {
 
@@ -19,20 +20,40 @@ public class StreamAPIExerciseComplex {
     }
 
     public String exercise1() {
-        // TODO: find whether there are two employees with the same first name and surname and return the name
-        throw new UnsupportedOperationException();
+        return EMPLOYEES.stream()
+                .filter(e1 -> EMPLOYEES.stream()
+                        .anyMatch(e2 -> e2 != e1 &&
+                                e1.getFirstName().equals(e2.getFirstName()) &&
+                                e1.getSurname().equals(e2.getSurname())))
+                .findFirst()
+                .map(e -> e.getFirstName() + " " + e.getSurname())
+                .orElse("Not Found");
     }
 
     public long exercise2() {
-        // TODO: find the total number of groups of at least 5 employees living close to each other
-        // consider all employees with the same 2 first characters of the home address post code a single group
-        throw new UnsupportedOperationException();
+        return EMPLOYEES.stream()
+                .collect(
+                        Collectors.groupingBy(
+                                e -> e.getHomeAddress().getPostCode().substring(0, 2),
+                                Collectors.counting()
+                        ))
+                .values()
+                .stream()
+                .filter(n -> n >= 5)
+                .count();
     }
 
     public List<String> exercise3() {
         DecimalFormat decimalFormat = new DecimalFormat("£#,###.00");
-        // TODO: find how much in total each company pays to their employees, order result by amount
-        // Barclays plc - £12,184,531.00
-        throw new UnsupportedOperationException();
+        return EMPLOYEES.stream()
+                .collect(
+                        Collectors.groupingBy(
+                                e -> e.getCompany().getName(),
+                                Collectors.summingDouble(e -> e.getSalary().doubleValue())
+                        ))
+                .entrySet()
+                .stream()
+                .map(entry -> entry.getKey() + " - " + decimalFormat.format(entry.getValue()))
+                .collect(Collectors.toList());
     }
 }
