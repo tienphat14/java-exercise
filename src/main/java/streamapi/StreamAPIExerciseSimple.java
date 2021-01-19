@@ -39,7 +39,7 @@ public class StreamAPIExerciseSimple {
         List<String> strings = asList("Lorem", "ipsum", "dolor", "sit", "amet,", "consectetur", "adipiscing", "elit.");
         // TODO: find the length of the longest string
         // 11
-        return strings.stream().map(String::length).max(Comparator.naturalOrder()).get();
+        return strings.stream().map(String::length).max(Comparator.naturalOrder()).orElse(-1);
     }
 
     public List<Integer> exercise4() {
