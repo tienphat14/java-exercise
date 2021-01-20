@@ -5,7 +5,9 @@ import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -53,6 +55,7 @@ public class StreamAPIExerciseComplex {
                 .collect(Collectors.groupingBy(employee -> employee.getCompany().getName(), Collectors.reducing(BigDecimal.ZERO, Employee::getSalary, BigDecimal::add)))
                 .entrySet()
                 .stream()
+                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
                 .map(x -> x.getKey() + " - " + decimalFormat.format(x.getValue()))
                 .collect(Collectors.toList());
     }
