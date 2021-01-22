@@ -3,8 +3,7 @@ package collection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class HashSetPractice {
 
@@ -12,18 +11,28 @@ public class HashSetPractice {
 
     public static void main(String[] args) {
         Set<String> hashSet = new HashSet<>();
-        // TODO: append some elements to the end of the set
 
-        // TODO: get an iterate and use it to print out all elements in the set
+        hashSet.add("one");
+        hashSet.add("two");
+        hashSet.add("three");
+        hashSet.add("four");
 
-        // TODO: print out the number of elements in the set
+        LOGGER.info("Hashset: {}", hashSet);
+        Iterator iterator = hashSet.iterator();
+        while (iterator.hasNext()) {
+            LOGGER.info("Iterator: {}", iterator.next());
+        }
 
-        // TODO: convert the set to a string array
+        LOGGER.info("The number of elements in the set: {}", hashSet.size());
 
-        // TODO: convert the set to a List/ArrayList
+        String[] str = hashSet.toArray(new String[0]);
+        Arrays.stream(str).forEach(s -> LOGGER.info(s));
+
+        // TODO: convert the set to a List/ArrayList and vice versa
+        List<String> listFromHashSet = new ArrayList<>(hashSet);
+        HashSet<String> hashSetFromList = new HashSet<>(listFromHashSet);
 
         Set<String> newHashSet = new HashSet<>(hashSet);
-        // TODO: compare if two sets are equal
 
         newHashSet.add("Seven");
         newHashSet.add("Eight");
@@ -31,8 +40,12 @@ public class HashSetPractice {
         newHashSet.remove("One");
         newHashSet.remove("Three");
         newHashSet.remove("Five");
-        // TODO: compare two sets and retain elements which are same on both sets
+        LOGGER.info("Compare 2 hash sets: {}", newHashSet.equals(hashSet));
 
-        // TODO: remove all of the elements from the first set, check empty before and after
+        newHashSet.retainAll(hashSet);
+        LOGGER.info("New hashSet after retaining the same elements: {}", newHashSet);
+
+        hashSet.clear();
+        LOGGER.info("HashSet is cleared: {}", hashSet.isEmpty());
     }
 }
