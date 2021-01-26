@@ -104,12 +104,12 @@ public class DefaultCsvWriterTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void whenInit_NullConfigParam_ThenReject() throws IOException {
-        new DefaultCsvParser(createTestFile(), null);
+        new DefaultCsvWriter(null, createTestFile());
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenInit_NullFileParam_ThenReject() {
-        new DefaultCsvParser(null, createCsvFileConfig());
+    public void whenInit_NullFileParam_ThenReject() throws IOException {
+        new DefaultCsvWriter(createCsvFileConfig(), null);
     }
 
     @Test(expected = IOException.class)

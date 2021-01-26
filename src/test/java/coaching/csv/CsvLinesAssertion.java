@@ -1,5 +1,6 @@
 package coaching.csv;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -23,7 +24,7 @@ public final class CsvLinesAssertion {
         return expectedCsvSegmentAssertion;
     }
 
-    public void assertCsvLine(CsvParser parser) {
+    public void assertCsvLine(CsvParser parser) throws IOException {
         final Set<CsvSegmentAssertion> trackedCsvSegmentAssertions = new HashSet<>(this.expectedCsvSegmentAssertions);
         final Map<Integer, CsvSegmentAssertion> expectedLines = this.expectedCsvSegmentAssertions.stream()
                 .collect(Collectors.toMap(CsvSegmentAssertion::getLineNumber, csvSegmentAssertion -> csvSegmentAssertion));
