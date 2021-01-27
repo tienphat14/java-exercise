@@ -12,7 +12,13 @@ public class HashMapPractice {
 
     public static void main(String[] args) {
         Map<Integer, String> hashMap = new HashMap<>();
-        // TODO: put some mapping to the map
+        // put some mapping to the map
+        hashMap.put(1 ,"One");
+        hashMap.put(1 ,"One");
+        hashMap.put(1 ,"One");
+        hashMap.put(1 ,"One");
+        hashMap.put(1 ,"One");
+
 
         // TODO: print out all keys in the map
 

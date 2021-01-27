@@ -12,16 +12,29 @@ public class StreamAPIExerciseComplex {
     private static final List<Employee> EMPLOYEES = Employees.allEmployees();
 
     public static void main(String[] args) {
-        StreamAPIExerciseComplex excercise = new StreamAPIExerciseComplex();
-        LOGGER.info("{}", excercise.exercise1());
-        LOGGER.info("{}", excercise.exercise2());
-        LOGGER.info("{}", excercise.exercise3());
+        StreamAPIExerciseComplex exercise = new StreamAPIExerciseComplex();
+        LOGGER.info("{}", exercise.exercise1());
+        LOGGER.info("{}", exercise.exercise2());
+        LOGGER.info("{}", exercise.exercise3());
     }
 
+    /**
+     * Find whether there are two employees with the same first name and surname and return the name
+     * @return the first name
+     */
     public String exercise1() {
-        // TODO: find whether there are two employees with the same first name and surname and return the name
-        throw new UnsupportedOperationException();
+        return EMPLOYEES.stream().filter( e -> EMPLOYEES
+            .stream()
+            .anyMatch(e2 -> StreamAPIExerciseComplex.compare(e, e2)))
+                .map(e-> e.getFirstName() + " " + e.getSurname())
+                .findFirst()
+                .orElse("Not Found");
     }
+
+    public static  boolean compare(Employee e1, Employee e2){
+        return e1 != e2 && e1.getFirstName().equals(e2.getFirstName()) && e1.getSurname().equals(e2.getSurname());
+    }
+
 
     public long exercise2() {
         // TODO: find the total number of groups of at least 5 employees living close to each other
