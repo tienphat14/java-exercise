@@ -27,7 +27,7 @@ you need to implement.
 ### Expected API Usage
 Code sample of CsvParser API usage
 ```java
-class App {
+class coaching.App {
     public static void main(String ...args) {                                             
         // Initialize parser
         final File file = new File("foo.csv");
@@ -48,7 +48,7 @@ class App {
 
 Code sample of CsvWriter API usage
 ```java
-class App {
+class coaching.App {
     public static void main(String ...args) {
         // Initialize writer
         final File file = new File("foo.csv");
