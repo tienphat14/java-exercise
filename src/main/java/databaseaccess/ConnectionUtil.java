@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -29,9 +30,13 @@ public class ConnectionUtil {
         staff.setFirstName(rs.getString("firstName"));
         staff.setMiddleName(rs.getString("middleName"));
         staff.setLastName(rs.getString("lastName"));
-        staff.setDob(rs.getTimestamp("dob").toLocalDateTime());
         staff.setPhone(rs.getString("phone"));
         staff.setAddress(rs.getString("address"));
+
+        Timestamp dob = rs.getTimestamp("dob");
+        if (Objects.nonNull(dob)) {
+            staff.setDob(dob.toLocalDateTime());
+        }
         return staff;
     };
 

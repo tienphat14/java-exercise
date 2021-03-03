@@ -3,7 +3,9 @@ package coaching.repository;
 import coaching.model.Staff;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -22,9 +24,11 @@ public class StaffRepositoryTest extends DatabaseTestSupport {
 
         // Execute
         repository.save(Arrays.asList(staffA, staffB));
+        List<Staff> staffList = new ArrayList<>(repository.findAll());
 
         // Assertion
-        assertEquals(1L, (long) staffA.getId());
-        assertEquals(2L, (long) staffB.getId());
+        assertEquals(2, staffList.size());
+        assertEquals(1L, (long) staffList.get(0).getId());
+        assertEquals(2L, (long) staffList.get(1).getId());
     }
 }
