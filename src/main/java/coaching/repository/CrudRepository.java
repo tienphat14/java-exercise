@@ -31,6 +31,16 @@ public interface CrudRepository<T> {
     int saveSingle(T data);
 
     /**
+     * Save data into persistence storage in batch
+     * When an exception occurs, rollback
+     *
+     * @param data
+     * @return
+     */
+    @Transactional(rollbackFor = Exception.class)
+    int[] saveBatch(Collection<T> data);
+
+    /**
      * Get all data existing in storage
      *
      * @return Data
