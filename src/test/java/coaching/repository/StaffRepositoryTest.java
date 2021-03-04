@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class StaffRepositoryTest extends DatabaseTestSupport {
 
@@ -30,5 +31,19 @@ public class StaffRepositoryTest extends DatabaseTestSupport {
         assertEquals(2, staffList.size());
         assertEquals(1L, (long) staffList.get(0).getId());
         assertEquals(2L, (long) staffList.get(1).getId());
+    }
+
+    @Test
+    public void saveBatch_exceptionOccurs_shouldRollBack() {
+        final CrudRepository<Staff> repository = new StaffRepository(dataSource);
+        final Staff staffD = RepositoryTestUtils.createMockStaff();
+        final Staff staffE = RepositoryTestUtils.createMockStaff();
+        final Staff staffF = RepositoryTestUtils.createMockStaff();
+        staffE.setPhone("Long phone number");
+
+        repository.saveBatch(Arrays.asList(staffD, staffE, staffF));
+        List<Staff> staffList = new ArrayList<>(repository.findAll());
+
+        assertTrue(staffList.isEmpty());
     }
 }
