@@ -107,16 +107,6 @@ public class StaffRepository implements CrudRepository<Staff> {
         }
     }
 
-    @Override
-    public int[] saveBatch(Collection<Staff> data) {
-        throw new UnsupportedOperationException("This method is not implemented yet");
-    }
-
-    @Override
-    public int[] saveBatch(Collection<Staff> data) {
-        throw new UnsupportedOperationException("This method is not implemented yet");
-    }
-
     /**
      * {@inheritDoc}
      *
