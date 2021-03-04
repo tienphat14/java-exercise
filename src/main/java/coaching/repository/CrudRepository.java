@@ -1,5 +1,7 @@
 package coaching.repository;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.Collection;
 
 /**
@@ -13,6 +15,16 @@ public interface CrudRepository<T> {
      * @param data Data
      */
     void save(Collection<T> data);
+
+    /**
+     * Save data into persistence storage in batch
+     * When an exception occurs, rollback
+     *
+     * @param data
+     * @return
+     */
+    @Transactional(rollbackFor = Exception.class)
+    int[] saveBatch(Collection<T> data);
 
     /**
      * Get all data existing in storage
