@@ -7,13 +7,21 @@ import java.util.Collection;
  */
 public class Violation {
 
+    private Object invalidValue;
+    private Collection<String> messages;
+    private String fieldName;
+
     /**
      * Invalid value of field violating the rules
      *
      * @return Invalid value
      */
     public Object getInvalidValue() {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        return invalidValue;
+    }
+
+    public void setInvalidValue(Object invalidValue) {
+        this.invalidValue = invalidValue;
     }
 
     /**
@@ -23,7 +31,11 @@ public class Violation {
      * @return Violation message declared in rule annotation
      */
     public Collection<String> getMessages() {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        return messages;
+    }
+
+    public void setMessages(Collection<String> messages) {
+        this.messages = messages;
     }
 
     /**
@@ -32,7 +44,11 @@ public class Violation {
      * @return Field name
      */
     public String getFieldName() {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        return fieldName;
+    }
+
+    public void setFieldName(String fieldName) {
+        this.fieldName = fieldName;
     }
 
     @Override

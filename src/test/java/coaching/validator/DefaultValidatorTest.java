@@ -26,7 +26,7 @@ import java.util.Iterator;
 public class DefaultValidatorTest {
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenValidate_NullValidatedObject_ThenReject() {
+    public void whenValidate_NullValidatedObject_ThenReject() throws IllegalAccessException {
         new DefaultValidator().validate(null);
     }
 
@@ -37,7 +37,7 @@ public class DefaultValidatorTest {
      */
 
     @Test
-    public void whenValidate_FieldHavingSingleRule_ThenReturnViolation() {
+    public void whenValidate_FieldHavingSingleRule_ThenReturnViolation() throws IllegalAccessException {
         final Validator validator = new DefaultValidator();
         final SingleRuleClient client = new SingleRuleClient();
         client.setFirstName(null);
@@ -101,7 +101,7 @@ public class DefaultValidatorTest {
      */
 
     @Test
-    public void whenValidate_FieldHavingMultipleRules_ThenReturnViolation() {
+    public void whenValidate_FieldHavingMultipleRules_ThenReturnViolation() throws IllegalAccessException {
         final Validator validator = new DefaultValidator();
         final MultipleRuleClient client = new MultipleRuleClient();
         client.setFirstName("random123456");
