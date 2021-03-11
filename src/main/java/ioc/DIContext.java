@@ -1,5 +1,8 @@
 package ioc;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,21 +12,56 @@ public class DIContext {
 
     public static DIContext createContextForPackage(String rootPackageName) throws Exception {
         Set<Class<?>> allClassesInPackage = ClassPathScanner.getAllClassesInPackage(rootPackageName);
-        // TODO implement with reflection, don't forget to set accessible
-        // Step 1: find all service classes in allClassesInPackage
+        Set<Class<?>> serviceClasses = new HashSet<>();
+        for (Class<?> aClass : allClassesInPackage) {
+            if (aClass.isAnnotationPresent(MyService.class)) {
+                serviceClasses.add(aClass);
+            }
+        }
+        return new DIContext(serviceClasses);
+    }
 
-        // Step 2: create an instance for each service(Class.getConstructor())
-        // and add it to the serviceInstances set
-
-        // Step 3: check each field in each service instance
-        // if that field is a reference to another service
-        // find an appropriate one in serviceInstances
-        // and wire to that field
-        throw new UnsupportedOperationException("This method is not implemented yet");
+    public DIContext(Collection<Class<?>> serviceClasses) throws Exception {
+        createServiceInstances(serviceClasses);
+        for (Object serviceInstance : serviceInstances) {
+            wireService(serviceInstance);
+        }
     }
 
     public <T> T getServiceInstance(Class<T> serviceClass){
-        // TODO
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        for(Object serviceInstance : this.serviceInstances){
+            if(serviceClass.isInstance(serviceInstance)){
+                return (T)serviceInstance;
+            }
+        }
+        return null;
+    }
+
+    private void createServiceInstances(Collection<Class<?>> serviceClasses) throws Exception {
+        for (Class<?> serviceClass : serviceClasses) {
+            Constructor<?> constructor = serviceClass.getConstructor();
+            boolean accessible = constructor.isAccessible();
+            constructor.setAccessible(true);
+            Object serviceInstance = constructor.newInstance();
+            this.serviceInstances.add(serviceInstance);
+            constructor.setAccessible(accessible);
+        }
+    }
+
+    private void wireService(Object serviceInstance) throws Exception {
+        for (Field field : serviceInstance.getClass().getDeclaredFields()){
+            if (!field.isAnnotationPresent(MyAutoWired.class)){
+                continue;
+            }
+            Class<?> fieldType = field.getType();
+            boolean accessible = field.isAccessible();
+            field.setAccessible(true);
+            for (Object matchPartner : this.serviceInstances){
+                if (fieldType.isInstance(matchPartner)){
+                    field.set(serviceInstance, matchPartner);
+                }
+            }
+            field.setAccessible(accessible);
+        }
     }
 }
