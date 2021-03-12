@@ -17,7 +17,7 @@ you need to implement.
 - Implement repository that utilizes Java DataSource API. Here are suggested data source implementation:
   - [Hikari Datasource](https://github.com/brettwooldridge/HikariCP)
   - [Common DBCP](https://commons.apache.org/proper/commons-dbcp/index.html)
-- Utilize resources relating to database correctly.
+- Utilize resources relating to databaseaccess correctly.
 - Exceptions should be handled correctly
 - Code documentation is required (apply to public method and class), it should clarify the
   purpose and usage.
@@ -27,7 +27,7 @@ you need to implement.
 ### Expected API Usage
 Code sample of repository API usage
 ```java
-class App {
+class coaching.App {
     public static void main(String ...args) {     
         // Initialize repository
         final DataSource dataSource; // Declare your datasource

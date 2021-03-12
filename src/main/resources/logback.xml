@@ -5,7 +5,9 @@
             <pattern>%d{MM-dd-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{5}: %m%n</pattern>
         </encoder>
     </appender>
-    <root level="TRACE">
+
+    TRACE, DEBUG, INFO, WARN, ERROR
+    <root level="INFO">
         <appender-ref ref="CONSOLE"/>
     </root>
 </configuration>
