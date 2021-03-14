@@ -50,6 +50,7 @@ public class DefaultCsvParser implements CsvParser {
 
     /**
      * Get the next line
+     *
      * @return a csv line
      */
     @Override

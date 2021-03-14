@@ -68,6 +68,7 @@ public class DefaultCsvWriter implements CsvWriter {
 
     /**
      * Convert a csv line to a string
+     *
      * @param line a line of csv
      * @param config file configuration with delimiter, wrapper with quotes
      * @return a string converted from csv line
