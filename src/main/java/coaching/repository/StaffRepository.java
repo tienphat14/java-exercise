@@ -50,8 +50,9 @@ public class StaffRepository implements CrudRepository<Staff> {
                 preparedStatement.setString(6, String.valueOf(staff.getGender()));
                 preparedStatement.setString(7, staff.getPhone());
                 preparedStatement.setString(8, staff.getAddress());
-                LOGGER.info("Query: " + preparedStatement.toString());
+                LOGGER.info("Query to insert: " + preparedStatement.toString());
                 preparedStatement.executeUpdate();
+                LOGGER.info("Insert the StaffId '{}' successfully", staff.getId());
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -85,7 +86,7 @@ public class StaffRepository implements CrudRepository<Staff> {
                 preparedStatement.setString(6, String.valueOf(staff.getGender()));
                 preparedStatement.setString(7, staff.getPhone());
                 preparedStatement.setString(8, staff.getAddress());
-                LOGGER.info("Query: " + preparedStatement.toString());
+                LOGGER.info("Query to insert: " + preparedStatement.toString());
                 preparedStatement.executeUpdate();
                 LOGGER.info("Insert the StaffId '{}' successfully", staff.getId());
                 savedStaffId[count++] = staff.getId();
@@ -93,13 +94,14 @@ public class StaffRepository implements CrudRepository<Staff> {
 
             } catch (SQLException throwables) {
                 LOGGER.info("Failed to insert the StaffId '{}'", staff.getId());
+                LOGGER.info("Starting to rollback");
                 for (int i = 0; i < count; i++) {
                     try (Connection connection = this.dataSource.getConnection();
                          PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
                         preparedStatement.setInt(1, savedStaffId[i]);
-                        LOGGER.info("Rollback Query: " + preparedStatement.toString());
+                        LOGGER.info("Query to remove the StaffId '{}': {}", savedStaffId[i], preparedStatement.toString());
                         preparedStatement.executeUpdate();
-                        LOGGER.info("Rollback to remove StaffId '{}' successfully", savedStaffId[i]);
+                        LOGGER.info("Removed the StaffId '{}' successfully", savedStaffId[i]);
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
