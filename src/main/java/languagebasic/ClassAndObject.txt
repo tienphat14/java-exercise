@@ -27,6 +27,14 @@ class Parent extends Grandparent {
         System.out.println("Parent(" + x + ") constructor");
     }
 }
+----------------------------------------------------------------
+Parent(25) constructor
+Parent() constructor
+Child() constructor
+**********
+Parent(50) constructor
+----------------------------------------------------------------
+
 
 2. What is the output?
 public static void main(String args[]) {
@@ -41,12 +49,27 @@ private static void enlarge(Rectangle rectangle, int multiplier) {
     rectangle = new Rectangle(100, 50);
 }
 
+----------------------------------------------------------------
+40 20
+----------------------------------------------------------------
+
+
 3. Find errors and fix if any
 private class A {
     private class B {
         private class C {}
     }
 }
+
+----------------------------------------------------------------
+Error: Java don't allow the top class be private (couldn't be accessed and do anything)
+Fix: Change access modifier to public
+public class A {
+    private class B {
+        private class C {}
+    }
+}
+----------------------------------------------------------------
 
 4. Find errors and fix if any
 public class A {
@@ -58,6 +81,35 @@ public class MainClass extends A {
         B b = new B();
     }
 }
+
+----------------------------------------------------------------
+Error: Class B is a private inner class of class A so MainClass couldn't access it directly
+Case 1: Create a method in class A to access private class B
+class A {
+    private class B {}
+    void getB() {
+        B b = new B();
+    }
+}
+
+public class MainClass extends A {
+    public static void main(String[] args) {
+        A a = new A();
+        a.getB();
+    }
+}
+
+Case 2: Change the access modifier of class B to public static
+class A {
+    public static class B {}
+}
+
+public class MainClass extends A {
+    public static void main(String[] args) {
+        B b = new B();
+    }
+}
+----------------------------------------------------------------
 
 5. Find errors and fix if any
 class X {
@@ -74,6 +126,9 @@ public class MainClass {
        x.methodOfX();
    }
 }
+----------------------------------------------------------------
+No error
+----------------------------------------------------------------
 
 6. Find errors and fix if any
 package pack1;
@@ -86,6 +141,20 @@ import pack1.*;
 class B {
     A a = new A();
 }
+----------------------------------------------------------------
+Error: A and B are in different packages
+Fix: Make A public
+package pack1;
+public class A {
+    public A(){}
+}
+
+package pack2;
+import pack1.*;
+class B {
+    A a = new A();
+}
+----------------------------------------------------------------
 
 7. Find errors and fix if any
 package pack1;
@@ -101,6 +170,9 @@ class B extends A {
        super(10);
    }
 }
+----------------------------------------------------------------
+No Error
+----------------------------------------------------------------
 
 8. Is there any errors? If not, what is the output?
 private static int count = 0;
@@ -120,3 +192,20 @@ public static void main(String[] args) {
 public static void increaseCount() {
     count++;
 }
+----------------------------------------------------------------
+No Error but count is a static variable, it should be called by LanguageBasic.count not instance reference lb.count
+Output:
+Hello World!
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+10
+----------------------------------------------------------------

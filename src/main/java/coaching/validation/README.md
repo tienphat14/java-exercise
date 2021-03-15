@@ -24,7 +24,7 @@ you need to implement.
 ### Expected API Usage
 Code sample of validation API usage
 ```java
-class App {
+class coaching.App {
     public static void main(String ...args) {     
         // Initialize validator
         final Validator validator = new DefaultValidator();

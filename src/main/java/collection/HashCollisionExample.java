@@ -22,6 +22,7 @@ public class HashCollisionExample {
         hashMap.put(new MapKey("sachin"), 30);
         hashMap.put(new MapKey("vaibhav"), 40);
 
+
         hashMap.keySet().forEach(k -> LOGGER.info(k.key));
     }
 

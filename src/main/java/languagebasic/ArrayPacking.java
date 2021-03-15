@@ -25,9 +25,32 @@ public class ArrayPacking {
      *          1 ≤ array.length ≤ 4
      *          0 ≤ array[i] < 256
      */
-    public int arrayPacking(int[] array) {
+    public int arrayPacking(int[] array) throws CustomException {
         //TODO: create the CustomException class
         //TODO: implement this method
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        //throw new UnsupportedOperationException("This method is not implemented yet");
+        int i;
+        if (!isArrayLengthValid(array)) {
+            throw new CustomException("Invalid array length. Actual length: " + array.length + ". Expected length: 1 - 4");
+        }
+
+        StringBuilder binaryAppendFromArray = new StringBuilder();
+        for (i = array.length - 1; i >= 0; i--) {
+            if (isArrayElementValid(array[i])) {
+                binaryAppendFromArray.append(String.format("%8s", Integer.toBinaryString(array[i])).replace(" ", "0"));
+            }
+            else {
+                throw new CustomException("Invalid array elements. Expected value: 0 <= array[i] < 256");
+            }
+        }
+        return Integer.parseUnsignedInt(String.valueOf(binaryAppendFromArray), 2);
+    }
+
+    private boolean isArrayLengthValid(int[] array) {
+        return array.length >= 1 && array.length <= 4;
+    }
+
+    private boolean isArrayElementValid(int integer) {
+        return integer >= 0 && integer < 256;
     }
 }

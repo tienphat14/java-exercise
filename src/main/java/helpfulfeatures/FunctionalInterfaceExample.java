@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.DoubleSupplier;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
@@ -14,11 +15,11 @@ import java.util.stream.Collectors;
 
 public class FunctionalInterfaceExample {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LambdaExample.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FunctionalInterfaceExample.class);
 
     public static void main(String[] args) {
         Map<String, Integer> nameMap = new HashMap<>();
-        LOGGER.info("John has length = {}", nameMap.computeIfAbsent("John", s -> s.length()));
+        LOGGER.info("John has length = {}", nameMap.computeIfAbsent("John", String::length));
         LOGGER.info("************************************************************");
 
         Map<String, Integer> salaries = new HashMap<>();
@@ -29,8 +30,8 @@ public class FunctionalInterfaceExample {
         LOGGER.info("{}", salaries);
         LOGGER.info("************************************************************");
 
-        Supplier<Double> randomValue = () -> Math.random();
-        LOGGER.info("A random number: {}", randomValue.get());
+        DoubleSupplier randomValue = Math::random;
+        LOGGER.info("A random number: {}", randomValue.getAsDouble());
         LOGGER.info("************************************************************");
 
         List<String> names = Arrays.asList("John", "Freddy", "Samuel");
@@ -46,7 +47,7 @@ public class FunctionalInterfaceExample {
         FunctionalInterfaceExample example = new FunctionalInterfaceExample();
         Function<Integer, String> func1 = Object::toString;
         UnaryOperator<String> func2 = s -> s + "hours";
-        Function<String, String> func3 = s -> "'" + s + "'";
+        UnaryOperator<String> func3 = s -> "'" + s + "'";
         Function<Integer, String> composedFunc = func2.compose(func1).andThen(func3);
         example.applyComposedFunction(5, composedFunc);
     }
