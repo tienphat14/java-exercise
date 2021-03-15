@@ -87,22 +87,24 @@ public class StaffRepository implements CrudRepository<Staff> {
                 preparedStatement.setString(8, staff.getAddress());
                 LOGGER.info("Query: " + preparedStatement.toString());
                 preparedStatement.executeUpdate();
+                LOGGER.info("Insert the StaffId '{}' successfully", staff.getId());
                 savedStaffId[count++] = staff.getId();
-                LOGGER.info("Count: " + count);
+                LOGGER.info("Number of successful records: {}", count);
 
             } catch (SQLException throwables) {
+                LOGGER.info("Failed to insert the StaffId '{}'", staff.getId());
                 for (int i = 0; i < count; i++) {
                     try (Connection connection = this.dataSource.getConnection();
                          PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
                         preparedStatement.setInt(1, savedStaffId[i]);
                         LOGGER.info("Rollback Query: " + preparedStatement.toString());
                         preparedStatement.executeUpdate();
-                        return null;
+                        LOGGER.info("Rollback to remove StaffId '{}' successfully", savedStaffId[i]);
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
                 }
-                throwables.printStackTrace();
+                return null;
             }
         }
         return savedStaffId;
