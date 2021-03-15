@@ -167,21 +167,21 @@ public class DateTimeExample {
         ZonedDateTime zonedDateTime = ZonedDateTime.now(ZoneId.systemDefault());
         LOGGER.info("Current datetime by zoned datetime {}", zonedDateTime);
         LOGGER.info("Current second by zoned datetime {}", zonedDateTime.toEpochSecond());
-        staffDao.save(createStaff("Current datetime by zoned datetime", zonedDateTime.toLocalDateTime()));
+        staffDao.save(createStaff("Current datetime by zoned datetime", zonedDateTime.toLocalDate()));
         LOGGER.info("");
         ZonedDateTime newYorkZonedDateTime = ZonedDateTime.now(ZoneId.of(NEW_YORK_ZONE_ID));
         LOGGER.info("Current New York datetime by zoned datetime {}", newYorkZonedDateTime);
         LOGGER.info("Current New York second by zoned datetime {}", newYorkZonedDateTime.toEpochSecond());
-        staffDao.save(createStaff("Current New York datetime by zoned datetime", newYorkZonedDateTime.toLocalDateTime()));
+        staffDao.save(createStaff("Current New York datetime by zoned datetime", newYorkZonedDateTime.toLocalDate()));
         LOGGER.info("");
         ZonedDateTime switchedZonedDateTime = zonedDateTime.withZoneSameInstant(ZoneId.of(NEW_YORK_ZONE_ID));
         LOGGER.info("Current New York datetime by switch zoned datetime timezone {}", switchedZonedDateTime);
         LOGGER.info("Current New York second by switch zoned datetime timezone {}", switchedZonedDateTime.toEpochSecond());
-        staffDao.save(createStaff("Current New York datetime by switch zoned datetime timezone", switchedZonedDateTime.toLocalDateTime()));
+        staffDao.save(createStaff("Current New York datetime by switch zoned datetime timezone", switchedZonedDateTime.toLocalDate()));
         LOGGER.info("");
     }
 
-    private Staff createStaff(String firstName, LocalDateTime dob) {
+    private Staff createStaff(String firstName, LocalDate dob) {
         Staff staff = new Staff();
         staff.setFirstName(firstName);
         staff.setDob(dob);

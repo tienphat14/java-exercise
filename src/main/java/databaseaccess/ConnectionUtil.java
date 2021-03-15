@@ -29,7 +29,7 @@ public class ConnectionUtil {
         staff.setFirstName(rs.getString("firstName"));
         staff.setMiddleName(rs.getString("middleName"));
         staff.setLastName(rs.getString("lastName"));
-        staff.setDob(rs.getTimestamp("dob").toLocalDateTime());
+        staff.setDob(rs.getDate("dob").toLocalDate());
         staff.setPhone(rs.getString("phone"));
         staff.setAddress(rs.getString("address"));
         return staff;

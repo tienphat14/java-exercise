@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -41,7 +42,6 @@ public class StaffRepository implements CrudRepository<Staff> {
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
             try (final Connection connection = this.dataSource.getConnection();
                  final PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
-                LOGGER.info("Before: " + preparedStatement.toString());
                 preparedStatement.setInt(1, staff.getId());
                 preparedStatement.setString(2, staff.getFirstName());
                 preparedStatement.setString(3, staff.getMiddleName());
@@ -50,16 +50,62 @@ public class StaffRepository implements CrudRepository<Staff> {
                 preparedStatement.setString(6, String.valueOf(staff.getGender()));
                 preparedStatement.setString(7, staff.getPhone());
                 preparedStatement.setString(8, staff.getAddress());
-                LOGGER.info("After: " + preparedStatement.toString());
+                LOGGER.info("Query: " + preparedStatement.toString());
+                preparedStatement.executeUpdate();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }
     }
 
+    /**
+     * Save records with rollback processing when error occurs
+     *
+     * @param data
+     * @return an array of successful record ids
+     */
     @Override
     public int[] saveBatch(Collection<Staff> data) {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        if (data == null) {
+            throw new IllegalArgumentException("Data is null");
+        }
+        int[] savedStaffId = new int[data.size()];
+        int count = 0;
+        for (Staff staff : data) {
+            String insertQuery = "INSERT INTO staff (id, firstName, middleName, lastName, dob, gender, phone, address)" +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+            String deleteQuery = "DELETE FROM staff WHERE id = ?";
+            try (Connection connection = this.dataSource.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
+                preparedStatement.setInt(1, staff.getId());
+                preparedStatement.setString(2, staff.getFirstName());
+                preparedStatement.setString(3, staff.getMiddleName());
+                preparedStatement.setString(4, staff.getLastName());
+                preparedStatement.setString(5, staff.getDob());
+                preparedStatement.setString(6, String.valueOf(staff.getGender()));
+                preparedStatement.setString(7, staff.getPhone());
+                preparedStatement.setString(8, staff.getAddress());
+                LOGGER.info("Query: " + preparedStatement.toString());
+                preparedStatement.executeUpdate();
+                savedStaffId[count++] = staff.getId();
+                LOGGER.info("Count: " + count);
+
+            } catch (SQLException throwables) {
+                for (int i = 0; i < count; i++) {
+                    try (Connection connection = this.dataSource.getConnection();
+                         PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
+                        preparedStatement.setInt(1, savedStaffId[i]);
+                        LOGGER.info("Rollback Query: " + preparedStatement.toString());
+                        preparedStatement.executeUpdate();
+                        return null;
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                throwables.printStackTrace();
+            }
+        }
+        return savedStaffId;
     }
 
     /**

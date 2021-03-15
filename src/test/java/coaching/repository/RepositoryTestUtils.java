@@ -20,7 +20,7 @@ public final class RepositoryTestUtils {
         staff.setLastName("Biden");
         staff.setDob(LocalDate.parse("1965-12-03"));
         staff.setGender("M");
-        staff.setPhone("092-392-555");
+        staff.setPhone("092-392-5");
         staff.setAddress("21st Jump Street");
         return staff;
     }
@@ -33,7 +33,45 @@ public final class RepositoryTestUtils {
         staff.setLastName("Trump");
         staff.setDob(LocalDate.parse("1965-12-03"));
         staff.setGender("M");
-        staff.setPhone("092-392-555");
+        staff.setPhone("092-392-5");
+        staff.setAddress("21st Jump Street");
+        return staff;
+    }
+
+    public static Staff createMockStaffD() {
+        Staff staff = new Staff();
+        staff.setId(4);
+        staff.setFirstName("Donald");
+        staff.setMiddleName("J");
+        staff.setLastName("Trump");
+        staff.setDob(LocalDate.parse("1965-12-03"));
+        staff.setGender("M");
+        staff.setPhone("092-392-5");
+        staff.setAddress("21st Jump Street");
+        return staff;
+    }
+    public static Staff createMockStaffE() {
+        Staff staff = new Staff();
+        staff.setId(5);
+        staff.setFirstName("Donald");
+        staff.setMiddleName("J");
+        staff.setLastName("Trump");
+        staff.setDob(LocalDate.parse("1965-12-03"));
+        staff.setGender("M");
+        staff.setPhone("092-392-5");
+        staff.setAddress("21st Jump Street");
+        return staff;
+    }
+
+    public static Staff createMockStaffF() {
+        Staff staff = new Staff();
+        staff.setId(6);
+        staff.setFirstName("Donald");
+        staff.setMiddleName("J");
+        staff.setLastName("Trump");
+        staff.setDob(LocalDate.parse("1965-12-03"));
+        staff.setGender("M");
+        staff.setPhone("092-392-5");
         staff.setAddress("21st Jump Street");
         return staff;
     }

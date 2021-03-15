@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class StaffDaoTest {
     private Staff createStaff() {
         Staff staff = new Staff();
         staff.setFirstName("TestStaff");
-        staff.setDob(LocalDateTime.now());
+        staff.setDob(LocalDate.now());
         return staff;
     }
 }

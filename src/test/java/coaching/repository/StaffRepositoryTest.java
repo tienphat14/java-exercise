@@ -34,9 +34,9 @@ public class StaffRepositoryTest extends DatabaseTestSupport {
     @Test
     public void saveBatch_exceptionOccurs_shouldRollBack() {
         final CrudRepository<Staff> repository = new StaffRepository(dataSource);
-        final Staff staffD = RepositoryTestUtils.createMockStaff();
-        final Staff staffE = RepositoryTestUtils.createMockStaff();
-        final Staff staffF = RepositoryTestUtils.createMockStaff();
+        final Staff staffD = RepositoryTestUtils.createMockStaffD();
+        final Staff staffE = RepositoryTestUtils.createMockStaffE();
+        final Staff staffF = RepositoryTestUtils.createMockStaffF();
         staffE.setPhone("Long phone number");
 
         repository.saveBatch(Arrays.asList(staffD, staffE, staffF));
