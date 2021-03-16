@@ -1,7 +1,5 @@
 package coaching.repository;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.Collection;
 
 /**
@@ -25,8 +23,7 @@ public interface CrudRepository<T> {
      * @param data
      * @return
      */
-    @Transactional(rollbackFor = Exception.class)
-    int[] saveBatch(Collection<T> data);
+    void saveBatch(Collection<T> data);
 
     int saveSingle(T data);
 

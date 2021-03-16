@@ -6,6 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.TransactionCallbackWithoutResult;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
@@ -22,8 +26,8 @@ import java.util.Objects;
 public class StaffRepository implements CrudRepository<Staff> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StaffRepository.class);
-
     private JdbcTemplate template;
+    private TransactionTemplate transactionTemplate;
 
     /**
      * Initialize
@@ -35,6 +39,7 @@ public class StaffRepository implements CrudRepository<Staff> {
             throw new IllegalArgumentException("Datasource cannot be null");
         }
         template = new JdbcTemplate(dataSource);
+        transactionTemplate = new TransactionTemplate(new DataSourceTransactionManager(dataSource));
     }
 
     /**
@@ -57,34 +62,44 @@ public class StaffRepository implements CrudRepository<Staff> {
     }
 
     @Override
-    public int[] saveBatch(Collection<Staff> data) {
+    public void saveBatch(Collection<Staff> data) {
         if (Objects.isNull(data)) {
             throw new IllegalArgumentException();
         }
         String sql = "insert into staff values (null, ?, ?, ?, ?, ?, ?)";
         List<Staff> staffList = new ArrayList<>(data);
-        try {
-            return template.batchUpdate(sql, new BatchPreparedStatementSetter(){
-                @Override
-                public void setValues(PreparedStatement ps, int i) throws SQLException {
-                    Staff staff = staffList.get(i);
-                    ps.setString(1, staff.getFirstName());
-                    ps.setString(2, staff.getMiddleName());
-                    ps.setString(3, staff.getLastName());
-                    ps.setTimestamp(4, Timestamp.valueOf(staff.getDob()));
-                    ps.setString(5, staff.getPhone());
-                    ps.setString(6, staff.getAddress());
-                }
 
-                @Override
-                public int getBatchSize() {
-                    return data.size();
+        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+            @Override
+            protected void doInTransactionWithoutResult(TransactionStatus status) {
+                try {
+                    jdbcBatchUpdate(staffList, sql);
+                } catch (Exception e) {
+                    LOGGER.error("Failed to save batch, rolling back", e);
+                    status.setRollbackOnly();
                 }
-            });
-        } catch (Exception e) {
-            LOGGER.error("failed to savebatch", e);
-            return new int[]{};
-        }
+            }
+        });
+    }
+
+    private void jdbcBatchUpdate(List<Staff> staffList, String sql) {
+        template.batchUpdate(sql, new BatchPreparedStatementSetter(){
+            @Override
+            public void setValues(PreparedStatement ps, int i) throws SQLException {
+                Staff staff = staffList.get(i);
+                ps.setString(1, staff.getFirstName());
+                ps.setString(2, staff.getMiddleName());
+                ps.setString(3, staff.getLastName());
+                ps.setTimestamp(4, Timestamp.valueOf(staff.getDob()));
+                ps.setString(5, staff.getPhone());
+                ps.setString(6, staff.getAddress());
+            }
+
+            @Override
+            public int getBatchSize() {
+                return staffList.size();
+            }
+        });
     }
 
     @Override
