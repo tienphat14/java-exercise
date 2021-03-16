@@ -12,8 +12,8 @@ public class Main {
         return DIContext.createContextForPackage(rootPackageName);
     }
 
-    private static void run(DIContext context){
-        PrintService printService = context.getServiceInstance(PrintService.class);
+    private static void run(DIContext context) throws InstantiationException, IllegalAccessException {
+        PrintService printService = context.getServiceInstance(PrintServiceImpl.class);
         printService.print();
     }
 }

@@ -1,6 +1,8 @@
 package coaching.validator;
 
 import coaching.validation.Violation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,10 +11,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 public final class ViolationsAssertion {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ViolationsAssertion.class);
     private final List<FieldAssertion> expectedFields = new ArrayList<>();
 
     public static ViolationsAssertion create() {
@@ -71,6 +73,8 @@ public final class ViolationsAssertion {
 
         public void assertField(Violation violation) {
             assertEquals(invalidValue, violation.getInvalidValue());
+            LOGGER.info("Actual messages: {}", violation.getMessages().toString());
+            LOGGER.info("Expected messages: {}", messages);
             assertTrue("Expected violation messages does not meet the expectation " + messages,
                     violation.getMessages().containsAll(messages));
         }

@@ -13,5 +13,5 @@ public interface Validator {
      * @param data Input data
      * @return Collection of violation instances
      */
-    Collection<Violation> validate(Object data);
+    Collection<Violation> validate(Object data) throws IllegalAccessException;
 }

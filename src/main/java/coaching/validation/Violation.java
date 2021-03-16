@@ -1,11 +1,15 @@
 package coaching.validation;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
  * Supply information about constraint violation
  */
 public class Violation {
+    Object invalidValue;
+    Collection<String> messages = new ArrayList<>();
+    String fieldName;
 
     /**
      * Invalid value of field violating the rules
@@ -13,7 +17,7 @@ public class Violation {
      * @return Invalid value
      */
     public Object getInvalidValue() {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        return this.invalidValue;
     }
 
     /**
@@ -23,7 +27,7 @@ public class Violation {
      * @return Violation message declared in rule annotation
      */
     public Collection<String> getMessages() {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        return this.messages;
     }
 
     /**
@@ -32,7 +36,19 @@ public class Violation {
      * @return Field name
      */
     public String getFieldName() {
-        throw new UnsupportedOperationException("This method is not implemented yet");
+        return this.fieldName;
+    }
+
+    public void setInvalidValue(Object invalidValue) {
+        this.invalidValue = invalidValue;
+    }
+
+    public void setMessages(String message) {
+        this.messages.add(message);
+    }
+
+    public void setFieldName(String fieldName) {
+        this.fieldName = fieldName;
     }
 
     @Override
