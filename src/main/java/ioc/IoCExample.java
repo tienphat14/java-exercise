@@ -1,6 +1,6 @@
 package ioc;
 
-public class Main {
+public class IoCExample {
 
     public static void main(String[] args) throws Exception {
         DIContext context = createContext();
@@ -8,7 +8,7 @@ public class Main {
     }
 
     private static DIContext createContext() throws Exception {
-        String rootPackageName = Main.class.getPackage().getName();
+        String rootPackageName = IoCExample.class.getPackage().getName();
         return DIContext.createContextForPackage(rootPackageName);
     }
 
