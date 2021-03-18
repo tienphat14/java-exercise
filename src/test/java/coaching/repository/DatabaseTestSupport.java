@@ -17,14 +17,14 @@ import static org.junit.Assert.fail;
 
 public class DatabaseTestSupport {
 
-    // For database accessibility
+    // For databaseaccess accessibility
     protected static DataSource dataSource;
 
     @BeforeClass
     public static void init() {
         // Data source setup
         final HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:h2:mem:" + UUID.randomUUID().toString());   // In-memory database
+        config.setJdbcUrl("jdbc:h2:mem:" + UUID.randomUUID().toString());   // In-memory databaseaccess
         config.setDriverClassName("org.h2.Driver");                         // H2 driver
         dataSource = new HikariDataSource(config);
 

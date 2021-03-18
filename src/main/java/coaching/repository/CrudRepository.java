@@ -15,6 +15,15 @@ public interface CrudRepository<T> {
     void save(Collection<T> data);
 
     /**
+     * Save data into persistence storage in batch
+     * When an exception occurs, rollback
+     *
+     * @param data
+     * @return
+     */
+    void saveBatch(Collection<T> data);
+
+    /**
      * Get all data existing in storage
      *
      * @return Data

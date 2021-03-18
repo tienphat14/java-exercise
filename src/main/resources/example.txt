@@ -1,0 +1,3 @@
+inside resources
+1 + 1 = 2
+你好，世界
