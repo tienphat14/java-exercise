@@ -2,6 +2,8 @@ package coaching.repository;
 
 import coaching.model.Staff;
 
+import java.time.LocalDateTime;
+
 public final class RepositoryTestUtils {
 
     private RepositoryTestUtils() {
@@ -9,6 +11,8 @@ public final class RepositoryTestUtils {
     }
 
     public static Staff createMockStaff() {
-        return new Staff();
+        Staff staff = new Staff();
+        staff.setDob(LocalDateTime.now());
+        return staff;
     }
 }
